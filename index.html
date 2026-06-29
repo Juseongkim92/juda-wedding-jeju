@@ -1787,7 +1787,7 @@
   ═══════════════════════════════════════════════════════ -->
   <section class="greeting-block-section" style="padding: 32px 20px 32px 20px;">
     <div class="container greeting-section">
-      <div class="greeting-card">
+      <div class="greeting-card reveal">
         <div class="greeting-text">
           <div class="quote">"하지만 그대의 영원한 여름은 지지 않고"<br>— 윌리엄 셰익스피어, 『소네트 18』</div>
           <div class="greeting-message">
@@ -1908,7 +1908,7 @@
   <div class="container">
     <h2>오시는 길</h2>
 
-    <div class="location-card">
+    <div class="location-card reveal">
       <div class="address-box">
         <div class="address-text">
           <span class="address-line">호텔 인터불고 대구 웨딩인터빌리지홀</span>
@@ -1942,7 +1942,7 @@
 
       <div class="info-list">
         <!-- 자가용 -->
-        <div class="info-item">
+        <div class="info-item reveal reveal-delay-1">
           <button
             type="button"
             class="info-header"
@@ -1969,7 +1969,7 @@
         </div>
 
         <!-- 비행기 -->
-        <div class="info-item">
+        <div class="info-item reveal reveal-delay-2">
           <button
             type="button"
             class="info-header"
@@ -2012,7 +2012,7 @@
         </div>
 
         <!-- 기차 및 버스 -->
-        <div class="info-item">
+        <div class="info-item reveal reveal-delay-3">
           <button
             type="button"
             class="info-header"
@@ -2063,7 +2063,7 @@
         </div>
 
         <!-- 시내 대중교통 -->
-        <div class="info-item">
+        <div class="info-item reveal reveal-delay-4">
           <button
             type="button"
             class="info-header"
@@ -2173,7 +2173,7 @@
         축하의 한마디를 남겨주세요
       </p>
 
-      <div class="guestbook-form">
+      <div class="guestbook-form reveal">
         <div class="form-group">
           <label>이름</label>
           <input
@@ -2497,7 +2497,7 @@
       gallery.innerHTML = '';
       GALLERY_IMAGES.forEach((src, index) => {
         const item = document.createElement('div');
-        item.className = 'gallery-item' + (index >= GALLERY_PREVIEW_COUNT ? ' is-collapsed' : '');
+        item.className = 'gallery-item scale-in' + (index >= GALLERY_PREVIEW_COUNT ? ' is-collapsed' : '');
         item.onclick = () => openLightbox(index);
         item.innerHTML = `<img src="${src}" alt="사진 ${index + 1}" loading="lazy" draggable="false">`;
         gallery.appendChild(item);
