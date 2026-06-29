@@ -1811,7 +1811,7 @@
       <div class="couple-intro">
         <div class="wedding-info" style="border-top: none; padding-top: 0;">
           <strong>2026년 8월 22일 토요일 낮 12시</strong>
-          호텔 인터불고 대구 웨딩인터빌리지
+          호텔 인터불고 대구 웨딩인터빌리지홀
         </div>
       </div>
 
@@ -1865,7 +1865,7 @@
       <div class="location-card">
         <div class="address-box">
           <div class="address-text">
-            <span class="address-line">호텔 인터불고 대구 웨딩인터빌리지</span>
+            <span class="address-line">호텔 인터불고 대구 웨딩인터빌리지홀</span>
             <span class="address-line">대구 수성구 팔현길 212</span>
           </div>
           <div class="address-actions">
@@ -1887,7 +1887,7 @@
         <!-- Kakao Map Interactive -->
         <div id="kakaoMap" style="width: 100%; margin: 20px 0; border-radius: 8px; overflow: hidden; height: 250px; border: 1px solid var(--border);"></div>
 
-        <div class="info-list">
+<div class="info-list">
   <!-- 자가용 -->
   <div class="info-item">
     <button
@@ -1903,18 +1903,18 @@
     <div class="info-content">
       <div class="route-block">
         <p class="route-path">
-          동대구 IC에서 시청 방향으로 4km
+          동대구IC에서 시청방향으로 4km
           <span class="route-time">약 5분 소요</span>
         </p>
       </div>
 
       <div class="route-note">
-        내비게이션에서 <strong>호텔 인터불고 대구</strong>를 검색해주세요. 어플 아이콘을 누르시면 바로 연결됩니다.
+        내비게이션에서 <strong>호텔 인터불고 대구</strong>를 검색해주세요.
       </div>
     </div>
   </div>
 
-  <!-- 대구국제공항 -->
+  <!-- 비행기 -->
   <div class="info-item">
     <button
       type="button"
@@ -1922,12 +1922,14 @@
       aria-expanded="false"
       onclick="toggleInfo(this.closest('.info-item'))"
     >
-      <span>✈️ 대구국제공항</span>
+      <span>✈️ 비행기</span>
       <span class="arrow" aria-hidden="true">▼</span>
     </button>
 
     <div class="info-content">
       <div class="route-block">
+        <h4 class="route-title">대구국제공항에서 오실 때</h4>
+
         <div class="route-row">
           <span class="route-label">택시</span>
           <p class="route-path">
@@ -1939,7 +1941,7 @@
         <div class="route-row">
           <span class="route-label">버스</span>
           <p class="route-path">
-            대구국제공항 건너 승차
+            대구국제공항 건너편 승차
             <span class="route-arrow">→</span>
             급행1 · 401 · 동구8 · 팔공1
             <span class="route-arrow">→</span>
@@ -1947,7 +1949,7 @@
             <span class="route-arrow">→</span>
             802 · 814 · 북구3
             <span class="route-arrow">→</span>
-            망우당공원 건너 하차
+            망우당공원건너 하차
             <span class="route-time">약 40분 소요</span>
           </p>
         </div>
@@ -1955,7 +1957,7 @@
     </div>
   </div>
 
-  <!-- 동대구역 및 복합환승센터 -->
+  <!-- 기차 및 버스 -->
   <div class="info-item">
     <button
       type="button"
@@ -1963,12 +1965,14 @@
       aria-expanded="false"
       onclick="toggleInfo(this.closest('.info-item'))"
     >
-      <span>🚆 동대구역 · 복합환승센터</span>
+      <span>🚆 기차 및 버스</span>
       <span class="arrow" aria-hidden="true">▼</span>
     </button>
 
     <div class="info-content">
       <div class="route-block">
+        <h4 class="route-title">동대구역 / 복합환승센터에서 오실 때</h4>
+
         <div class="route-row">
           <span class="route-label">택시</span>
           <p class="route-path">
@@ -1986,34 +1990,16 @@
               <span class="route-arrow">→</span>
               814 · 708 · 북구3
               <span class="route-arrow">→</span>
-              망우당공원 건너 하차
+              망우당공원건너 하차
               <span class="route-time">약 40분 소요</span>
             </p>
 
             <p class="route-path">
-              동대구역 건너 승차
+              동대구역복합환승센터건너 승차
               <span class="route-arrow">→</span>
-              156
+              555 · 55
               <span class="route-arrow">→</span>
-              망우당공원 건너 하차
-              <span class="route-time">약 35분 소요</span>
-            </p>
-
-            <p class="route-path">
-              동대구역복합환승센터 건너 승차
-              <span class="route-arrow">→</span>
-              555 · 555
-              <span class="route-arrow">→</span>
-              망우당공원 건너 하차
-              <span class="route-time">약 40분 소요</span>
-            </p>
-
-            <p class="route-path">
-              동대구역복합환승센터 건너 승차
-              <span class="route-arrow">→</span>
-              651
-              <span class="route-arrow">→</span>
-              인터불고호텔 앞 하차
+              망우당공원건너 하차
               <span class="route-time">약 40분 소요</span>
             </p>
           </div>
@@ -2037,7 +2023,7 @@
     <div class="info-content">
       <div class="route-block">
         <h4 class="route-title">지하철 1호선 아양교역</h4>
-        <p class="route-summary">하차 후 택시 또는 버스를 이용해주세요.</p>
+        <p class="route-summary">하차 후 택시 및 버스를 이용해주세요.</p>
 
         <div class="route-row">
           <span class="route-label">택시</span>
@@ -2054,7 +2040,7 @@
             <span class="route-arrow">→</span>
             802 · 814 · 북구3
             <span class="route-arrow">→</span>
-            망우당공원 건너 하차
+            망우당공원건너 하차
             <span class="route-time">약 20분 소요</span>
           </p>
         </div>
@@ -2062,7 +2048,7 @@
 
       <div class="route-block route-block--separated">
         <h4 class="route-title">지하철 2호선 만촌역</h4>
-        <p class="route-summary">하차 후 택시 또는 버스를 이용해주세요.</p>
+        <p class="route-summary">하차 후 택시 및 버스를 이용해주세요.</p>
 
         <div class="route-row">
           <span class="route-label">택시</span>
@@ -2074,48 +2060,20 @@
 
         <div class="route-row">
           <span class="route-label">버스</span>
-
-          <div class="route-options">
-            <p class="route-path">
-              만촌2동행정복지센터 승차
-              <span class="route-arrow">→</span>
-              848
-              <span class="route-arrow">→</span>
-              인터불고호텔 앞 하차
-              <span class="route-time">약 25분 소요</span>
-            </p>
-
-            <p class="route-path">
-              만촌2동행정복지센터 승차
-              <span class="route-arrow">→</span>
-              937 · 425
-              <span class="route-arrow">→</span>
-              팔공정보문화센터 건너
-              <span class="route-arrow">→</span>
-              651
-              <span class="route-arrow">→</span>
-              인터불고호텔 앞 하차
-              <span class="route-time">약 40분 소요</span>
-            </p>
-
-            <p class="route-path">
-              만촌2동행정복지센터 승차
-              <span class="route-arrow">→</span>
-              937 · 425
-              <span class="route-arrow">→</span>
-              팔공정보문화센터 건너
-              <span class="route-arrow">→</span>
-              55 · 555
-              <span class="route-arrow">→</span>
-              망우당공원 건너 하차
-              <span class="route-time">약 40분 소요</span>
-            </p>
-          </div>
+          <p class="route-path">
+            만촌2동행정복지센터 승차
+            <span class="route-arrow">→</span>
+            848
+            <span class="route-arrow">→</span>
+            인터불고호텔앞 하차
+            <span class="route-time">약 25분 소요</span>
+          </p>
         </div>
       </div>
     </div>
   </div>
 </div>
+
       </div>
     </div>
   </section>
