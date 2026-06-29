@@ -181,24 +181,19 @@
     section {
       position: relative;
       z-index: 1;
-      min-height: 100svh;
-      min-height: 100dvh;
-      padding: 60px 20px 80px 20px;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      min-height: auto;
+      padding: 40px 20px;
+      background: transparent;
       opacity: 1;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      padding-top: max(40px, 10dvh);
       box-sizing: border-box;
       scroll-snap-align: start;
       scroll-snap-stop: always;
-      margin: 0 8px;
+      margin: 12px 8px;
       border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(26, 35, 50, 0.1);
-      margin-bottom: 16px;
+      box-shadow: 0 8px 24px rgba(26, 35, 50, 0.08);
     }
 
 
@@ -1705,7 +1700,7 @@
   <!-- ═══════════════════════════════════════════════════════
        GREETING & WEDDING INFO
   ═══════════════════════════════════════════════════════ -->
-  <section class="greeting-block-section" style="padding: 32px 20px 60px 20px;">
+  <section class="greeting-block-section" style="padding: 32px 20px 32px 20px;">
     <div class="container greeting-section">
       <div class="greeting-card">
         <div class="greeting-text">
@@ -1769,7 +1764,7 @@
   <!-- ═══════════════════════════════════════════════════════
        CALENDAR
   ═══════════════════════════════════════════════════════ -->
-  <section style="padding: 20px 20px 60px 20px;">
+  <section style="padding: 20px 20px 32px 20px;">
     <div class="container">
       <h2>예식 일정</h2>
       <div class="couple-intro">
