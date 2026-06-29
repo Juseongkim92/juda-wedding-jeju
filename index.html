@@ -2379,58 +2379,49 @@
     }
 
     // ════════════════════════════════════
-    // SMART SCROLL SNAP
+    // SMART SCROLL SNAP (Mobile Only)
     // ════════════════════════════════════
-    let scrollSnapTimeout;
-    let isSnapping = false;
-    let snapCooldown = false;
+    let snapTimer;
+    let isAnimating = false;
 
-    document.addEventListener('scroll', () => {
-      if (isSnapping) {
-        gsap.killTweensOf(window);
-        isSnapping = false;
-      }
+    window.addEventListener('scroll', () => {
+      if (window.innerWidth > 480) return;
+      if (isAnimating) return;
 
-      clearTimeout(scrollSnapTimeout);
-      scrollSnapTimeout = setTimeout(() => {
-        smartSnapToSection();
-      }, 250);
+      clearTimeout(snapTimer);
+
+      snapTimer = setTimeout(() => {
+        snapToClosestSection();
+      }, 300);
     }, { passive: true });
 
-    function smartSnapToSection() {
-      if (window.innerWidth > 480 || isSnapping || snapCooldown) return;
+    function snapToClosestSection() {
+      if (window.innerWidth > 480 || isAnimating) return;
 
-      const sections = gsap.utils.toArray('section').filter(
-        (section) => !section.classList.contains('hero-section')
-      );
-
+      const sections = document.querySelectorAll('section:not(.hero-section)');
       if (sections.length === 0) return;
 
-      const viewportCenter = window.innerHeight * 0.35;
-      let nearestSection = null;
-      let smallestDistance = Infinity;
+      let closest = null;
+      let closestDistance = Infinity;
 
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
-        const distance = Math.abs(rect.top - viewportCenter);
+        const distance = Math.abs(rect.top);
 
-        if (distance < smallestDistance && rect.top < window.innerHeight * 0.8) {
-          smallestDistance = distance;
-          nearestSection = section;
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closest = section;
         }
       });
 
-      if (nearestSection && smallestDistance > 50) {
-        isSnapping = true;
-        snapCooldown = true;
-
+      if (closest && closestDistance > 40) {
+        isAnimating = true;
         gsap.to(window, {
-          scrollTo: { y: nearestSection, offsetY: 0 },
-          duration: 0.6,
+          scrollTo: { y: closest, offsetY: 0 },
+          duration: 0.5,
           ease: 'power2.out',
           onComplete: () => {
-            isSnapping = false;
-            setTimeout(() => { snapCooldown = false; }, 600);
+            isAnimating = false;
           }
         });
       }
