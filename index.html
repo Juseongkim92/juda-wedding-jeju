@@ -17,6 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
   <style>
     /* ════════════════════════════════════
        RESET & BASE
@@ -2355,7 +2356,7 @@
         return;
       }
 
-      gsap.registerPlugin(ScrollTrigger);
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
       sections.forEach((section, index) => {
         gsap.fromTo(
@@ -2375,6 +2376,54 @@
           }
         );
       });
+    }
+
+    // ════════════════════════════════════
+    // SMART SCROLL SNAP
+    // ════════════════════════════════════
+    let scrollSnapTimeout;
+    let isUserScrolling = false;
+
+    document.addEventListener('scroll', () => {
+      isUserScrolling = true;
+      clearTimeout(scrollSnapTimeout);
+
+      scrollSnapTimeout = setTimeout(() => {
+        isUserScrolling = false;
+        smartSnapToSection();
+      }, 200);
+    }, { passive: true });
+
+    function smartSnapToSection() {
+      if (window.innerWidth > 480) return;
+
+      const sections = gsap.utils.toArray('section').filter(
+        (section) => !section.classList.contains('hero-section')
+      );
+
+      if (sections.length === 0) return;
+
+      const viewportCenter = window.innerHeight * 0.3;
+      let nearestSection = sections[0];
+      let smallestDistance = Infinity;
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const distance = Math.abs(rect.top - viewportCenter);
+
+        if (distance < smallestDistance && rect.top < window.innerHeight) {
+          smallestDistance = distance;
+          nearestSection = section;
+        }
+      });
+
+      if (nearestSection && smallestDistance > 30) {
+        gsap.to(window, {
+          scrollTo: { y: nearestSection, offsetY: 0 },
+          duration: 0.7,
+          ease: 'power2.inOut'
+        });
+      }
     }
 
     // ════════════════════════════════════
