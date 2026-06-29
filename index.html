@@ -2382,20 +2382,23 @@
     // SMART SCROLL SNAP
     // ════════════════════════════════════
     let scrollSnapTimeout;
-    let isUserScrolling = false;
+    let isSnapping = false;
+    let snapCooldown = false;
 
     document.addEventListener('scroll', () => {
-      isUserScrolling = true;
-      clearTimeout(scrollSnapTimeout);
+      if (isSnapping) {
+        gsap.killTweensOf(window);
+        isSnapping = false;
+      }
 
+      clearTimeout(scrollSnapTimeout);
       scrollSnapTimeout = setTimeout(() => {
-        isUserScrolling = false;
         smartSnapToSection();
-      }, 200);
+      }, 250);
     }, { passive: true });
 
     function smartSnapToSection() {
-      if (window.innerWidth > 480) return;
+      if (window.innerWidth > 480 || isSnapping || snapCooldown) return;
 
       const sections = gsap.utils.toArray('section').filter(
         (section) => !section.classList.contains('hero-section')
@@ -2403,25 +2406,32 @@
 
       if (sections.length === 0) return;
 
-      const viewportCenter = window.innerHeight * 0.3;
-      let nearestSection = sections[0];
+      const viewportCenter = window.innerHeight * 0.35;
+      let nearestSection = null;
       let smallestDistance = Infinity;
 
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
         const distance = Math.abs(rect.top - viewportCenter);
 
-        if (distance < smallestDistance && rect.top < window.innerHeight) {
+        if (distance < smallestDistance && rect.top < window.innerHeight * 0.8) {
           smallestDistance = distance;
           nearestSection = section;
         }
       });
 
-      if (nearestSection && smallestDistance > 30) {
+      if (nearestSection && smallestDistance > 50) {
+        isSnapping = true;
+        snapCooldown = true;
+
         gsap.to(window, {
           scrollTo: { y: nearestSection, offsetY: 0 },
-          duration: 0.7,
-          ease: 'power2.inOut'
+          duration: 0.6,
+          ease: 'power2.out',
+          onComplete: () => {
+            isSnapping = false;
+            setTimeout(() => { snapCooldown = false; }, 600);
+          }
         });
       }
     }
