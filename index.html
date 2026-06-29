@@ -2125,8 +2125,25 @@
             placeholder="따뜻한 한마디를 남겨주세요"
           ></textarea>
         </div>
-        <button class="submit-btn" onclick="addMessage()">메시지 남기기</button>
-      </div>
+          <button class="submit-btn" onclick="addMessage()">메시지 남기기</button>
+
+          <!-- 삭제용 비밀번호 (선택) -->
+          <div style="margin-top: 14px; text-align: center;">
+            <button type="button" id="togglePasswordBtn" style="background:none;border:none;color:var(--accent);cursor:pointer;font-size:13px;text-decoration:underline;">
+              🔒 삭제용 비밀번호 설정하기 (선택)
+            </button>
+          </div>
+
+          <div id="passwordFieldWrapper" style="display:none; margin-top:10px;">
+            <div class="form-group">
+              <label>삭제용 비밀번호 (선택)</label>
+              <input type="password" id="guestPasswordOptional" placeholder="삭제할 때 필요한 비밀번호를 입력해주세요">
+              <p style="font-size:11px; color:#888;">
+                설정하면 이 메시지를 나중에 삭제할 수 있어요. (선택사항)
+              </p>
+            </div>
+          </div>
+        </div>
 
       <div id="messageList" class="message-list">
         <!-- Messages will be added here -->
@@ -2143,7 +2160,7 @@
 
       <div class="thanks-card journey-card">
         <div class="video-player">
-          <video controls playsinline preload="metadata" width="1280" height="720" poster="images/cover.JPG">
+          <video controls playsinline preload="metadata" width="1280" height="720">
             <source src="media/udo_video.mp4" type="video/mp4">
             브라우저가 동영상 재생을 지원하지 않습니다.
           </video>
@@ -2340,7 +2357,10 @@
         (section) => !section.classList.contains('hero-section')
       );
 
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const isMobile = window.innerWidth <= 480;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (prefersReduced || isMobile) {
         gsap.set(sections, { opacity: 1, y: 0 });
         return;
       }
@@ -2350,15 +2370,15 @@
       sections.forEach((section) => {
         gsap.fromTo(
           section,
-          { opacity: 0, y: 16 },
+          { opacity: 0, y: 12 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.7,
+            duration: 0.5,
             ease: 'power2.out',
             scrollTrigger: {
               trigger: section,
-              start: 'top 88%',
+              start: 'top 92%',
               once: true
             }
           }
@@ -3122,14 +3142,19 @@
     window.addMessage = async function addMessage() {
       const nameInput = document.getElementById('guestName');
       const messageInput = document.getElementById('guestMessage');
-      const passwordInput = document.getElementById('guestPassword');
+      const passwordInput = document.getElementById('guestPasswordOptional');
+      const passwordWrapper = document.getElementById('passwordFieldWrapper');
+
+      let deletePassword = '';
+      if (passwordInput) {
+        deletePassword = passwordInput.value.trim();
+      }
       const submitButton = document.querySelector(
         '.guestbook-form .submit-btn'
       );
 
       const name = nameInput.value.trim();
       const message = messageInput.value.trim();
-      const deletePassword = passwordInput.value.trim();
 
       if (!name || !message) {
         alert('이름과 메시지를 모두 입력해주세요.');
@@ -3175,7 +3200,7 @@
 
         nameInput.value = '';
         messageInput.value = '';
-        passwordInput.value = '';
+        if (passwordInput) passwordInput.value = '';
 
         alert('메시지가 등록되었습니다.');
       } catch (error) {
