@@ -227,7 +227,8 @@
     ════════════════════════════════════ */
     .hero-section {
       position: relative;
-      min-height: auto !important;
+      min-height: 100vh;
+      min-height: 100dvh;
       padding: 0 !important;
       border-bottom: none !important;
       display: block !important;
@@ -236,8 +237,8 @@
       background: transparent;
       line-height: 0;
       contain: layout style paint;
-      scroll-snap-align: none;
-      scroll-snap-stop: auto;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
 
     .hero-names {
@@ -2426,7 +2427,7 @@
     function snapToClosestSection() {
       if (window.innerWidth > 480 || isAnimating) return;
 
-      const sections = document.querySelectorAll('section:not(.hero-section)');
+      const sections = document.querySelectorAll('section');
       if (sections.length === 0) return;
 
       let closest = null;
