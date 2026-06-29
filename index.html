@@ -69,6 +69,8 @@
       margin: 0 auto;
       overflow-x: hidden;
       isolation: isolate;
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
     }
 
     body::before {
@@ -189,6 +191,8 @@
       justify-content: flex-start;
       padding-top: max(40px, 10dvh);
       box-sizing: border-box;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
 
 
@@ -230,6 +234,8 @@
       background: transparent;
       line-height: 0;
       contain: layout style paint;
+      scroll-snap-align: none;
+      scroll-snap-stop: auto;
     }
 
     .hero-names {
