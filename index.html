@@ -712,6 +712,14 @@
       transform: scale(0.98);
     }
 
+    .contact-btn-icon {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      margin: 0 8px;
+      object-fit: contain;
+    }
+
     .section-action {
       display: flex;
       justify-content: center;
@@ -1795,6 +1803,7 @@
           class="contact-open-btn"
           onclick="openContactModal('groom')"
         >
+          <img src="images/icons/groom.png" alt="신랑" class="contact-btn-icon" />
           신랑측 연락처
         </button>
         <button
@@ -1803,6 +1812,7 @@
           onclick="openContactModal('bride')"
         >
           신부측 연락처
+          <img src="images/icons/bride.png" alt="신부" class="contact-btn-icon" />
         </button>
       </div>
     </div>
