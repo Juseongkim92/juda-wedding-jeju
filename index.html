@@ -2882,6 +2882,34 @@
     }
 
     // ════════════════════════════════════
+    // GREETING MESSAGE ANIMATION
+    // ════════════════════════════════════
+    function animateGreetingLines() {
+      const greetingMsg = document.querySelector('.greeting-message');
+      if (!greetingMsg) return;
+
+      const originalHTML = greetingMsg.innerHTML;
+      const lines = originalHTML.split('<br>');
+
+      greetingMsg.innerHTML = '';
+
+      lines.forEach((line, index) => {
+        const span = document.createElement('span');
+        span.innerHTML = line;
+        span.style.display = 'block';
+        span.style.opacity = '0';
+        greetingMsg.appendChild(span);
+
+        gsap.to(span, {
+          opacity: 1,
+          duration: 0.8,
+          delay: index * 0.12,
+          ease: 'power2.out'
+        });
+      });
+    }
+
+    // ════════════════════════════════════
     // CALENDAR GENERATION
     // ════════════════════════════════════
     function generateCalendar(year, month) {
@@ -2944,6 +2972,7 @@
       generateCalendar(2026, 7);
       loadGallery();
       initAnimations();
+      animateGreetingLines();
 
       const bgmBtn = document.getElementById('bgmToggle');
       if (bgmBtn) bgmBtn.addEventListener('click', toggleBgm);
