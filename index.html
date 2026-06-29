@@ -3147,13 +3147,16 @@
       greetingMsg.innerHTML = '';
 
       lines.forEach((line, index) => {
-        const span = document.createElement('span');
-        span.innerHTML = line;
-        span.style.display = 'block';
-        span.style.opacity = '0';
-        greetingMsg.appendChild(span);
+        const trimmedLine = line.trim();
+        if (!trimmedLine) return;
 
-        gsap.to(span, {
+        const div = document.createElement('div');
+        div.innerHTML = trimmedLine;
+        div.style.opacity = '0';
+        div.style.lineHeight = '1.6';
+        greetingMsg.appendChild(div);
+
+        gsap.to(div, {
           opacity: 1,
           duration: 0.8,
           delay: index * 0.12,
