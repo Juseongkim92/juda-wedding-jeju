@@ -1855,228 +1855,236 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════════
-       DIRECTIONS & MAP
-  ═══════════════════════════════════════════════════════ -->
-  <section class="map-section">
-    <div class="container">
-      <h2>오시는 길</h2>
+<!-- ═══════════════════════════════════════════════════════
+     DIRECTIONS & MAP
+═══════════════════════════════════════════════════════ -->
+<section class="map-section">
+  <div class="container">
+    <h2>오시는 길</h2>
 
-      <div class="location-card">
-        <div class="address-box">
-          <div class="address-text">
-            <span class="address-line">호텔 인터불고 대구 웨딩인터빌리지홀</span>
-            <span class="address-line">대구 수성구 팔현길 212</span>
-          </div>
-          <div class="address-actions">
-            <!-- <button type="button" class="copy-address-btn" onclick="copyAddress()" title="주소 복사" aria-label="주소 복사">
-              <img src="images/icons/copy.png" alt="" width="28" height="28" />
-            </button> -->
-            <button type="button" class="map-btn" onclick="openNavi('naver')" title="네이버 지도">
-              <img src="images/icons/navermap.jpg" alt="네이버 지도" />
-            </button>
-            <button type="button" class="map-btn" onclick="openNavi('kakao')" title="카카오맵">
-              <img src="images/icons/kakaomap.jpg" alt="카카오맵" />
-            </button>
-            <button type="button" class="map-btn" onclick="openNavi('tmap')" title="T map">
-              <img src="images/icons/tmap.jpg" alt="T map" />
-            </button>
-          </div>
+    <div class="location-card">
+      <div class="address-box">
+        <div class="address-text">
+          <span class="address-line">호텔 인터불고 대구 웨딩인터빌리지홀</span>
+          <span class="address-line">대구 수성구 팔현길 212</span>
         </div>
 
-        <!-- Kakao Map Interactive -->
-        <div id="kakaoMap" style="width: 100%; margin: 20px 0; border-radius: 8px; overflow: hidden; height: 250px; border: 1px solid var(--border);"></div>
+        <div class="address-actions">
+          <!-- <button type="button" class="copy-address-btn" onclick="copyAddress()" title="주소 복사" aria-label="주소 복사">
+            <img src="images/icons/copy.png" alt="" width="28" height="28" />
+          </button> -->
 
-<div class="info-list">
-  <!-- 자가용 -->
-  <div class="info-item">
-    <button
-      type="button"
-      class="info-header"
-      aria-expanded="false"
-      onclick="toggleInfo(this.closest('.info-item'))"
-    >
-      <span>🚗 자가용</span>
-      <span class="arrow" aria-hidden="true">▼</span>
-    </button>
+          <button type="button" class="map-btn" onclick="openNavi('naver')" title="네이버 지도">
+            <img src="images/icons/navermap.jpg" alt="네이버 지도" />
+          </button>
 
-    <div class="info-content">
-      <div class="route-block">
-        <p class="route-path">
-          동대구IC에서 시청방향으로 4km
-          <span class="route-time">약 5분 소요</span>
-        </p>
-      </div>
+          <button type="button" class="map-btn" onclick="openNavi('kakao')" title="카카오맵">
+            <img src="images/icons/kakaomap.jpg" alt="카카오맵" />
+          </button>
 
-      <div class="route-note">
-        내비게이션에서 <strong>호텔 인터불고 대구</strong>를 검색해주세요.
-      </div>
-    </div>
-  </div>
-
-  <!-- 비행기 -->
-  <div class="info-item">
-    <button
-      type="button"
-      class="info-header"
-      aria-expanded="false"
-      onclick="toggleInfo(this.closest('.info-item'))"
-    >
-      <span>✈️ 비행기</span>
-      <span class="arrow" aria-hidden="true">▼</span>
-    </button>
-
-    <div class="info-content">
-      <div class="route-block">
-        <h4 class="route-title">대구국제공항에서 오실 때</h4>
-
-        <div class="route-row">
-          <span class="route-label">택시</span>
-          <p class="route-path">
-            거리 5km
-            <span class="route-time">약 15분 소요</span>
-          </p>
-        </div>
-
-        <div class="route-row">
-          <span class="route-label">버스</span>
-          <p class="route-path">
-            대구국제공항 건너편 승차
-            <span class="route-arrow">→</span>
-            급행1 · 401 · 동구8 · 팔공1
-            <span class="route-arrow">→</span>
-            아양교역 하차 및 환승
-            <span class="route-arrow">→</span>
-            802 · 814 · 북구3
-            <span class="route-arrow">→</span>
-            망우당공원건너 하차
-            <span class="route-time">약 40분 소요</span>
-          </p>
+          <button type="button" class="map-btn" onclick="openNavi('tmap')" title="T map">
+            <img src="images/icons/tmap.jpg" alt="T map" />
+          </button>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- 기차 및 버스 -->
-  <div class="info-item">
-    <button
-      type="button"
-      class="info-header"
-      aria-expanded="false"
-      onclick="toggleInfo(this.closest('.info-item'))"
-    >
-      <span>🚆 기차 및 버스</span>
-      <span class="arrow" aria-hidden="true">▼</span>
-    </button>
+      <!-- Kakao Map Interactive -->
+      <div
+        id="kakaoMap"
+        style="width: 100%; margin: 20px 0; border-radius: 8px; overflow: hidden; height: 250px; border: 1px solid var(--border);"
+      ></div>
 
-    <div class="info-content">
-      <div class="route-block">
-        <h4 class="route-title">동대구역 / 복합환승센터에서 오실 때</h4>
+      <div class="info-list">
+        <!-- 자가용 -->
+        <div class="info-item">
+          <button
+            type="button"
+            class="info-header"
+            aria-expanded="false"
+            onclick="toggleInfo(this.closest('.info-item'))"
+          >
+            <span>🚗 자가용</span>
+            <span class="arrow" aria-hidden="true">▼</span>
+          </button>
 
-        <div class="route-row">
-          <span class="route-label">택시</span>
-          <p class="route-path">
-            거리 4km
-            <span class="route-time">약 15분 소요</span>
-          </p>
-        </div>
+          <div class="info-content">
+            <div class="route-block">
+              <p class="route-path">
+                동대구IC에서 시청방향으로 4km
+                <span class="route-time">약 5분 소요</span>
+              </p>
+            </div>
 
-        <div class="route-row">
-          <span class="route-label">버스</span>
-
-          <div class="route-options">
-            <p class="route-path">
-              동대구역 승차
-              <span class="route-arrow">→</span>
-              814 · 708 · 북구3
-              <span class="route-arrow">→</span>
-              망우당공원건너 하차
-              <span class="route-time">약 40분 소요</span>
-            </p>
-
-            <p class="route-path">
-              동대구역복합환승센터건너 승차
-              <span class="route-arrow">→</span>
-              555 · 55
-              <span class="route-arrow">→</span>
-              망우당공원건너 하차
-              <span class="route-time">약 40분 소요</span>
-            </p>
+            <div class="route-note">
+              내비게이션에서 <strong>호텔 인터불고 대구</strong>를 검색해주세요.
+              어플 아이콘을 누르시면 바로 연결됩니다.
+            </div>
           </div>
         </div>
+
+        <!-- 비행기 -->
+        <div class="info-item">
+          <button
+            type="button"
+            class="info-header"
+            aria-expanded="false"
+            onclick="toggleInfo(this.closest('.info-item'))"
+          >
+            <span>✈️ 비행기</span>
+            <span class="arrow" aria-hidden="true">▼</span>
+          </button>
+
+          <div class="info-content">
+            <div class="route-block">
+              <h4 class="route-title">대구국제공항에서 오실 때</h4>
+
+              <div class="route-row">
+                <span class="route-label">택시</span>
+                <p class="route-path">
+                  거리 5km
+                  <span class="route-time">약 15분 소요</span>
+                </p>
+              </div>
+
+              <div class="route-row">
+                <span class="route-label">버스</span>
+                <p class="route-path">
+                  <strong>대구국제공항 건너편</strong>승차
+                  <span class="route-arrow">→</span>
+                  급행1 · 401 · 동구8 · 팔공1
+                  <span class="route-arrow">→</span>
+                  <strong>아양교역</strong>하차 및 환승
+                  <span class="route-arrow">→</span>
+                  802 · 814 · 북구3
+                  <span class="route-arrow">→</span>
+                  <strong>망우당공원건너</strong>하차
+                  <span class="route-time">약 40분 소요</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 기차 및 버스 -->
+        <div class="info-item">
+          <button
+            type="button"
+            class="info-header"
+            aria-expanded="false"
+            onclick="toggleInfo(this.closest('.info-item'))"
+          >
+            <span>🚆 기차 및 버스</span>
+            <span class="arrow" aria-hidden="true">▼</span>
+          </button>
+
+          <div class="info-content">
+            <div class="route-block">
+              <h4 class="route-title">동대구역 / 복합환승센터에서 오실 때</h4>
+
+              <div class="route-row">
+                <span class="route-label">택시</span>
+                <p class="route-path">
+                  거리 4km
+                  <span class="route-time">약 15분 소요</span>
+                </p>
+              </div>
+
+              <div class="route-row">
+                <span class="route-label">버스</span>
+
+                <div class="route-options">
+                  <p class="route-path">
+                    <strong>동대구역</strong>승차
+                    <span class="route-arrow">→</span>
+                    814 · 708 · 북구3
+                    <span class="route-arrow">→</span>
+                    <strong>망우당공원건너</strong>하차
+                    <span class="route-time">약 40분 소요</span>
+                  </p>
+
+                  <p class="route-path">
+                    <strong>동대구역복합환승센터건너</strong>승차
+                    <span class="route-arrow">→</span>
+                    555 · 55
+                    <span class="route-arrow">→</span>
+                    <strong>망우당공원건너</strong>하차
+                    <span class="route-time">약 40분 소요</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 시내 대중교통 -->
+        <div class="info-item">
+          <button
+            type="button"
+            class="info-header"
+            aria-expanded="false"
+            onclick="toggleInfo(this.closest('.info-item'))"
+          >
+            <span>🚇 시내 대중교통</span>
+            <span class="arrow" aria-hidden="true">▼</span>
+          </button>
+
+          <div class="info-content">
+            <div class="route-block">
+              <h4 class="route-title">지하철 1호선 아양교역</h4>
+              <p class="route-summary">하차 후 택시 및 버스를 이용해주세요.</p>
+
+              <div class="route-row">
+                <span class="route-label">택시</span>
+                <p class="route-path">
+                  거리 3km
+                  <span class="route-time">약 10분 소요</span>
+                </p>
+              </div>
+
+              <div class="route-row">
+                <span class="route-label">버스</span>
+                <p class="route-path">
+                  <strong>아양교역 2번 출구</strong>승차
+                  <span class="route-arrow">→</span>
+                  802 · 814 · 북구3
+                  <span class="route-arrow">→</span>
+                  <strong>망우당공원건너</strong>하차
+                  <span class="route-time">약 20분 소요</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="route-block route-block--separated">
+              <h4 class="route-title">지하철 2호선 만촌역</h4>
+              <p class="route-summary">하차 후 택시 및 버스를 이용해주세요.</p>
+
+              <div class="route-row">
+                <span class="route-label">택시</span>
+                <p class="route-path">
+                  거리 5km
+                  <span class="route-time">약 15분 소요</span>
+                </p>
+              </div>
+
+              <div class="route-row">
+                <span class="route-label">버스</span>
+                <p class="route-path">
+                  <strong>만촌2동행정복지센터</strong>승차
+                  <span class="route-arrow">→</span>
+                  848
+                  <span class="route-arrow">→</span>
+                  <strong>인터불고호텔앞</strong>하차
+                  <span class="route-time">약 25분 소요</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      <!-- // info-list -->
     </div>
   </div>
-
-  <!-- 시내 대중교통 -->
-  <div class="info-item">
-    <button
-      type="button"
-      class="info-header"
-      aria-expanded="false"
-      onclick="toggleInfo(this.closest('.info-item'))"
-    >
-      <span>🚇 시내 대중교통</span>
-      <span class="arrow" aria-hidden="true">▼</span>
-    </button>
-
-    <div class="info-content">
-      <div class="route-block">
-        <h4 class="route-title">지하철 1호선 아양교역</h4>
-        <p class="route-summary">하차 후 택시 및 버스를 이용해주세요.</p>
-
-        <div class="route-row">
-          <span class="route-label">택시</span>
-          <p class="route-path">
-            거리 3km
-            <span class="route-time">약 10분 소요</span>
-          </p>
-        </div>
-
-        <div class="route-row">
-          <span class="route-label">버스</span>
-          <p class="route-path">
-            아양교역 2번 출구 승차
-            <span class="route-arrow">→</span>
-            802 · 814 · 북구3
-            <span class="route-arrow">→</span>
-            망우당공원건너 하차
-            <span class="route-time">약 20분 소요</span>
-          </p>
-        </div>
-      </div>
-
-      <div class="route-block route-block--separated">
-        <h4 class="route-title">지하철 2호선 만촌역</h4>
-        <p class="route-summary">하차 후 택시 및 버스를 이용해주세요.</p>
-
-        <div class="route-row">
-          <span class="route-label">택시</span>
-          <p class="route-path">
-            거리 5km
-            <span class="route-time">약 15분 소요</span>
-          </p>
-        </div>
-
-        <div class="route-row">
-          <span class="route-label">버스</span>
-          <p class="route-path">
-            만촌2동행정복지센터 승차
-            <span class="route-arrow">→</span>
-            848
-            <span class="route-arrow">→</span>
-            인터불고호텔앞 하차
-            <span class="route-time">약 25분 소요</span>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-      </div>
-    </div>
-  </section>
+</section>
 
   <!-- ═══════════════════════════════════════════════════════
        ACCOUNT INFO
