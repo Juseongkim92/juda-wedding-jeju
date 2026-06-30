@@ -9,7 +9,6 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://juseongkim92.github.io/juda-wedding/images/main.jpg" />
   <meta property="og:url" content="https://juseongkim92.github.io/juda-wedding/" />
-  <script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=1308357"></script><link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://hangeul.pstatic.net" crossorigin />
@@ -19,7 +18,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
-  <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.5/kakao.min.js" crossorigin="anonymous"></script>
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
   <style>
     /* ════════════════════════════════════
        RESET & BASE
@@ -35,26 +35,32 @@
     }
 
     :root {
-      /* 배경 위 가독성 — 제목·본문은 짙은 네이비/블랙 계열 */
-      --primary: #1a2d42;
-      --primary-light: rgba(255, 255, 255, 0.92);
-      --accent: #2a4a66;
-      --accent-soft: #c5d5e3;
-      --meadow: #3d6b5a;
-      --bg: #f8fcff;
-      --white: rgba(255, 255, 255, 0.94);
-      --text: #1a2332;
-      --text-light: #3d4f63;
-      --border: rgba(220, 234, 242, 0.75);
-      --shadow: rgba(168, 212, 230, 0.1);
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         색상 시스템 (Color Variables)
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      /* 주요 색상 */
+      --primary: #1a2d42;              /* 짙은 네이비 (제목, 강조) */
+      --primary-light: rgba(255, 255, 255, 0.92);  /* 밝은 흰색 */
+      --accent: #2a4a66;               /* 중간 파란색 (보조 강조) */
+      --accent-soft: #c5d5e3;          /* 옅은 파란색 (테두리, 구분선) */
+      --meadow: #3d6b5a;               /* 초록색 (선택적 강조) */
+      --bg: #f8fcff;                   /* 페이지 배경 */
+      --white: rgba(255, 255, 255, 0.94);  /* 흰색 배경 */
+      --text: #1a2332;                 /* 기본 텍스트 */
+      --text-light: #3d4f63;           /* 가벼운 텍스트 (보조 정보) */
+      --border: rgba(220, 234, 242, 0.75);  /* 경계선 */
+      --shadow: rgba(168, 212, 230, 0.1);   /* 그림자 */
 
-      /* 페이지 배경(background.png) 위 흰 막 — 0~1, 낮을수록 배경 선명 */
-      --page-bg-overlay: 0.85;
+      /* 배경 오버레이 (0~1: 낮을수록 배경 선명) */
+      --page-bg-overlay: 0.9;
 
-      --font-body: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-display: 'MaruBuri', 'Noto Serif KR', serif;
-      --font-greeting: 'Nanum Myeongjo', 'Noto Serif KR', serif;
-      --font-hero: 'MaruBuri', 'Noto Serif KR', serif;
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         글꼴 시스템 (Font Families)
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      --font-body: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;  /* 본문 */
+      --font-display: 'Noto Serif KR', serif;  /* 제목 */
+      --font-greeting: 'Nanum Myeongjo', serif;  /* 인사말 */
+      --font-hero: 'MaruBuri', 'Noto Serif KR', serif;  /* 영웅 텍스트 */
     }
 
     html, body {
@@ -71,7 +77,6 @@
       max-width: 480px;
       margin: 0 auto;
       overflow-x: hidden;
-      overflow-y: scroll;
       isolation: isolate;
       scroll-behavior: smooth;
     }
@@ -105,8 +110,10 @@
     }
 
     /* ════════════════════════════════════
-       TYPOGRAPHY
+       TYPOGRAPHY - 제목 및 텍스트 스타일
+       모든 제목, 본문 텍스트 포맷팅
     ════════════════════════════════════ */
+    /* 제목 기본 스타일 (h1, h2, h3) */
     h1, h2, h3 {
       font-family: var(--font-display);
       font-weight: 500;
@@ -121,25 +128,25 @@
     }
 
     h2 {
-      font-family: 'Noto Serif KR', serif;
-      font-size: 30px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      color: var(--primary);
-      margin-bottom: 24px;
-      position: relative;
-      padding-bottom: 16px;
+      font-size: 28px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
       text-align: center;
+      letter-spacing: -0.4px;           /* 살짝 타이트하게 */
+      color: var(--primary);
     }
 
     h2::after {
       content: '';
       display: block;
-      width: 60%;
-      height: 4px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-      position: relative;
-      margin: 12px auto 0;
+      width: 48px;                      /* 고정 너비 (더 세련됨) */
+      height: 1px;
+      margin: 10px auto 0;
+      border-radius: 3px;               /* 살짝 둥글게 */
+      opacity: 0.65;                    /* 부드럽게 */
+      background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.8), transparent);
+      /* background: var(--accent);         */
     }
 
     h3 {
@@ -166,8 +173,10 @@
     }
 
     /* ════════════════════════════════════
-       LAYOUT
+       LAYOUT - 레이아웃 및 컨테이너
+       섹션 내부 콘텐츠 배치 및 간격
     ════════════════════════════════════ */
+    /* 콘텐츠 컨테이너 (모든 섹션의 내용 감싸기) */
     .container {
       padding: 0 20px;
     }
@@ -242,8 +251,8 @@
       border-bottom: none !important;
       display: block !important;
       opacity: 1 !important;
-      overflow: visible;
-      background: transparent;
+      overflow: hidden;
+      /* background: transparent; */
       line-height: 0;
       contain: layout style paint;
     }
@@ -341,7 +350,7 @@
       font-size: 18px;
       color: var(--text-light);
       line-height: 1.85;
-      padding-top: 12px;
+      padding-top: 0px;
       border-top: 1px solid var(--border);
     }
 
@@ -379,8 +388,6 @@
       margin-bottom: 20px;
       padding-bottom: 16px;
       border-bottom: 1px solid var(--accent-soft);
-      display: block;
-      white-space: pre-line;
     }
 
     .greeting-message {
@@ -388,9 +395,8 @@
       font-weight: 400;
       line-height: 2.15;
       color: var(--text);
-      display: block;
-      white-space: normal;
     }
+
 
     /* ════════════════════════════════════
        CALENDAR — stationery / poster feel
@@ -459,11 +465,12 @@
     }
 
     .calendar-weekdays div:first-child {
-      color: #b85454;
+      color: #ff0000;
     }
 
     .calendar-weekdays div:last-child {
-      color: var(--accent);
+      /* color: var(--accent); */
+      color: #0000ff;
     }
 
     .calendar-days {
@@ -490,29 +497,38 @@
       color: var(--text-light);
     }
 
+    /* 공휴일 (빨간 날) */
+    .calendar-day.holiday {
+      color: #ff0000;
+      font-weight: 600;
+    }
+
     .calendar-day.sunday {
-      color: #b85454;
+      /* color: #b85454; */
+      color: #ff0000;
     }
 
     .calendar-day.saturday {
       color: var(--accent);
+      color: #0000ff;
     }
 
     .calendar-day.event {
       background: rgba(197, 213, 227, 0.55);
-      color: var(--primary);
+      /* color: var(--primary); */
+      color: #0000ff;
       font-weight: 600;
       border-radius: 6px;
     }
 
     /* 달력 헤더 배경 이미지 영역 (정사각형 이미지 대응) */
-    .calendar-header-image {
+    /* .calendar-header-image {
       position: relative;
       margin-bottom: 8px;
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-    }
+    } */
 
     .calendar-header-bg {
       width: 100%;
@@ -521,6 +537,8 @@
       object-position: center;
       display: block;
     }
+
+
 
     /* ════════════════════════════════════
        CONTACT SECTION
@@ -649,7 +667,7 @@
        FAMILY INTRO & CONTACT BUTTON
     ════════════════════════════════════ */
     .family-intro {
-      margin-top: 30px;
+      margin-top: 0px;
       padding: 4px 8px 0;
       text-align: center;
       font-family: var(--font-greeting);
@@ -660,8 +678,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-wrap: nowrap;
-      gap: 4px;
+      flex-wrap: wrap;
+      gap: 7px;
       margin-bottom: 12px;
       font-size: 15px;
       line-height: 1.8;
@@ -669,21 +687,20 @@
 
     .family-parents {
       color: var(--text);
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 600;
       letter-spacing: 0.03em;
     }
 
     .family-relation {
       color: var(--text-light);
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 500;
-      margin-left: -0.25em;
     }
 
     .family-name {
       color: var(--primary);
-      font-size: 16px;
+      font-size: 20px;
       font-weight: 700;
       letter-spacing: 0.12em;
     }
@@ -1150,9 +1167,6 @@
       -webkit-backdrop-filter: blur(8px);
       box-shadow: 0 4px 6px rgba(0,0,0,0.05);
       margin-bottom: 20px;
-      margin-left: -8px;
-      margin-right: -8px;
-      width: calc(100% + 16px);
     }
 
     .info-list {
@@ -1245,7 +1259,7 @@
     }
 
     .address-text {
-      font-size: 15px;
+      font-size: 13px;
       line-height: 1.65;
       width: 100%;
       color: var(--text);
@@ -1261,39 +1275,40 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px 10px;
-      flex-shrink: 0;
-      padding-top: 2px;
+      flex-wrap: nowrap;           /* ← wrap → nowrap으로 변경 */
+      gap: 10px;
+      padding-top: 4px;
     }
 
     .copy-address-btn,
     .map-btn {
+      width: 82px;                 /* 고정 너비 유지 */
+      min-height: 70px;
       flex: 0 0 auto;
       border: 1px solid var(--accent-soft);
-      background: rgba(255, 255, 255, 0.6);
-      padding: 12px 10px;
+      background: rgba(255, 255, 255, 0.65);
+      padding: 10px 6px;
       cursor: pointer;
-      line-height: 1;
-      transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+      border-radius: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      border-radius: 10px;
+      gap: 5px;
+      transition: transform 0.2s ease, background 0.2s ease;
+      text-align: center;
       backdrop-filter: blur(4px);
     }
 
     .copy-address-btn:hover,
     .map-btn:hover {
-      transform: scale(1.08);
-      opacity: 0.88;
+      background: rgba(255, 255, 255, 0.9);
+      transform: translateY(-1px);
     }
 
     .copy-address-btn:active,
     .map-btn:active {
-      transform: scale(0.95);
+      transform: scale(0.96);
     }
 
     .copy-address-btn img {
@@ -1302,18 +1317,21 @@
       display: block;
     }
 
-    .map-btn span {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text);
-      white-space: nowrap;
-    }
-
+    /* 아이콘 */
     .map-btn img {
-      height: 32px;
+      height: 30px;
       width: auto;
       object-fit: contain;
       display: block;
+    }
+
+    /* 텍스트 */
+    .map-btn span {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--primary);
+      white-space: nowrap;
+      line-height: 1.2;
     }
 
     /* ════════════════════════════════════
@@ -1855,46 +1873,65 @@
       }
     }
 
+    .share-section {
+      padding: 32px 20px 40px;
+    }
+
     .share-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;   /* 가로 2열 */
+      gap: 12px;
+      margin-top: 20px;
     }
 
     .share-btn {
       width: 100%;
-      padding: 14px 16px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      font-family: var(--font-body);
-      font-size: 14px;
+      padding: 16px 18px;
+      border-radius: 10px;
+      font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      transition:
-        transform 0.2s ease,
-        opacity 0.2s ease,
-        box-shadow 0.2s ease;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.3;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     }
 
     .share-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(26, 35, 50, 0.08);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
     }
 
     .share-btn:active {
       transform: scale(0.98);
     }
 
+    /* 카카오톡 버튼 */
     .kakao-share-btn {
+      font-size: 12px;
       background: #fee500;
-      border-color: #fee500;
+      border: 1px solid #fee500;
       color: #191919;
     }
 
+    .kakao-share-btn:hover {
+      background: #fada00;
+      border-color: #fada00;
+    }
+
+    /* 링크 복사 버튼 */
     .link-copy-btn {
-      background: var(--white);
+      font-size: 12px;
+      background: #fff;
+      border: 1px solid var(--border);
       color: var(--primary);
+    }
+
+    .link-copy-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--accent);
     }
 
     .reveal {
@@ -1948,8 +1985,14 @@
   </style>
 </head>
 <body>
+  <!-- ╔════════════════════════════════════════════════════════════════
+       ║ 웨딩 초대장 메인 페이지
+       ║ 구조: Hero → 인사말 → 연락처 → 일정 → 갤러리 → 오시는길 → 메시지
+       ╚════════════════════════════════════════════════════════════════ -->
+
   <!-- ═══════════════════════════════════════════════════════
-       HERO IMAGE
+       [1] HERO SECTION - 메인 이미지
+       영상/이미지가 전체 화면을 차지하는 첫 번째 섹션
   ═══════════════════════════════════════════════════════ -->
   <section class="hero-section">
     <img
@@ -1970,16 +2013,17 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════
-       GREETING & WEDDING INFO
+       [2] GREETING SECTION - 인사말 및 신랑신부 소개
+       웨딩 문구 + 양가 부모님 소개 + 신랑신부 이름
   ═══════════════════════════════════════════════════════ -->
   <section class="greeting-block-section reveal" style="padding: 32px 20px 32px 20px;">
     <div class="container greeting-section">
+      <!-- 축하 인사말 -->
       <div class="greeting-card">
         <div class="greeting-text">
-          <div class="quote">
-            "하지만 그대의 영원한 여름은 지지 않고"
-            <div>— 윌리엄 셰익스피어, 『소네트 18』</div>
-          </div>
+          <!-- 셰익스피어 인용구 -->
+          <div class="quote">"하지만 그대의 영원한 여름은 지지 않고"<br>— 윌리엄 셰익스피어, 『소네트 18』</div>
+          <!-- 신랑신부의 인사 메시지 -->
           <div class="greeting-message">
             <div>서로를 향한</div>
             <div>오늘의 찬란한 사랑을</div>
@@ -2012,11 +2056,14 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════
-       CONTACT
+       [3] CONTACT SECTION - 축하 연락처
+       신랑측/신부측 연락처 버튼 → 모달로 연락처 정보 표시
   ═══════════════════════════════════════════════════════ -->
   <section class="section-compact reveal">
     <div class="container">
       <h2>축하 연락하기</h2>
+      <!-- 신랑측/신부측 연락처 버튼 -->
+      <!-- 클릭 시 contact modal 열림 -->
       <div class="gift-side-actions contact-side-actions">
         <button
           type="button"
@@ -2039,17 +2086,22 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════
-       CALENDAR
+       [4] CALENDAR SECTION - 예식 일정
+       날짜, 시간, 장소 정보 + 달력 표시
   ═══════════════════════════════════════════════════════ -->
   <section class="reveal" style="padding: 20px 20px 32px 20px;">
     <div class="container">
       <h2>예식 일정</h2>
-      <div class="couple-intro">
-        <div class="wedding-info" style="border-top: none; padding-top: 0;">
-          <strong>2026년 8월 22일 토요일 낮 12시</strong>
-          호텔 인터불고 대구 웨딩인터빌리지홀
-        </div>
-      </div>
+      <!-- 결혼식 기본 정보 -->
+      <div class="wedding-info" style="border-top: none; padding-top: 0; text-align: center;">
+        <span style="font-size: 12px; color: var(--text-light); line-height: 0.8;">
+            2026년 8월 22일 토요일 낮 12시
+        </span>
+        <br>  
+        <span style="font-size: 12px; color: var(--text-light); line-height: 0.8;">
+            호텔 인터불고 대구 웨딩인터빌리지홀
+        </span>
+    </div>
 
       <div class="calendar-container">
         <div class="calendar">
@@ -2075,12 +2127,13 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════
-       GALLERY
+       [5] GALLERY SECTION - 웨딩 사진 갤러리
+       3×3 그리드 미리보기 + 클릭 시 라이트박스로 확대
   ═══════════════════════════════════════════════════════ -->
-  <section class="reveal">
+  <section>
     <div class="container">
       <h2>갤러리</h2>
-
+      <!-- 갤러리 아이템들 (JavaScript로 동적 생성) -->
       <div class="gallery" id="gallery">
         <!-- Gallery items will be dynamically loaded -->
       </div>
@@ -2092,13 +2145,16 @@
   </section>
 
 <!-- ═══════════════════════════════════════════════════════
-     DIRECTIONS & MAP
+     [6] MAP & DIRECTIONS SECTION - 오시는 길
+     주소 + 지도 링크(네이버, 카카오, T맵) + 카카오맵 임베드
 ═══════════════════════════════════════════════════════ -->
 <section class="map-section reveal">
   <div class="container">
     <h2>오시는 길</h2>
 
-    <div class="location-card reveal">
+    <!-- 위치 정보 카드 -->
+    <div class="location-card">
+      <!-- 주소 정보 -->
       <div class="address-box">
         <div class="address-text">
           <span class="address-line">호텔 인터불고 대구 웨딩인터빌리지홀</span>
@@ -2111,18 +2167,15 @@
           </button> -->
 
           <button type="button" class="map-btn" onclick="openNavi('naver')" title="네이버 지도">
-            <img src="images/icons/navermap.jpg" alt="네이버 지도" />
-            <span>네이버지도</span>
+            <img src="images/icons/navermap.jpg" alt="네이버 지도" /><span>네이버지도</span>
           </button>
 
           <button type="button" class="map-btn" onclick="openNavi('kakao')" title="카카오맵">
-            <img src="images/icons/kakaomap.jpg" alt="카카오맵" />
-            <span>카카오맵</span>
+            <img src="images/icons/kakaomap.jpg" alt="카카오맵" /><span>카카오맵</span>
           </button>
 
           <button type="button" class="map-btn" onclick="openNavi('tmap')" title="T map">
-            <img src="images/icons/tmap.jpg" alt="T map" />
-            <span>T맵</span>
+            <img src="images/icons/tmap.jpg" alt="T map" /><span>T 맵</span>
           </button>
         </div>
       </div>
@@ -2326,11 +2379,13 @@
 </section>
 
   <!-- ═══════════════════════════════════════════════════════
-       ACCOUNT INFO
+       [7] GIFT SECTION - 마음 전하실 곳
+       신랑측/신부측 계좌 정보 → 모달로 계좌 상세 정보 표시
   ═══════════════════════════════════════════════════════ -->
   <section class="section-compact reveal">
     <div class="container">
       <h2>마음 전하실 곳</h2>
+      <!-- 신랑측/신부측 계좌 버튼 -->
       <div class="gift-side-actions">
         <button
           type="button"
@@ -2353,16 +2408,19 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════
-       GUESTBOOK
+       [8] GUESTBOOK SECTION - 축하 메시지
+       방명록 폼(이름, 메시지 입력) + 메시지 목록 표시
+       Firebase Firestore 연동으로 메시지 저장
   ═══════════════════════════════════════════════════════ -->
   <section class="reveal">
     <div class="container">
       <h2>축하 메시지</h2>
+      <!-- 입력 안내 -->
       <p style="text-align: center; margin-bottom: 8px; color: var(--text-light); font-size: 14px;">
         축하의 한마디를 남겨주세요
       </p>
 
-      <div class="guestbook-form reveal">
+      <div class="guestbook-form">
         <div class="form-group">
           <label>이름</label>
           <input
@@ -2421,9 +2479,6 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════════
-       SHARE
-  ═══════════════════════════════════════════════════════ -->
   <section class="section-compact share-section reveal">
     <div class="container">
       <h2>청첩장 공유하기</h2>
@@ -2433,9 +2488,8 @@
 
       <div class="share-actions">
         <button type="button" class="share-btn kakao-share-btn" onclick="shareKakao()">
-          카카오톡으로 공유하기
+          카카오톡 공유하기
         </button>
-
         <button type="button" class="share-btn link-copy-btn" onclick="copyInvitationUrl()">
           링크 복사하기
         </button>
@@ -2443,11 +2497,15 @@
     </div>
   </section>
 
+
+
   <!-- ═══════════════════════════════════════════════════════
-       CONTACT MODAL
+       [9] CONTACT MODAL - 축하 연락처 상세 정보
+       신랑/신부 당사자 + 부모님 연락처 표시
   ═══════════════════════════════════════════════════════ -->
   <div id="contactModal" class="contact-modal" onclick="closeContactModalByBackdrop(event)">
     <div class="contact-modal-card" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+      <!-- 모달 닫기 버튼 -->
       <button
         type="button"
         class="contact-modal-close"
@@ -2457,8 +2515,10 @@
         &times;
       </button>
 
+      <!-- 모달 제목 (동적으로 변경됨) -->
       <h3 id="contactModalTitle" class="contact-modal-title">신부측 연락처</h3>
 
+      <!-- 신부측 연락처 정보 -->
       <div id="contactModalBride" class="contact-modal-group">
         <div class="contact-modal-person is-principal is-bride">
           <div>
@@ -2532,10 +2592,12 @@
   </div>
 
   <!-- ═══════════════════════════════════════════════════════
-       GIFT ACCOUNT MODAL
+       [10] GIFT ACCOUNT MODAL - 계좌 정보
+       신랑/신부 당사자 + 부모님 계좌 정보 표시
   ═══════════════════════════════════════════════════════ -->
   <div id="giftAccountModal" class="contact-modal" onclick="closeGiftAccountModalByBackdrop(event)">
     <div class="contact-modal-card" role="dialog" aria-modal="true" aria-labelledby="giftAccountModalTitle">
+      <!-- 모달 닫기 버튼 -->
       <button
         type="button"
         class="contact-modal-close"
@@ -2545,8 +2607,10 @@
         &times;
       </button>
 
+      <!-- 모달 제목 (동적으로 변경됨) -->
       <h3 id="giftAccountModalTitle" class="contact-modal-title">신부측</h3>
 
+      <!-- 신부측 계좌 정보 -->
       <div id="giftModalBride" class="contact-modal-group">
 
         <div class="gift-modal-item is-principal is-bride">
@@ -2614,22 +2678,54 @@
     </div>
   </div>
 
+  <!-- ═══════════════════════════════════════════════════════
+       BACKGROUND MUSIC TOGGLE
+  ═══════════════════════════════════════════════════════ -->
+  <!-- 배경음악 재생/중지 버튼 (고정 위치) -->
   <button type="button" id="bgmToggle" class="bgm-fab" aria-label="배경음악 켜기" title="배경음악">♪</button>
 
+  <!-- ═══════════════════════════════════════════════════════
+       [11] LIGHTBOX MODAL - 갤러리 이미지 확대 보기
+       갤러리 이미지 클릭 시 모달로 전체 화면 표시
+       좌우 네비게이션으로 이미지 전환
+  ═══════════════════════════════════════════════════════ -->
   <div id="lightboxModal" class="lightbox-modal" onclick="closeLightboxOnBackdropClick(event)">
     <div class="lightbox-content" onclick="event.stopPropagation()">
+      <!-- 라이트박스 닫기 버튼 -->
       <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+      <!-- 이전 이미지 버튼 -->
       <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">&lsaquo;</button>
+      <!-- 확대 이미지 -->
       <img id="lightboxImage" src="" alt="확대 이미지" class="lightbox-image">
+      <!-- 다음 이미지 버튼 -->
       <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">&rsaquo;</button>
+      <!-- 이미지 카운터 (현재/전체) -->
       <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
     </div>
   </div>
 
   <script>
+    /* ════════════════════════════════════════════════════════════════
+       자바스크립트 애플리케이션 로직
+
+       구조:
+       1. 애니메이션 (GSAP)
+       2. 갤러리 (미리보기 + 라이트박스)
+       3. 유틸리티 함수
+       4. 특수 효과 (인사말, 달력)
+       5. 이벤트 및 초기화
+       6. Firebase 연동
+       ════════════════════════════════════════════════════════════════ */
+
     // ════════════════════════════════════
-    // GSAP ANIMATIONS
+    // [1] GSAP ANIMATIONS - 스크롤 기반 애니메이션
+    // 섹션이 화면에 진입할 때 Fade-in + Slide-up 효과
     // ════════════════════════════════════
+    /**
+     * 모든 섹션에 스크롤 애니메이션 적용
+     * - 모바일에서는 비활성화 (성능 최적화)
+     * - 동작 감소 설정 적용 시 비활성화 (접근성)
+     */
     function initAnimations() {
       const sections = gsap.utils.toArray('section').filter(
         (section) => !section.classList.contains('hero-section')
@@ -2670,14 +2766,21 @@
     }
 
     // ════════════════════════════════════
-    // GALLERY & LIGHTBOX
+    // [2] GALLERY & LIGHTBOX - 갤러리 및 이미지 확대 보기
+    // 3×3 미리보기 그리드 + 클릭 시 라이트박스로 전체 화면 표시
     // ════════════════════════════════════
     let currentImageIndex = 0;
-    const GALLERY_PREVIEW_COUNT = 9;
+    const GALLERY_PREVIEW_COUNT = 9;  // 미리보기: 3×3 = 9개 이미지
     const GALLERY_IMAGES = [];
-    for (let i = 0; i <= 22; i++) GALLERY_IMAGES.push(`images/gallery/img${i}.jpg`);
-    // 새 사진 추가 시: GALLERY_IMAGES.push('images/gallery/img23.jpg');
 
+    // 갤러리 이미지 배열 초기화 (img0.jpg ~ img22.jpg)
+    for (let i = 0; i <= 22; i++) GALLERY_IMAGES.push(`images/gallery/img${i}.jpg`);
+    // 📝 새 사진 추가 시: GALLERY_IMAGES.push('images/gallery/img23.jpg');
+
+    /**
+     * 라이트박스 하단의 이미지 카운터 업데이트
+     * 예: "5 / 23"
+     */
     function updateLightboxCounter() {
       const counter = document.getElementById('lightboxCounter');
       if (counter) {
@@ -2712,7 +2815,7 @@
       gallery.innerHTML = '';
       GALLERY_IMAGES.forEach((src, index) => {
         const item = document.createElement('div');
-        item.className = 'gallery-item scale-in' + (index >= GALLERY_PREVIEW_COUNT ? ' is-collapsed' : '');
+        item.className = 'gallery-item' + (index >= GALLERY_PREVIEW_COUNT ? ' is-collapsed' : '');
         item.onclick = () => openLightbox(index);
         item.innerHTML = `<img src="${src}" alt="사진 ${index + 1}" loading="lazy" draggable="false">`;
         gallery.appendChild(item);
@@ -2844,8 +2947,14 @@
     }
 
     // ════════════════════════════════════
-    // UTILITY FUNCTIONS
+    // [3] UTILITY FUNCTIONS - 유틸리티 함수 모음
+    // 모달 관리, 정보 토글, 클립보드 복사 등
     // ════════════════════════════════════
+
+    /**
+     * 정보 섹션을 열고/닫기 (아코디언 효과)
+     * @param {HTMLElement} element - .info-item 요소
+     */
     function toggleInfo(element) {
       const isOpen = element.classList.toggle('active');
       const button = element.querySelector('.info-header');
@@ -2855,6 +2964,10 @@
       }
     }
 
+    /**
+     * 연락처 모달 열기
+     * @param {string} side - 'groom' 또는 'bride'
+     */
     function openContactModal(side) {
       const modal = document.getElementById('contactModal');
       const title = document.getElementById('contactModalTitle');
@@ -2976,75 +3089,73 @@
       });
     }
 
-    const INVITATION_URL = 'https://juseongkim92.github.io/juda-wedding/';
-    const INVITATION_IMAGE = 'https://juseongkim92.github.io/juda-wedding/images/main.jpg';
-    const KAKAO_JAVASCRIPT_KEY = 'a567f3eef35fca02b29ec325fd0b8971';
-
-    function initKakaoShare() {
-      if (!window.Kakao) {
-        return false;
-      }
-
-      if (!Kakao.isInitialized()) {
-        if (!KAKAO_JAVASCRIPT_KEY || KAKAO_JAVASCRIPT_KEY === 'YOUR_KAKAO_JAVASCRIPT_KEY') {
-          return false;
-        }
-        Kakao.init(KAKAO_JAVASCRIPT_KEY);
-      }
-
-      return Kakao.isInitialized();
-    }
-
+    /**
+     * 카카오톡으로 초대장 공유
+     * Kakao SDK를 사용하여 메시지 전송
+     */
     function shareKakao() {
-      if (!initKakaoShare()) {
-        alert('카카오톡 공유 설정 전입니다. 우선 링크를 복사합니다.');
-        copyInvitationUrl();
+      console.log('[카카오톡 공유] 시작');
+
+      // 1. Kakao SDK 확인
+      if (!window.Kakao) {
+        console.error('[카카오톡 공유] window.Kakao 없음');
+        alert('카카오톡 공유를 지원하지 않는 환경입니다.');
         return;
       }
 
-      Kakao.Share.sendDefault({
-        objectType: 'feed',
-        content: {
-          title: '조다빈 · 김주성 결혼합니다',
-          description: '2026년 8월 22일 토요일 낮 12시 · 호텔 인터불고 대구 웨딩인터빌리지홀',
-          imageUrl: INVITATION_IMAGE,
-          link: {
-            mobileWebUrl: INVITATION_URL,
-            webUrl: INVITATION_URL
-          }
-        },
-        buttons: [
-          {
-            title: '청첩장 보기',
+      // 2. 초기화 확인
+      if (!window.Kakao.isInitialized()) {
+        console.warn('[카카오톡 공유] 아직 초기화되지 않음. 재시도 중...');
+        setTimeout(shareKakao, 1000);
+        return;
+      }
+
+      try {
+        console.log('[카카오톡 공유] Kakao 초기화됨, 공유 준비');
+
+        const baseUrl = window.location.origin + window.location.pathname;
+        const imageUrl = new URL('images/main.jpg', baseUrl).href;
+
+        console.log('[카카오톡 공유] URL:', {
+          baseUrl,
+          imageUrl
+        });
+
+        // 더 간단한 공유 방식 사용
+        Kakao.Share.sendDefault({
+          objectType: 'feed',
+          content: {
+            title: '조다빈 · 김주성 결혼합니다',
+            description: '2026년 8월 22일 (토) 낮 12시\n호텔 인터불고 대구 웨딩인터빌리지홀',
+            imageUrl: imageUrl,
             link: {
-              mobileWebUrl: INVITATION_URL,
-              webUrl: INVITATION_URL
+              mobileWebUrl: baseUrl,
+              webUrl: baseUrl
             }
           }
-        ]
-      });
-    }
+        });
 
-    async function copyInvitationUrl() {
-      try {
-        await navigator.clipboard.writeText(INVITATION_URL);
-        alert('청첩장 링크가 복사되었습니다.');
+        console.log('[카카오톡 공유] 성공');
       } catch (error) {
-        const textarea = document.createElement('textarea');
-        textarea.value = INVITATION_URL;
-        textarea.setAttribute('readonly', '');
-        textarea.style.position = 'fixed';
-        textarea.style.left = '-9999px';
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-        alert('청첩장 링크가 복사되었습니다.');
+        console.error('[카카오톡 공유] 에러 상세:', {
+          message: error.message,
+          stack: error.stack,
+          error: error
+        });
+        alert(`카카오톡 공유 중 오류: ${error.message}`);
       }
     }
 
+    /**
+     * 초대장 URL 복사
+     */
+    function copyInvitationUrl() {
+      const url = window.location.href;
+      copyToClipboard(url);
+    }
+
     const WEDDING_VENUE = {
-      name: '호텔 인터불고 대구 웨딩인터빌리지',
+      name: '호텔 인터불고 대구 웨딩인터빌리지홀',
       address: '대구 수성구 팔현길 212',
       kakaoPlaceId: '1126984414',
       kakaoLink: 'https://kko.to/GSeoSIRki3',
@@ -3169,16 +3280,13 @@
       greetingMsg.innerHTML = '';
 
       lines.forEach((line, index) => {
-        const trimmedLine = line.trim();
-        if (!trimmedLine) return;
+        const span = document.createElement('span');
+        span.innerHTML = line;
+        span.style.display = 'block';
+        span.style.opacity = '0';
+        greetingMsg.appendChild(span);
 
-        const div = document.createElement('div');
-        div.innerHTML = trimmedLine;
-        div.style.opacity = '0';
-        div.style.lineHeight = '1.6';
-        greetingMsg.appendChild(div);
-
-        gsap.to(div, {
+        gsap.to(span, {
           opacity: 1,
           duration: 0.8,
           delay: index * 0.12,
@@ -3186,6 +3294,8 @@
         });
       });
     }
+
+
 
     // ════════════════════════════════════
     // CALENDAR GENERATION
@@ -3200,26 +3310,38 @@
       const lastDayDate = lastDay.getDate();
       const prevLastDayDate = prevLastDay.getDate();
 
+      // ★ 2026년 8월 공휴일 추가
+      const holidays = [15, 17];   // 15일(광복절), 17일(대체공휴일)
+
       let html = '';
 
+      // 이전 달 날짜
       for (let i = firstDayOfWeek - 1; i >= 0; i--) {
         html += `<div class="calendar-day other-month">${prevLastDayDate - i}</div>`;
       }
 
+      // 현재 달 날짜
       for (let i = 1; i <= lastDayDate; i++) {
         const date = new Date(year, month, i);
-        const isEvent = (i === 22);
+        const isEvent = (i === 22);           // 결혼식 날짜
         const isSunday = date.getDay() === 0;
         const isSaturday = date.getDay() === 6;
+        const isHoliday = holidays.includes(i); // 공휴일 여부
 
         let classes = 'calendar-day';
-        if (isEvent) classes += ' event';
-        else if (isSunday) classes += ' sunday';
-        else if (isSaturday) classes += ' saturday';
+
+        if (isEvent) {
+          classes += ' event';                    // 결혼식은 event 우선 적용
+        } else if (isHoliday || isSunday) {
+          classes += ' holiday';                  // 공휴일 + 일요일 → 빨간색
+        } else if (isSaturday) {
+          classes += ' saturday';
+        }
 
         html += `<div class="${classes}">${i}</div>`;
       }
 
+      // 다음 달 날짜
       const remainingDays = 42 - (firstDayOfWeek + lastDayDate);
       for (let i = 1; i <= remainingDays; i++) {
         html += `<div class="calendar-day other-month">${i}</div>`;
@@ -3229,8 +3351,14 @@
     }
 
     // ════════════════════════════════════
-    // INITIALIZATION
+    // [7] INITIALIZATION - 페이지 초기화
+    // 글꼴 로드 → 콘텐츠 렌더링 → 이벤트 리스너 등록
     // ════════════════════════════════════
+
+    /**
+     * 커스텀 글꼴 로드 완료 대기
+     * 글꼴이 로드되면 hero 섹션을 표시
+     */
     function revealHeroNamesWhenReady() {
       const root = document.documentElement;
       if (!document.fonts || !document.fonts.load) {
@@ -3245,11 +3373,24 @@
         .finally(() => root.classList.add('fonts-ready'));
     }
 
+    // 페이지 로드 완료 시 초기화 작업 실행
+    // Kakao SDK 초기화 (즉시 실행)
+    if (window.Kakao && !window.Kakao.isInitialized()) {
+      try {
+        Kakao.init('a567f3eef35fca02b29ec325fd0b8971');
+        console.log('✓ Kakao SDK 초기화 완료');
+      } catch (error) {
+        console.error('Kakao 초기화 실패:', error);
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
+
       revealHeroNamesWhenReady();
       generateCalendar(2026, 7);
       loadGallery();
       initAnimations();
+      animateGreetingLines();
 
       const bgmBtn = document.getElementById('bgmToggle');
       if (bgmBtn) bgmBtn.addEventListener('click', toggleBgm);
@@ -3285,8 +3426,9 @@
     // BGM — YouTube IFrame API
     // ════════════════════════════════════
     // const BGM_VIDEO_ID = 'YBzJ0jmHv-4';
-    const BGM_VIDEO_ID = 'DLjfRkIxUQ8';
+    // const BGM_VIDEO_ID = 'DLjfRkIxUQ8';
     // const BGM_VIDEO_ID = 'aCcbTcQQNSw';
+    const BGM_VIDEO_ID = 'UuHGsjraq34';  // 현재 사용 중인 BGM
     let ytPlayer = null;
     let bgmReady = false;
     let bgmPlaying = false;
@@ -3376,6 +3518,7 @@
       });
     }
   </script>
+
   <script type="module">
     import { initializeApp } from
       'https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js';
@@ -3396,10 +3539,9 @@
       'https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js';
 
     // ═══════════════════════════════════════════════════════
-    // FIREBASE CONFIG
+    // [8] FIREBASE INTEGRATION - 축하 메시지 저장소
+    // Firestore를 사용해 방명록 데이터 관리
     // ═══════════════════════════════════════════════════════
-    // 보안 주의: 이 키들은 클라이언트(브라우저)에 노출됩니다.
-    // wedding guestbook 용도로는 일반적으로 괜찮지만, 규칙으로 제한하세요.
     const firebaseConfig = {
       apiKey: "AIzaSyC3cpH1pHx9W-rq0PMCHVxJE42-o4F9S0Q",
       authDomain: "juda-wedding.firebaseapp.com",
@@ -3423,12 +3565,23 @@
       console.warn('guestbook는 제한 모드로 동작합니다.');
     }
 
+    /**
+     * HTML 이스케이프 (XSS 방지)
+     * 사용자 입력 텍스트를 안전한 HTML로 변환
+     * @param {string} value - 이스케이프할 텍스트
+     * @returns {string} HTML 이스케이프된 문자열
+     */
     function escapeHtml(value) {
       const div = document.createElement('div');
       div.textContent = String(value ?? '');
       return div.innerHTML;
     }
 
+    /**
+     * Firebase Timestamp를 한국 날짜 형식으로 변환
+     * @param {any} timestamp - Firestore Timestamp 또는 null
+     * @returns {string} 'YYYY.M.D' 형식의 날짜 문자열
+     */
     function formatDate(timestamp) {
       if (!timestamp || typeof timestamp.toDate !== 'function') {
         return new Date().toLocaleDateString('ko-KR');
