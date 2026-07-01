@@ -2150,16 +2150,30 @@
   <section class="reveal" style="padding: 20px 20px 32px 20px;">
     <div class="container">
       <h2>예식 일정</h2>
-      <!-- 결혼식 기본 정보 -->
+
+      <!-- 결혼 예배 -->
       <div class="wedding-info" style="border-top: none; padding-top: 0; text-align: center;">
-        <span style="font-size: 12px; color: var(--text-light); line-height: 0.8;">
-            2026년 8월 8일 금요일 오전 10시 30분 ~ 오후 5시 30분
+        <strong style="display: block; margin-bottom: 8px; font-size: 14px;">결혼 예배</strong>
+        <span style="font-size: 12px; color: var(--text-light); line-height: 1.4;">
+          2026년 8월 8일 금요일
         </span>
-        <br>  
-        <span style="font-size: 12px; color: var(--text-light); line-height: 0.8;">
-            제주 파라다이스회관
+        <br>
+        <span style="font-size: 12px; color: var(--text-light); line-height: 1.4;">
+          호텔 인터불고 대구 웨딩인터빌리지홀
         </span>
-    </div>
+      </div>
+
+      <!-- 제주 피로연 -->
+      <div class="wedding-info" style="text-align: center;">
+        <strong style="display: block; margin-bottom: 8px; font-size: 14px;">제주 피로연</strong>
+        <span style="font-size: 12px; color: var(--text-light); line-height: 1.4;">
+          2026년 8월 8일 금요일 오전 10시 30분 ~ 오후 5시 30분
+        </span>
+        <br>
+        <span style="font-size: 12px; color: var(--text-light); line-height: 1.4;">
+          제주 파라다이스회관
+        </span>
+      </div>
 
       <div class="calendar-container">
         <div class="calendar">
@@ -2210,12 +2224,63 @@
   <div class="container">
     <h2>오시는 길</h2>
 
-    <!-- 위치 정보 카드 -->
-    <div class="location-card">
-      <!-- 주소 정보 -->
-      <div class="address-box">
-        <div class="address-text">
-          <span class="address-line">제주 파라다이스회관</span>
+    <!-- 결혼 예배: 대구 호텔 인터불고 -->
+    <div style="margin-bottom: 20px;">
+      <h3 style="font-size: 14px; font-weight: 600; margin-bottom: 12px; text-align: center;">결혼 예배</h3>
+      <div class="location-card">
+        <!-- 주소 정보 -->
+        <div class="address-box">
+          <div class="address-text">
+            <span class="address-line">호텔 인터불고 대구 웨딩인터빌리지홀</span>
+            <span class="address-line">대구 수성구 팔현길 212</span>
+          </div>
+
+          <div class="address-actions">
+            <button type="button" class="map-btn" onclick="openNavi('naver')" title="네이버 지도">
+              <img src="images/icons/navermap.jpg" alt="네이버 지도" /><span>네이버지도</span>
+            </button>
+
+            <button type="button" class="map-btn" onclick="openNavi('kakao')" title="카카오맵">
+              <img src="images/icons/kakaomap.jpg" alt="카카오맵" /><span>카카오맵</span>
+            </button>
+
+            <button type="button" class="map-btn" onclick="openNavi('tmap')" title="T map">
+              <img src="images/icons/tmap.jpg" alt="T map" /><span>T 맵</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="info-list">
+          <!-- 자가용 -->
+          <div class="info-item">
+            <button type="button" class="info-header" aria-expanded="false" onclick="toggleInfo(this.closest('.info-item'))">
+              <span>🚗 자가용</span>
+              <span class="arrow" aria-hidden="true">▼</span>
+            </button>
+            <div class="info-content">
+              <div class="route-block">
+                <p class="route-path">
+                  동대구IC에서 시청방향으로 4km
+                  <span class="route-time">약 5분 소요</span>
+                </p>
+              </div>
+              <div class="route-note">
+                내비게이션에서 <strong>호텔 인터불고 대구</strong>를 검색해주세요.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 제주 피로연: 제주 파라다이스회관 -->
+    <div>
+      <h3 style="font-size: 14px; font-weight: 600; margin-bottom: 12px; text-align: center;">제주 피로연</h3>
+      <div class="location-card">
+        <!-- 주소 정보 -->
+        <div class="address-box">
+          <div class="address-text">
+            <span class="address-line">제주 파라다이스회관</span>
           <span class="address-line">대구 수성구 팔현길 212</span>
         </div>
 
