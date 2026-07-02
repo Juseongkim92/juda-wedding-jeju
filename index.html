@@ -514,11 +514,18 @@
     }
 
     .calendar-day.event {
-      background: rgba(197, 213, 227, 0.55);
-      /* color: var(--primary); */
-      color: #0000ff;
-      font-weight: 600;
-      border-radius: 6px;
+      background: #fff0f0;
+      color: #d43838;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .calendar-day.event::after {
+      content: "♥";
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      font-size: 10px;
     }
 
     /* 달력 헤더 배경 이미지 영역 (정사각형 이미지 대응) */
@@ -2093,28 +2100,31 @@
     <div class="container">
       <h2>예식 일정</h2>
 
-      <!-- 결혼 예배 -->
-      <div class="wedding-info" style="border-top: none; padding-top: 0; text-align: center;">
-        <strong style="display: block; margin-bottom: 8px; font-size: 14px;">결혼 예배</strong>
-        <span style="font-size: 12px; color: var(--text-light); line-height: 1.4;">
-          2026년 8월 8일 금요일
-        </span>
-        <br>
-        <span style="font-size: 12px; color: var(--text-light); line-height: 1.4;">
-          호텔 인터불고 대구 웨딩인터빌리지홀
-        </span>
-      </div>
+            <!-- 결혼 예배 & 제주 피로연 -->
+      <div style="text-align: center; margin: 32px 0;">
 
-      <!-- 제주 피로연 -->
-      <div class="wedding-info" style="text-align: center;">
-        <strong style="display: block; margin-bottom: 8px; font-size: 14px;">제주 피로연</strong>
-        <span style="font-size: 12px; color: var(--text-light); line-height: 1.4;">
-          2026년 8월 8일 금요일 오전 10시 30분 ~ 오후 5시 30분
-        </span>
-        <br>
-        <span style="font-size: 12px; color: var(--text-light); line-height: 1.4;">
-          제주 파라다이스회관
-        </span>
+        <!-- 결혼 예배 -->
+        <div class="wedding-info" style="margin-bottom: 28px;">
+          <strong style="display: block; font-size: 15px; letter-spacing: -0.3px; margin-bottom: 10px;">
+            결혼 예배
+          </strong>
+          <div style="font-size: 13px; color: var(--text-light); line-height: 1.65;">
+            2026년 8월 8일 금요일<br>
+            호텔 인터불고 대구 웨딩인터빌리지홀
+          </div>
+        </div>
+
+        <!-- 제주 피로연 -->
+        <div class="wedding-info">
+          <strong style="display: block; font-size: 15px; letter-spacing: -0.3px; margin-bottom: 10px;">
+            제주 피로연
+          </strong>
+          <div style="font-size: 13px; color: var(--text-light); line-height: 1.65;">
+            2026년 8월 8일 금요일 오전 10시 30분 ~ 오후 5시 30분<br>
+            제주 파라다이스회관
+          </div>
+        </div>
+
       </div>
 
       <div class="calendar-container">
@@ -3121,7 +3131,8 @@
       const prevLastDayDate = prevLastDay.getDate();
 
       // ★ 2026년 8월 공휴일 추가
-      const holidays = [15, 17];   // 15일(광복절), 17일(대체공휴일)
+      const holidays = [15, 17];           // 광복절 + 대체공휴일
+      const weddingDate = 8;               // 결혼 예배 & 피로연 (같은 날)
 
       let html = '';
 
@@ -3133,17 +3144,17 @@
       // 현재 달 날짜
       for (let i = 1; i <= lastDayDate; i++) {
         const date = new Date(year, month, i);
-        const isEvent = (i === 8 || i === 22);  // 결혼 예배(8일) & 제주 피로연(22일)
+        const isWeddingDay = (i === weddingDate);
         const isSunday = date.getDay() === 0;
         const isSaturday = date.getDay() === 6;
-        const isHoliday = holidays.includes(i); // 공휴일 여부
+        const isHoliday = holidays.includes(i);
 
         let classes = 'calendar-day';
 
-        if (isEvent) {
-          classes += ' event';                    // 결혼식은 event 우선 적용
+        if (isWeddingDay) {
+          classes += ' event wedding-day';     // 특별 강조 클래스 추가
         } else if (isHoliday || isSunday) {
-          classes += ' holiday';                  // 공휴일 + 일요일 → 빨간색
+          classes += ' holiday';
         } else if (isSaturday) {
           classes += ' saturday';
         }
