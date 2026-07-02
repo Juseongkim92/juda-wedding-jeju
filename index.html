@@ -3130,9 +3130,9 @@
       const lastDayDate = lastDay.getDate();
       const prevLastDayDate = prevLastDay.getDate();
 
-      // ★ 2026년 8월 공휴일 추가
-      const holidays = [15, 17];           // 광복절 + 대체공휴일
+      // 2026년 8월 이벤트 날짜
       const eventDays = [8, 22];      // 8일(예식), 22일(추가 표시)
+      const holidays = [15, 17];      // 광복절, 대체공휴일
 
       let html = '';
 
@@ -3144,15 +3144,15 @@
       // 현재 달 날짜
       for (let i = 1; i <= lastDayDate; i++) {
         const date = new Date(year, month, i);
-        const isWeddingDay = (i === weddingDate);
+        const isEvent = eventDays.includes(i);
         const isSunday = date.getDay() === 0;
         const isSaturday = date.getDay() === 6;
         const isHoliday = holidays.includes(i);
 
         let classes = 'calendar-day';
 
-        if (isWeddingDay) {
-          classes += ' event wedding-day';     // 특별 강조 클래스 추가
+        if (isEvent) {
+          classes += ' event';
         } else if (isHoliday || isSunday) {
           classes += ' holiday';
         } else if (isSaturday) {
@@ -3161,6 +3161,15 @@
 
         html += `<div class="${classes}">${i}</div>`;
       }
+
+      // 다음 달 날짜
+      const remainingDays = 42 - (firstDayOfWeek + lastDayDate);
+      for (let i = 1; i <= remainingDays; i++) {
+        html += `<div class="calendar-day other-month">${i}</div>`;
+      }
+
+      calendarDays.innerHTML = html;
+    }
 
       // 다음 달 날짜
       const remainingDays = 42 - (firstDayOfWeek + lastDayDate);
