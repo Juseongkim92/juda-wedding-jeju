@@ -3147,8 +3147,14 @@
     const GALLERY_IMAGES = [];
 
     // 갤러리 이미지 배열 초기화 (img0.jpg ~ img22.jpg)
-    for (let i = 0; i <= 22; i++) GALLERY_IMAGES.push(`images/gallery/img${i}.jpg`);
+    // for (let i = 0; i <= 22; i++) GALLERY_IMAGES.push(`images/gallery/img${i}.jpg`);
     // 📝 새 사진 추가 시: GALLERY_IMAGES.push('images/gallery/img23.jpg');
+    for (let i = 0; i <= 22; i++) {
+      GALLERY_IMAGES.push({
+        thumb: `images/gallery/thumb/img${i}.webp`,
+        full: `images/gallery/full/img${i}.webp`
+      });
+    }
 
     /**
      * 라이트박스 하단의 이미지 카운터 업데이트
@@ -3200,16 +3206,27 @@
     function loadGallery() {
       const gallery = document.getElementById('gallery');
       gallery.innerHTML = '';
-      GALLERY_IMAGES.forEach((src, index) => {
+
+      GALLERY_IMAGES.forEach((image, index) => {
         const item = document.createElement('div');
         item.className = 'gallery-item' + (index >= GALLERY_PREVIEW_COUNT ? ' is-collapsed' : '');
         item.onclick = () => openLightbox(index);
-        item.innerHTML = `<img src="${src}" alt="사진 ${index + 1}" loading="lazy" draggable="false">`;
+
+        item.innerHTML = `
+          <img 
+            src="${image.thumb}" 
+            alt="사진 ${index + 1}" 
+            loading="lazy" 
+            decoding="async"
+            draggable="false"
+          >
+        `;
+
         gallery.appendChild(item);
       });
+
       updateGalleryToggleBtn(false);
     }
-
     function toggleGallery() {
       const btn = document.getElementById('galleryExpandBtn');
       const isExpanded = btn?.getAttribute('aria-expanded') === 'true';
@@ -3274,7 +3291,7 @@
       currentImageIndex = index;
       const modal = document.getElementById('lightboxModal');
       const img = document.getElementById('lightboxImage');
-      img.src = GALLERY_IMAGES[currentImageIndex];
+      img.src = GALLERY_IMAGES[currentImageIndex].full;
       updateLightboxCounter();
       resetLightboxZoom();
       modal.style.display = 'flex';
@@ -3326,7 +3343,7 @@
         scale: 0.95,
         duration: 0.15,
         onComplete: () => {
-          img.src = GALLERY_IMAGES[currentImageIndex];
+          img.src = GALLERY_IMAGES[currentImageIndex].full;
           updateLightboxCounter();
           gsap.to(img, { opacity: 1, scale: 1, duration: 0.2 });
         }
