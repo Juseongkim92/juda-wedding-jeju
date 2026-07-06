@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
   <title>김주성 · 조다빈 결혼합니다</title>
   <meta property="og:title" content="김주성 · 조다빈 결혼합니다" />
-  <meta property="og:description" content="2026년 8월 22일 토요일 · 제주 파라다이스회관 웨딩인터빌리지" />
+  <meta property="og:description" content="2026년 8월 22일 토요일 · 호텔 인터불고 대구 웨딩인터빌리지" />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://juseongkim92.github.io/juda-wedding/images/main.jpg?v=2" />
   <meta property="og:url" content="https://juseongkim92.github.io/juda-wedding/" />
@@ -229,9 +230,17 @@
     }
 
     .map-section {
-      padding: 40px 20px 80px 20px !important;
-      scroll-snap-align: none !important;
-      scroll-snap-stop: auto !important;
+      padding: 40px 8px 80px 8px !important;
+    }
+
+    .map-section .container {
+      padding: 0;
+    }
+
+    .location-card {
+      width: 100%;
+      padding: 16px;
+      border-radius: 12px;
     }
 
     .divider {
@@ -312,7 +321,19 @@
     }
 
     .greeting-block-section {
-      position: relative;
+      padding: 32px 8px 32px 8px !important;
+    }
+
+    .greeting-block-section .container {
+      padding: 0;
+    }
+
+    .greeting-card {
+      width: 100%;
+      padding: 28px 18px;
+    }
+    .greeting-block-section .family-intro {
+      padding: 4px 0 0;
     }
 
     /* ════════════════════════════════════
@@ -514,18 +535,11 @@
     }
 
     .calendar-day.event {
-      background: #fff0f0;
-      color: #d43838;
-      font-weight: 700;
-      position: relative;
-    }
-
-    .calendar-day.event::after {
-      content: "♥";
-      position: absolute;
-      top: -2px;
-      right: -2px;
-      font-size: 10px;
+      background: rgba(197, 213, 227, 0.55);
+      /* color: var(--primary); */
+      color: #0000ff;
+      font-weight: 600;
+      border-radius: 6px;
     }
 
     /* 달력 헤더 배경 이미지 영역 (정사각형 이미지 대응) */
@@ -831,7 +845,7 @@
       max-width: 390px;
       max-height: 82vh;
       overflow-y: auto;
-      padding: 26px 18px 20px;
+      padding: 34px 18px 20px;
       border-radius: 14px;
       background: #fff;
       box-shadow: 0 16px 40px rgba(26, 35, 50, 0.18);
@@ -860,6 +874,125 @@
       font-size: 12px;
       color: var(--text-light);
       white-space: nowrap;
+    }
+
+
+    /* ════════════════════════════════════
+      CONTACT MODAL - 계좌번호 스타일에 맞춘 연락처 보정
+    ════════════════════════════════════ */
+
+    .contact-modal-person {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 92px;
+      align-items: stretch;
+      gap: 10px;
+      padding: 14px 12px;
+      border-bottom: 1px solid rgba(220, 234, 242, 0.65);
+      border-radius: 6px;
+      margin: 4px 0;
+    }
+
+    .contact-modal-person:last-child {
+      border-bottom: none;
+    }
+
+    .contact-modal-person.is-principal {
+      padding: 14px 12px;
+      border-radius: 6px;
+      margin: 8px 0;
+    }
+
+    /* 왼쪽 이름 + 전화번호 영역 */
+    .contact-modal-person > div:first-child {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-modal-name {
+      color: var(--primary);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .contact-modal-relation {
+      display: inline;
+      margin-left: 5px;
+      color: var(--text-light);
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    .contact-modal-phone {
+      display: block;
+      margin-top: 6px;
+      color: var(--primary);
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      text-decoration: none !important;
+      -webkit-text-decoration: none !important;
+      word-break: keep-all;
+    }
+
+    /* 오른쪽 전화/문자 버튼 */
+    .contact-modal-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      align-self: stretch;
+    }
+
+    .contact-action-link {
+      width: auto;
+      height: auto;
+      min-height: 52px;
+      border: 1px solid var(--accent-soft);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.75);
+      color: var(--accent);
+      text-decoration: none;
+      cursor: pointer;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .contact-action-link svg {
+      width: 40px;
+      height: 20px;
+    }
+
+    /* 전화 / 문자 글자 표시 */
+    .contact-action-link::after {
+      content: attr(title);
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .contact-action-link:hover {
+      border-color: var(--accent);
+      background: var(--primary-light);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    .contact-action-link:active {
+      transform: scale(0.97);
     }
 
     .gift-modal-item {
@@ -900,53 +1033,97 @@
 
     .gift-modal-person strong {
       color: var(--primary);
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 600;
     }
 
     .gift-modal-person span {
       color: var(--text-light);
-      font-size: 11px;
+      font-size: 15px;
     }
 
+
     .gift-modal-account {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 6px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 58px;
+      grid-template-rows: auto auto;
+      column-gap: 10px;
+      row-gap: 4px;
+      align-items: stretch;
     }
 
     .gift-modal-bank {
+      grid-column: 1;
+      grid-row: 1;
       color: var(--text-light);
-      font-size: 12px;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.35;
+      white-space: nowrap;
     }
 
     .gift-modal-number {
+      grid-column: 1;
+      grid-row: 2;
       color: var(--primary);
       font-family: 'Courier New', monospace;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: -0.03em;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      text-decoration: none !important;
+      -webkit-text-decoration: none !important;
+      word-break: keep-all;
     }
 
     .gift-modal-copy {
-      margin-left: auto;
-      padding: 5px 10px;
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      background: transparent;
+      grid-column: 2;
+      grid-row: 1 / 3;
+      align-self: stretch;
+      justify-self: stretch;
+      margin-left: 0;
+      padding: 0 10px;
+      border: 1px solid var(--accent-soft);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.75);
       color: var(--accent);
       font-family: var(--font-body);
-      font-size: 11px;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.2;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition:
+        background 0.2s ease,
         border-color 0.2s ease,
-        color 0.2s ease;
+        color 0.2s ease,
+        transform 0.2s ease;
     }
 
     .gift-modal-copy:hover {
       border-color: var(--accent);
+      background: var(--primary-light);
       color: var(--primary);
+    }
+
+    .gift-modal-copy:active {
+      transform: scale(0.98);
+    }
+
+    /* 복사 성공 시 해당 인물 박스 하이라이트 */
+    .gift-modal-item {
+      transition:
+        background-color 0.45s ease,
+        box-shadow 0.45s ease,
+        transform 0.25s ease;
+    }
+
+    .gift-modal-item.is-copied {
+      background-color: rgba(197, 213, 227, 0.45) !important;
+      box-shadow: 0 4px 14px rgba(26, 35, 50, 0.08);
+      transform: translateY(-1px);
     }
 
     .contact-modal-close {
@@ -975,117 +1152,6 @@
       letter-spacing: 0.08em;
     }
 
-    .contact-modal-person {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 11px 0;
-      border-bottom: 1px solid rgba(220, 234, 242, 0.65);
-    }
-
-    .contact-modal-person:last-child {
-      border-bottom: none;
-    }
-
-    .contact-modal-person.is-principal {
-      padding: 11px 12px;
-      border-radius: 6px;
-      margin: 8px 0;
-    }
-
-    .contact-modal-person.is-principal.is-bride {
-      background-color: rgba(200, 220, 255, 0.25);
-    }
-
-    .contact-modal-person.is-principal.is-groom {
-      background-color: rgba(200, 220, 255, 0.25);
-    }
-
-    .contact-modal-person:not(.is-principal) {
-      padding: 11px 12px;
-      border-radius: 6px;
-      margin: 4px 0;
-    }
-
-    .contact-modal-name {
-      color: var(--primary);
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .contact-modal-relation {
-      display: inline;
-      margin-left: 4px;
-      color: var(--text-light);
-      font-size: 11px;
-      font-weight: 400;
-    }
-
-    .contact-modal-phone {
-      display: block;
-      margin-top: 4px;
-      color: var(--primary);
-      font-size: 13px;
-      font-weight: 500;
-      font-family: monospace;
-    }
-
-    .contact-modal-actions {
-      display: flex;
-      gap: 7px;
-      flex-shrink: 0;
-    }
-
-    .contact-action-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 44px;
-      padding: 7px 9px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      background: var(--white);
-      color: var(--primary);
-      font-size: 12px;
-      text-decoration: none;
-      cursor: pointer;
-      transition:
-        background 0.2s ease,
-        border-color 0.2s ease;
-    }
-
-    .contact-action-btn:hover {
-      border-color: var(--accent);
-      background: var(--primary-light);
-    }
-
-    .contact-action-link {
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.2s, color 0.2s;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      color: var(--accent);
-    }
-
-    .contact-action-link svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    .contact-action-link:hover {
-      transform: scale(1.15);
-      color: var(--primary);
-    }
-
-    .contact-action-link:active {
-      transform: scale(0.95);
-    }
-
     .copy-btn {
       background: none;
       border: none;
@@ -1104,6 +1170,19 @@
       color: var(--primary);
     }
 
+
+    .schedule-section {
+      padding: 20px 8px 32px 8px !important;
+    }
+
+    .schedule-section .container {
+      padding: 0;
+    }
+
+    .schedule-section .calendar {
+      width: 100%;
+    }
+
     /* ════════════════════════════════════
        GALLERY
     ════════════════════════════════════ */
@@ -1111,6 +1190,17 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
+    }
+
+    @keyframes gallery-slide-up-fade {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .gallery-item {
@@ -1124,6 +1214,11 @@
 
     .gallery-item.is-collapsed {
       display: none;
+    }
+
+    .gallery-item.is-visible {
+      animation: gallery-slide-up-fade 0.5s ease-out forwards;
+      animation-delay: var(--delay, 0s);
     }
 
     .gallery-expand-btn {
@@ -1162,25 +1257,94 @@
       transform: scale(1.05);
     }
 
+    .gallery-section {
+      padding: 40px 8px !important;
+    }
+
+    .gallery-section .container {
+      padding: 0;
+    }
+
     /* ════════════════════════════════════
        MAP & DIRECTIONS
     ════════════════════════════════════ */
     .location-card {
+      border: 1px solid var(--border);          /* 연한 테두리 */
+      border-radius: 12px;                      /* 둥근 모서리 */
+      padding: 20px;                            /* 내부 여백 */
+      background: var(--white);                 /* 흰색 반투명 배경 */
+      backdrop-filter: blur(8px);               /* 배경 흐림 효과 */
+      -webkit-backdrop-filter: blur(8px);       /* Safari용 blur */
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);   /* 약한 그림자 */
+      margin-bottom: 20px;                      /* 아래 여백 */
+    }
+
+    /* 오시는 길 아코디언 가독성 개선 */
+    .info-list {
+      gap: 12px;
+    }
+
+    .info-item.active .info-content {
+      padding: 18px 16px;
+    }
+    /* ════════════════════════════════════
+      전세버스 안내 (세련된 버전)
+    ════════════════════════════════════ */
+    .bus-notice {
+      margin-top: 30px;
+      padding: 24px 18px;
+      background: var(--primary-light);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 20px;
-      background: var(--white);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .bus-notice-content {
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .bus-notice-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--primary);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .bus-notice-desc {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.65;
       margin-bottom: 20px;
     }
 
-    .info-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 20px;
+    .bus-notice-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 260px;
+      padding: 14px 20px;
+      font-size: 16px;
+      font-weight: 700;
+      gap: 8px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 8px rgba(26, 45, 66, 0.15);
+    }
+
+    .bus-notice-btn:hover {
+      background: #223a55;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(26, 45, 66, 0.2);
+    }
+
+    .bus-notice-btn:active {
+      transform: scale(0.98);
     }
 
     .info-item {
@@ -1188,6 +1352,7 @@
       border-radius: 8px;
       overflow: hidden;
       transition: all 0.2s;
+      font-size: 18px;
     }
 
     .info-header {
@@ -1201,7 +1366,7 @@
       background: var(--white);
       color: var(--primary);
       font-family: var(--font-body);
-      font-size: 14px;
+      font-size: 18px;
       font-weight: 600;
       text-align: left;
       cursor: pointer;
@@ -1216,7 +1381,7 @@
       padding: 0 16px;
       transition: all 0.3s ease;
       background: var(--white);
-      font-size: 13px;
+      font-size: 15px;
       color: #555;
       overflow: hidden;
     }
@@ -1276,32 +1441,33 @@
 
     .address-text .address-line {
       display: block;
+      font-size: 16px;
+
     }
 
     .address-actions {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: nowrap;           /* ← wrap → nowrap으로 변경 */
-      gap: 10px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
       padding-top: 4px;
     }
 
     .copy-address-btn,
     .map-btn {
-      width: 82px;                 /* 고정 너비 유지 */
+      width: 100%;
       min-height: 70px;
-      flex: 0 0 auto;
       border: 1px solid var(--accent-soft);
       background: rgba(255, 255, 255, 0.65);
-      padding: 10px 6px;
+      padding: 9px 4px;
       cursor: pointer;
       border-radius: 10px;
+
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 5px;
+
       transition: transform 0.2s ease, background 0.2s ease;
       text-align: center;
       backdrop-filter: blur(4px);
@@ -1318,23 +1484,17 @@
       transform: scale(0.96);
     }
 
-    .copy-address-btn img {
-      width: 28px;
-      height: 28px;
-      display: block;
-    }
-
-    /* 아이콘 */
+    .copy-address-btn img,
     .map-btn img {
-      height: 30px;
+      height: 40px;
       width: auto;
       object-fit: contain;
       display: block;
     }
 
-    /* 텍스트 */
+    .copy-address-btn span,
     .map-btn span {
-      font-size: 11px;
+      font-size: 14px;
       font-weight: 600;
       color: var(--primary);
       white-space: nowrap;
@@ -1359,7 +1519,7 @@
     .route-title {
       color: var(--primary);
       font-family: var(--font-body);
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 700;
       line-height: 1.6;
     }
@@ -1367,7 +1527,7 @@
     .route-summary {
       margin: -5px 0 2px;
       color: var(--text-light);
-      font-size: 12px;
+      font-size: 14px;
       line-height: 1.7;
     }
 
@@ -1384,7 +1544,7 @@
       border-radius: 4px;
       background: #eef4f8;
       color: var(--accent);
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 700;
       text-align: center;
     }
@@ -1393,7 +1553,7 @@
       flex: 1;
       margin: 0;
       color: var(--text);
-      font-size: 12px;
+      font-size: 14px;
       line-height: 1.85;
       word-break: keep-all;
       overflow-wrap: anywhere;
@@ -1443,8 +1603,107 @@
     }
 
     /* ════════════════════════════════════
-       GUESTBOOK
+      GUESTBOOK - width & readability
     ════════════════════════════════════ */
+
+    .guestbook-section {
+      padding: 40px 8px 40px 8px !important;
+    }
+
+    .guestbook-section .container {
+      padding: 0;
+    }
+
+    /* 안내 문구 */
+    .guestbook-section > .container > p {
+      font-size: 14px !important;
+      line-height: 1.7;
+      margin-bottom: 14px !important;
+    }
+
+    /* 입력 카드 */
+    .guestbook-section .guestbook-form {
+      width: 100%;
+      padding: 22px 16px;
+      border-radius: 12px;
+      margin-bottom: 28px;
+    }
+
+    /* 입력 항목 간격 */
+    .guestbook-section .form-group {
+      margin-bottom: 17px;
+    }
+
+    /* 라벨 */
+    .guestbook-section .form-group label {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    /* input / textarea */
+    .guestbook-section .form-group input,
+    .guestbook-section .form-group textarea {
+      padding: 13px 12px;
+      border-radius: 8px;
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+
+    /* 메시지 입력창 */
+    .guestbook-section .form-group textarea {
+      height: 118px;
+    }
+
+    /* 등록 버튼 */
+    .guestbook-section .submit-btn {
+      padding: 15px 14px;
+      border-radius: 8px;
+      font-size: 14.5px;
+      font-weight: 700;
+    }
+
+    /* 메시지 목록 */
+    .guestbook-section .message-list {
+      gap: 12px;
+    }
+
+    /* 메시지 카드 */
+    .guestbook-section .message-card {
+      width: 100%;
+      padding: 17px 15px;
+      border-radius: 10px;
+    }
+
+    /* 작성자 / 날짜 영역 */
+    .guestbook-section .message-header {
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+
+    /* 작성자 */
+    .guestbook-section .message-author {
+      font-size: 14.5px;
+      font-weight: 700;
+    }
+
+    /* 날짜 */
+    .guestbook-section .message-date {
+      font-size: 11.5px;
+    }
+
+    /* 삭제 버튼 */
+    .guestbook-section .message-delete-btn {
+      font-size: 11.5px;
+    }
+
+    /* 메시지 본문 */
+    .guestbook-section .message-text {
+      font-size: 13.8px;
+      line-height: 1.75;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
     .guestbook-form {
       background: var(--white);
       border: 1px solid var(--border);
@@ -1562,6 +1821,73 @@
     }
 
     /* ════════════════════════════════════
+      PRAYER SECTION
+    ════════════════════════════════════ */
+
+    .prayer-section {
+      padding: 40px 8px 40px 8px !important;
+    }
+
+    .prayer-section .container {
+      padding: 0;
+    }
+
+    .prayer-card {
+      width: 100%;
+      padding: 30px 18px 28px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px var(--shadow);
+    }
+
+    .prayer-note {
+      margin-top: -4px;
+      margin-bottom: 22px;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .prayer-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .prayer-item {
+      position: relative;
+      padding: 18px 14px 18px 46px;
+      border: 1px solid rgba(220, 234, 242, 0.8);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.62);
+    }
+
+    .prayer-number {
+      position: absolute;
+      top: 18px;
+      left: 14px;
+      color: var(--accent);
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .prayer-item p {
+      margin: 0;
+      color: var(--text);
+      font-family: var(--font-greeting);
+      font-size: 14px;
+      line-height: 2;
+      letter-spacing: -0.02em;
+      word-break: keep-all;
+    }
+
+
+
+    /* ════════════════════════════════════
        VIDEO SECTION
     ════════════════════════════════════ */
     .video-player {
@@ -1612,6 +1938,32 @@
       line-height: 2.15;
       color: var(--text);
       letter-spacing: -0.01em;
+    }
+
+    /* 우리의 여정 섹션 */
+    .journey-section {
+      padding: 40px 8px 40px 8px !important;
+    }
+
+    .journey-section .container {
+      padding: 0;
+    }
+
+    .journey-section .journey-card {
+      width: 100%;
+      padding: 20px 14px 28px;
+      border-radius: 12px;
+    }
+
+    .journey-section .video-player {
+      width: 100%;
+      margin-bottom: 26px;
+      border-radius: 10px;
+    }
+
+    .journey-section .thanks-message {
+      font-size: 15px;
+      line-height: 2.1;
     }
 
     /* ════════════════════════════════════
@@ -1779,6 +2131,86 @@
       top: 0;
     }
 
+
+    /* 맨 위로 이동 버튼 */
+    .scroll-top-fab {
+      position: fixed;
+      right: 16px;
+      bottom: 76px; /* BGM 버튼 위 */
+      z-index: 120;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--primary);
+      box-shadow: 0 4px 16px rgba(26, 35, 50, 0.12);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      line-height: 1;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        background 0.2s ease;
+    }
+
+    .scroll-top-fab.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .scroll-top-fab:hover {
+      background: #fff;
+      transform: translateY(0) scale(1.06);
+    }
+
+    .toast-message {
+      position: fixed;
+      left: 50%;
+      bottom: 138px;
+      z-index: 1600;
+
+      width: calc(100% - 36px);
+      max-width: 410px;
+      min-height: 64px;
+      padding: 17px 20px;
+
+      border-radius: 14px;
+      background: rgba(26, 45, 66, 0.96);
+      color: #fff;
+
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.65;
+      text-align: center;
+
+      box-shadow: 0 10px 28px rgba(26, 35, 50, 0.22);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 12px);
+
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+
+      white-space: pre-line;
+    }
+
+    .toast-message.is-visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+
+
     /* ════════════════════════════════════
        OPENING / SHARE / SCROLL REVEAL
     ════════════════════════════════════ */
@@ -1886,24 +2318,41 @@
 
     .share-actions {
       display: grid;
-      grid-template-columns: 1fr 1fr;   /* 가로 2열 */
+      grid-template-columns: 1fr 1fr;
       gap: 12px;
       margin-top: 20px;
     }
 
     .share-btn {
       width: 100%;
-      padding: 16px 18px;
+      min-height: 58px;
+      padding: 13px 10px;
       border-radius: 10px;
-      font-size: 15px;
-      font-weight: 600;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.2s ease;
+
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 8px;
+
       line-height: 1.3;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .share-btn-icon {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .share-btn span {
+      white-space: nowrap;
     }
 
     .share-btn:hover {
@@ -1917,7 +2366,6 @@
 
     /* 카카오톡 버튼 */
     .kakao-share-btn {
-      font-size: 12px;
       background: #fee500;
       border: 1px solid #fee500;
       color: #191919;
@@ -1930,7 +2378,6 @@
 
     /* 링크 복사 버튼 */
     .link-copy-btn {
-      font-size: 12px;
       background: #fff;
       border: 1px solid var(--border);
       color: var(--primary);
@@ -2023,7 +2470,8 @@
        [2] GREETING SECTION - 인사말 및 신랑신부 소개
        웨딩 문구 + 양가 부모님 소개 + 신랑신부 이름
   ═══════════════════════════════════════════════════════ -->
-  <section class="greeting-block-section reveal" style="padding: 32px 20px 32px 20px;">
+  <!-- <section class="greeting-block-section reveal" style="padding: 32px 20px 32px 20px;"> -->
+  <section class="greeting-block-section reveal">
     <div class="container greeting-section">
       <!-- 축하 인사말 -->
       <div class="greeting-card">
@@ -2078,14 +2526,14 @@
           onclick="openContactModal('groom')"
         >
           <img src="images/icons/groom.png" alt="신랑" class="contact-btn-icon" />
-          신랑측 연락처
+          신랑측
         </button>
         <button
           type="button"
           class="contact-open-btn"
           onclick="openContactModal('bride')"
         >
-          신부측 연락처
+          신부측
           <img src="images/icons/bride.png" alt="신부" class="contact-btn-icon" />
         </button>
       </div>
@@ -2096,36 +2544,19 @@
        [4] CALENDAR SECTION - 예식 일정
        날짜, 시간, 장소 정보 + 달력 표시
   ═══════════════════════════════════════════════════════ -->
-  <section class="reveal" style="padding: 20px 20px 32px 20px;">
+  <section class="schedule-section reveal">
     <div class="container">
       <h2>예식 일정</h2>
-
-            <!-- 결혼 예배 & 제주 피로연 -->
-      <div style="text-align: center; margin: 32px 0;">
-
-        <!-- 결혼 예배 -->
-        <div class="wedding-info" style="margin-bottom: 28px;">
-          <strong style="display: block; font-size: 15px; letter-spacing: -0.3px; margin-bottom: 10px;">
-            결혼 예배
-          </strong>
-          <div style="font-size: 13px; color: var(--text-light); line-height: 1.65;">
-            2026년 8월 8일 금요일<br>
+      <!-- 결혼식 기본 정보 -->
+      <div class="wedding-info" style="border-top: none; padding-top: 0; text-align: center;">
+        <span style="font-size: 16px; color: var(--text-light); line-height: 0.8;">
+            2026년 8월 22일 토요일 낮 12시
+        </span>
+        <br>  
+        <span style="font-size: 16px; color: var(--text-light); line-height: 0.8;">
             호텔 인터불고 대구 웨딩인터빌리지홀
-          </div>
-        </div>
-
-        <!-- 제주 피로연 -->
-        <div class="wedding-info">
-          <strong style="display: block; font-size: 15px; letter-spacing: -0.3px; margin-bottom: 10px;">
-            제주 피로연
-          </strong>
-          <div style="font-size: 13px; color: var(--text-light); line-height: 1.65;">
-            2026년 8월 8일 금요일 오전 10시 30분 ~ 오후 5시 30분<br>
-            제주 파라다이스회관
-          </div>
-        </div>
-
-      </div>
+        </span>
+    </div>
 
       <div class="calendar-container">
         <div class="calendar">
@@ -2154,7 +2585,7 @@
        [5] GALLERY SECTION - 웨딩 사진 갤러리
        3×3 그리드 미리보기 + 클릭 시 라이트박스로 확대
   ═══════════════════════════════════════════════════════ -->
-  <section>
+  <section class="gallery-section">
     <div class="container">
       <h2>갤러리</h2>
       <!-- 갤러리 아이템들 (JavaScript로 동적 생성) -->
@@ -2176,30 +2607,10 @@
   <div class="container">
     <h2>오시는 길</h2>
 
-    <!-- 제주 피로연: 제주 파라다이스회관 -->
-    <div>
-      <div class="location-card">
-        <!-- 주소 정보 -->
-        <div class="address-box">
-          <div class="address-text">
-            <span class="address-line">제주 파라다이스회관</span>
-            <span class="address-line">제주특별자치도 제주시 삼성로 9 1층</span>
-        </div>
-
-        <div class="address-actions">
-          <button type="button" class="map-btn" onclick="openNavi('naver')" title="네이버 지도">
-            <img src="images/icons/navermap.jpg" alt="네이버 지도" /><span>네이버지도</span>
-          </button>
-
-          <button type="button" class="map-btn" onclick="openNavi('kakao')" title="카카오맵">
-            <img src="images/icons/kakaomap.jpg" alt="카카오맵" /><span>카카오맵</span>
-          </button>
-
-          <button type="button" class="map-btn" onclick="openNavi('tmap')" title="T map">
-            <img src="images/icons/tmap.jpg" alt="T map" /><span>T 맵</span>
-          </button>
-        </div>
-      </div>
+    <!-- 위치 정보 카드 -->
+    <div class="location-card">
+      <!-- 주소 정보 -->
+      
 
       <!-- Kakao Map Interactive -->
       <div
@@ -2207,6 +2618,246 @@
         style="width: 100%; margin: 20px 0; border-radius: 8px; overflow: hidden; height: 250px; border: 1px solid var(--border);"
       ></div>
 
+
+      <div class="address-box">
+        <div class="address-text">
+          <span class="address-line">호텔 인터불고 대구 웨딩인터빌리지홀</span>
+          <span class="address-line">대구 수성구 팔현길 212</span>
+        </div>
+
+        <div class="address-actions">
+          <button type="button" class="copy-address-btn" onclick="copyVenueAddress()">
+            <img src="images/icons/copy.png" alt="">
+            <span>주소복사</span>
+          </button>
+
+          <button type="button" class="map-btn" onclick="openNavi('naver')">
+            <img src="images/icons/navermap.jpg" alt="">
+            <span>네이버지도</span>
+          </button>
+
+          <button type="button" class="map-btn" onclick="openNavi('kakao')">
+            <img src="images/icons/kakaomap.jpg" alt="">
+            <span>카카오맵</span>
+          </button>
+
+          <button type="button" class="map-btn" onclick="openNavi('tmap')">
+            <img src="images/icons/tmap.jpg" alt="">
+            <span>T맵</span>
+          </button>
+        </div>
+      </div>
+
+
+      <div class="info-list">
+        <!-- 자가용 -->
+        <div class="info-item">
+          <button
+            type="button"
+            class="info-header"
+            aria-expanded="false"
+            onclick="toggleInfo(this.closest('.info-item'))"
+          >
+            <span>🚗 자가용</span>
+            <span class="arrow" aria-hidden="true">▼</span>
+          </button>
+
+          <div class="info-content">
+            <div class="route-block">
+              <p class="route-path">
+                동대구IC에서 시청방향으로 4km
+                <span class="route-time">약 5분 소요</span>
+              </p>
+            </div>
+
+            <div class="route-note">
+              내비게이션에서 <strong>호텔 인터불고 대구</strong>를 검색해주세요.
+              어플 아이콘을 누르시면 바로 연결됩니다.
+            </div>
+          </div>
+        </div>
+
+        <!-- 비행기 -->
+        <div class="info-item">
+          <button
+            type="button"
+            class="info-header"
+            aria-expanded="false"
+            onclick="toggleInfo(this.closest('.info-item'))"
+          >
+            <span>✈️ 비행기</span>
+            <span class="arrow" aria-hidden="true">▼</span>
+          </button>
+
+          <div class="info-content">
+            <div class="route-block">
+              <h4 class="route-title">대구국제공항에서 오실 때</h4>
+
+              <div class="route-row">
+                <span class="route-label">택시</span>
+                <p class="route-path">
+                  거리 5km
+                  <span class="route-time">약 15분 소요</span>
+                </p>
+              </div>
+
+              <div class="route-row">
+                <span class="route-label">버스</span>
+                <p class="route-path">
+                  <strong>대구국제공항 건너편</strong>승차
+                  <span class="route-arrow">→</span>
+                  급행1 · 401 · 동구8 · 팔공1
+                  <span class="route-arrow">→</span>
+                  <strong>아양교역</strong>하차 및 환승
+                  <span class="route-arrow">→</span>
+                  802 · 814 · 북구3
+                  <span class="route-arrow">→</span>
+                  <strong>망우당공원건너</strong>하차
+                  <span class="route-time">약 40분 소요</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 기차 및 버스 -->
+        <div class="info-item">
+          <button
+            type="button"
+            class="info-header"
+            aria-expanded="false"
+            onclick="toggleInfo(this.closest('.info-item'))"
+          >
+            <span>🚆 기차 및 버스</span>
+            <span class="arrow" aria-hidden="true">▼</span>
+          </button>
+
+          <div class="info-content">
+            <div class="route-block">
+              <h4 class="route-title">동대구역 / 복합환승센터에서 오실 때</h4>
+
+              <div class="route-row">
+                <span class="route-label">택시</span>
+                <p class="route-path">
+                  거리 4km
+                  <span class="route-time">약 15분 소요</span>
+                </p>
+              </div>
+
+              <div class="route-row">
+                <span class="route-label">버스</span>
+
+                <div class="route-options">
+                  <p class="route-path">
+                    <strong>동대구역</strong>승차
+                    <span class="route-arrow">→</span>
+                    814 · 708 · 북구3
+                    <span class="route-arrow">→</span>
+                    <strong>망우당공원건너</strong>하차
+                    <span class="route-time">약 40분 소요</span>
+                  </p>
+
+                  <p class="route-path">
+                    <strong>동대구역복합환승센터건너</strong>승차
+                    <span class="route-arrow">→</span>
+                    555 · 55
+                    <span class="route-arrow">→</span>
+                    <strong>망우당공원건너</strong>하차
+                    <span class="route-time">약 40분 소요</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 시내 대중교통 -->
+        <div class="info-item">
+          <button
+            type="button"
+            class="info-header"
+            aria-expanded="false"
+            onclick="toggleInfo(this.closest('.info-item'))"
+          >
+            <span>🚇 시내 대중교통</span>
+            <span class="arrow" aria-hidden="true">▼</span>
+          </button>
+
+          <div class="info-content">
+            <div class="route-block">
+              <h4 class="route-title">지하철 1호선 아양교역</h4>
+              <p class="route-summary">하차 후 택시 및 버스를 이용해주세요.</p>
+
+              <div class="route-row">
+                <span class="route-label">택시</span>
+                <p class="route-path">
+                  거리 3km
+                  <span class="route-time">약 10분 소요</span>
+                </p>
+              </div>
+
+              <div class="route-row">
+                <span class="route-label">버스</span>
+                <p class="route-path">
+                  <strong>아양교역 2번 출구</strong>승차
+                  <span class="route-arrow">→</span>
+                  802 · 814 · 북구3
+                  <span class="route-arrow">→</span>
+                  <strong>망우당공원건너</strong>하차
+                  <span class="route-time">약 20분 소요</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="route-block route-block--separated">
+              <h4 class="route-title">지하철 2호선 만촌역</h4>
+              <p class="route-summary">하차 후 택시 및 버스를 이용해주세요.</p>
+
+              <div class="route-row">
+                <span class="route-label">택시</span>
+                <p class="route-path">
+                  거리 5km
+                  <span class="route-time">약 15분 소요</span>
+                </p>
+              </div>
+
+              <div class="route-row">
+                <span class="route-label">버스</span>
+                <p class="route-path">
+                  <strong>만촌2동행정복지센터</strong>승차
+                  <span class="route-arrow">→</span>
+                  848
+                  <span class="route-arrow">→</span>
+                  <strong>인터불고호텔앞</strong>하차
+                  <span class="route-time">약 25분 소요</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- // info-list -->
+
+      <!-- 전세버스 안내 -->
+      <div class="bus-notice">
+        <div class="bus-notice-content">
+          <p class="bus-notice-title">
+            오고 가시는 길이 조금이나마 편하시도록<br>
+            버스를 대절하려 하오니<br>
+            이용을 원하시는 분들은<br>
+            아래 버튼을 눌러 구글폼을 작성해주세요.</p>
+          <p class="bus-notice-desc">
+            한 방향만 이용하셔도 괜찮으니<br>
+            편하게 작성해주세요.</p>
+          <a 
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfKrckh6BoS0Efu0X1haPrY4J8ILbU9QVqxWjT7ViBI0iw5JQ/viewform" 
+            target="_blank" 
+            class="bus-notice-btn"
+          >
+            🚌 버스 이용 신청하기
+          </a>
+        </div>
+      </div>
   </div>
 </section>
 
@@ -2244,11 +2895,11 @@
        방명록 폼(이름, 메시지 입력) + 메시지 목록 표시
        Firebase Firestore 연동으로 메시지 저장
   ═══════════════════════════════════════════════════════ -->
-  <section class="reveal">
-    <div class="container">
-      <h2>축하 메시지</h2>
+<section class="guestbook-section reveal">
+  <div class="container">
+    <h2>축하 메시지</h2>
       <!-- 입력 안내 -->
-      <p style="text-align: center; margin-bottom: 8px; color: var(--text-light); font-size: 14px;">
+      <p style="text-align: center; margin-bottom: 8px; color: var(--text-light); font-size: 16px;">
         축하의 한마디를 남겨주세요
       </p>
 
@@ -2279,6 +2930,49 @@
     </div>
   </section>
 
+
+  <!-- ═══════════════════════════════════════════════════════
+      [기도제목 SECTION]
+      함께 기도해 주실 제목
+  ═══════════════════════════════════════════════════════ -->
+  <section class="prayer-section reveal">
+    <div class="container">
+      <h2>기도제목</h2>
+
+      <div class="prayer-card">
+        <p class="section-note prayer-note">
+          저희 가정을 위해 함께 마음 모아 기도해 주세요.
+        </p>
+
+        <div class="prayer-list">
+          <div class="prayer-item">
+            <span class="prayer-number">01</span>
+            <p>
+              하나님과 늘 동행하며, 삶의 크고 작은 선택 앞에서 서로의 손을 잡고
+              먼저 하나님의 지혜를 구하는 가정이 되기를
+            </p>
+          </div>
+
+          <div class="prayer-item">
+            <span class="prayer-number">02</span>
+            <p>
+              기쁠 때나 슬플 때나 한결같은 사랑으로 서로를 품고 존중하는
+              단단한 부부로 세워지기를
+            </p>
+          </div>
+
+          <div class="prayer-item">
+            <span class="prayer-number">03</span>
+            <p>
+              하나님 안에서 서로 같은 마음과 비전을 품고,
+              세상에 선한 영향력을 끼치는 가정이 되기를
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════════════════════════════════════════════════════
        JOURNEY & THANKS
   ═══════════════════════════════════════════════════════ -->
@@ -2301,11 +2995,11 @@
           진심으로 감사드립니다.<br><br>
           재미있고 행복하게<br>
           잘 살아보겠습니다!<br>
-          앞으로도 많이 응원하고 기도해주세요.<br>
+          앞으로도 많이 응원하고 기도해주세요.<br><br>
           여러분의 모든 날도 <br>
-          행복하시기를 축복합니다🩵<br><br><br>
+          행복하시기를 축복합니다🩵<br><br>
 
-          Let's Go~~~~<br>
+          Let's Go~~~~
         </p>
       </div>
     </div>
@@ -2320,10 +3014,13 @@
 
       <div class="share-actions">
         <button type="button" class="share-btn kakao-share-btn" onclick="shareKakao()">
-          카카오톡 공유하기
+          <img src="images/icons/kakaotalk.png" alt="" class="share-btn-icon">
+          <span>카카오톡 공유하기</span>
         </button>
+
         <button type="button" class="share-btn link-copy-btn" onclick="copyInvitationUrl()">
-          링크 복사하기
+          <img src="images/icons/linkcopy.png" alt="" class="share-btn-icon">
+          <span>링크 복사하기</span>
         </button>
       </div>
     </div>
@@ -2352,7 +3049,7 @@
 
       <!-- 신부측 연락처 정보 -->
       <div id="contactModalBride" class="contact-modal-group">
-        <div class="contact-modal-person is-principal is-bride">
+        <div class="contact-modal-person">
           <div>
             <div class="contact-modal-name">조다빈 <span class="contact-modal-relation">신부</span></div>
             <span class="contact-modal-phone">010-9555-0958</span>
@@ -2387,7 +3084,7 @@
       </div>
 
       <div id="contactModalGroom" class="contact-modal-group" hidden>
-        <div class="contact-modal-person is-principal is-groom">
+        <div class="contact-modal-person">
           <div>
             <div class="contact-modal-name">김주성 <span class="contact-modal-relation">신랑</span></div>
             <span class="contact-modal-phone">010-9113-6540</span>
@@ -2445,7 +3142,7 @@
       <!-- 신부측 계좌 정보 -->
       <div id="giftModalBride" class="contact-modal-group">
 
-        <div class="gift-modal-item is-principal is-bride">
+        <div class="gift-modal-item">
           <div class="gift-modal-person">
             <strong>조다빈</strong>
             <span>신부</span>
@@ -2453,7 +3150,7 @@
           <div class="gift-modal-account">
             <span class="gift-modal-bank">국민은행</span>
             <span class="gift-modal-number">733702-00-129377 </span>
-            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount('국민은행', '73370200129377')">복사</button>
+            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '국민은행', '73370200129377')">복사</button>
           </div>
         </div>
 
@@ -2465,13 +3162,26 @@
           <div class="gift-modal-account">
             <span class="gift-modal-bank">하나은행</span>
             <span class="gift-modal-number">330-890503-54107</span>
-            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount('하나은행', '33089050354107')">복사</button>
+            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '하나은행', '33089050354107')">복사</button>
           </div>
         </div>
+
+        <div class="gift-modal-item">
+          <div class="gift-modal-person">
+            <strong>주봉은</strong>
+            <span>신부 어머니</span>
+          </div>
+          <div class="gift-modal-account">
+            <span class="gift-modal-bank">대구은행</span>
+            <span class="gift-modal-number">211-07-0097218</span>
+            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '대구은행', '211070097218')">복사</button>
+          </div>
+        </div>
+
       </div>
 
       <div id="giftModalGroom" class="contact-modal-group" hidden>
-        <div class="gift-modal-item is-principal is-groom">
+        <div class="gift-modal-item">
           <div class="gift-modal-person">
             <strong>김주성</strong>
             <span>신랑</span>
@@ -2479,7 +3189,7 @@
           <div class="gift-modal-account">
             <span class="gift-modal-bank">카카오뱅크</span>
             <span class="gift-modal-number">3333-08-7103596</span>
-            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount('카카오뱅크', '3333087103596')">복사</button>
+            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '카카오뱅크', '3333087103596')">복사</button>
           </div>
         </div>
 
@@ -2491,7 +3201,7 @@
           <div class="gift-modal-account">
             <span class="gift-modal-bank">농협</span>
             <span class="gift-modal-number">901055-56-046477</span>
-            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount('농협', '90105556046477')">복사</button>
+            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '농협', '90105556046477')">복사</button>
           </div>
         </div>
 
@@ -2503,7 +3213,7 @@
           <div class="gift-modal-account">
             <span class="gift-modal-bank">농협</span>
             <span class="gift-modal-number">901055-52-131187</span>
-            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount('농협', '90105552131187')">복사</button>
+            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '농협', '90105552131187')">복사</button>
           </div>
         </div>
       </div>
@@ -2516,8 +3226,22 @@
   <!-- YouTube 플레이어 (숨김) -->
   <div id="ytPlayer"></div>
 
+  <!-- 맨 위로 이동 버튼 -->
+  <button
+    type="button"
+    id="scrollTopBtn"
+    class="scroll-top-fab"
+    aria-label="맨 위로 이동"
+    title="맨 위로"
+  >
+    ↑
+  </button>
+
   <!-- 배경음악 재생/중지 버튼 (고정 위치) -->
   <button type="button" id="bgmToggle" class="bgm-fab" aria-label="배경음악 켜기" title="배경음악">♪</button>
+
+  <!-- 복사 안내 토스트 메시지 -->
+  <div id="toastMessage" class="toast-message"></div>
 
   <!-- ═══════════════════════════════════════════════════════
        [11] LIGHTBOX MODAL - 갤러리 이미지 확대 보기
@@ -2626,7 +3350,21 @@
     function setGalleryExpanded(expanded) {
       document.querySelectorAll('#gallery .gallery-item').forEach((item, index) => {
         if (index >= GALLERY_PREVIEW_COUNT) {
-          item.classList.toggle('is-collapsed', !expanded);
+          if (expanded) {
+            // 더보기: 아이템 표시 + 애니메이션
+            item.classList.remove('is-collapsed');
+            item.classList.remove('is-visible');
+            // 리플로우 강제로 애니메이션 재시작
+            void item.offsetWidth;
+            // CSS 변수로 딜레이 설정 (각 아이템마다 120ms 간격)
+            item.style.setProperty('--delay', `${(index - GALLERY_PREVIEW_COUNT) * 0.12}s`);
+            item.classList.add('is-visible');
+          } else {
+            // 접기: 아이템 숨김
+            item.classList.add('is-collapsed');
+            item.classList.remove('is-visible');
+            item.style.setProperty('--delay', '0s');
+          }
         }
       });
       updateGalleryToggleBtn(expanded);
@@ -2901,18 +3639,98 @@
     });
 
     // ════════════════════════════════════
-    // UTILITY FUNCTIONS
     // ════════════════════════════════════
+    // [3] UTILITY FUNCTIONS - 복사, 알림 등 유틸리티 함수들
+    // 클립보드 복사, 토스트 메시지, 계좌 복사 등
+    // ════════════════════════════════════
+    /**
+     * 텍스트를 클립보드에 복사
+     * Modern Clipboard API (HTTPS) 또는 레거시 방식 (execCommand) 사용
+     * @param {string} text - 복사할 텍스트
+     * @returns {Promise} 복사 성공/실패 Promise
+     */
     function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert('복사되었습니다!');
-      }).catch(() => {
-        alert('복사에 실패했습니다.');
+      if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text);
+      }
+
+      return new Promise((resolve, reject) => {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.top = '-9999px';
+        textarea.style.left = '-9999px';
+
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        try {
+          const successful = document.execCommand('copy');
+          document.body.removeChild(textarea);
+
+          if (successful) {
+            resolve();
+          } else {
+            reject();
+          }
+        } catch (error) {
+          document.body.removeChild(textarea);
+          reject(error);
+        }
       });
     }
 
-    function copyGiftAccount(bank, number) {
-      copyToClipboard(`${bank} ${number}`);
+    /**
+     * 토스트 메시지 표시 (1.8초 후 자동 사라짐)
+     * 계좌 복사 성공/실패 메시지 표시에 사용
+     * @param {string} message - 표시할 메시지
+     */
+    function showToast(message) {
+      const toast = document.getElementById('toastMessage');
+      if (!toast) return;
+
+      toast.textContent = message;
+      toast.classList.add('is-visible');
+
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => {
+        toast.classList.remove('is-visible');
+      }, 2400);
+    }
+
+    /**
+     * 선물 계좌번호 복사 및 UI 피드백
+     * 복사 성공 시: 해당 인물 박스 하이라이트 + 토스트 메시지
+     * 복사 실패 시: 토스트 메시지로 오류 알림
+     * @param {HTMLElement} button - 클릭된 복사 버튼
+     * @param {string} bank - 은행명
+     * @param {string} number - 계좌번호 (숫자만)
+     */
+    function copyGiftAccount(button, bank, number) {
+      const copyText = `${bank} ${number}`;
+
+      copyToClipboard(copyText).then(() => {
+        // 복사 성공: 해당 인물 박스 하이라이트
+        const item = button.closest('.gift-modal-item');
+
+        if (item) {
+          item.classList.add('is-copied');
+
+          // 1초 후 하이라이트 제거
+          setTimeout(() => {
+            item.classList.remove('is-copied');
+          }, 1000);
+        }
+
+        // 토스트 메시지로 성공 알림
+        showToast(`계좌번호가 복사되었습니다.\n${bank} ${number}`);
+
+      }).catch(() => {
+        // 복사 실패 시 오류 메시지
+        showToast(`복사에 실패했습니다.\n${bank} ${number}`);
+      });
     }
 
     function copyAddress() {
@@ -2943,7 +3761,7 @@
           objectType: 'feed',
           content: {
             title: '김주성 · 조다빈 결혼합니다',
-            description: '2026년 8월 22일 (토) 낮 12시\n제주 파라다이스회관',
+            description: '2026년 8월 22일 (토) 낮 12시\n호텔 인터불고 대구 웨딩인터빌리지홀',
             imageUrl: imageUrl,  // 썸네일: main.jpg
             link: {
               mobileWebUrl: baseUrl,
@@ -2971,17 +3789,24 @@
      */
     function copyInvitationUrl() {
       const url = window.location.href;
-      copyToClipboard(url);
+
+      copyToClipboard(url).then(() => {
+        alert('청첩장 링크가 복사되었습니다.');
+      }).catch(() => {
+        alert('링크 복사에 실패했습니다.');
+      });
     }
 
     const WEDDING_VENUE = {
-      name: '제주 파라다이스회관',
-      address: '제주특별자치도 제주시 삼성로 9 1층',
-      kakaoPlaceId: '8115948',
-      kakaoLink: 'https://kko.to/FtprK7r-26',
-      tmapLink: 'https://tmap.life/FtprK7r-26',
-      fallbackLat: 33.2536,
-      fallbackLng: 126.5645
+      name: '호텔 인터불고 대구 웨딩인터빌리지홀',
+      searchKeyword: '웨딩 인터빌리지',
+      address: '대구 수성구 팔현길 212',
+      kakaoPlaceId: '1126984414',
+      kakaoLink: 'https://place.map.kakao.com/1126984414',
+      naverLink: 'https://naver.me/5k7fh8vo',
+      tmapLink: 'https://tmap.life/b9a2b9e9',
+      fallbackLat: 35.8743558203363,
+      fallbackLng: 128.659807305572
     };
 
     function getMapInfoContent(title, address) {
@@ -2994,12 +3819,19 @@
 
     function openNavi(type) {
       if (type === 'naver') {
-        window.open('https://naver.me/5k7fh8vo', '_blank');
+        window.open(WEDDING_VENUE.naverLink, '_blank');
       } else if (type === 'kakao') {
         window.open(WEDDING_VENUE.kakaoLink, '_blank');
       } else if (type === 'tmap') {
         window.open(WEDDING_VENUE.tmapLink, '_blank');
       }
+    }
+    function copyVenueAddress() {
+      copyToClipboard(WEDDING_VENUE.address).then(() => {
+        showToast('주소가 복사되었습니다.');
+      }).catch(() => {
+        alert('주소 복사에 실패했습니다.');
+      });
     }
 
     function showKakaoMapFallback() {
@@ -3054,7 +3886,7 @@
       }
 
       const places = new kakao.maps.services.Places();
-      places.keywordSearch(WEDDING_VENUE.name, (data, status) => {
+      places.keywordSearch(WEDDING_VENUE.searchKeyword || WEDDING_VENUE.name, (data, status) => {
         if (status === kakao.maps.services.Status.OK && data.length) {
           const place = data.find((p) => p.id === WEDDING_VENUE.kakaoPlaceId) || data[0];
           renderKakaoMap(place.y, place.x, WEDDING_VENUE.name);
@@ -3130,9 +3962,8 @@
       const lastDayDate = lastDay.getDate();
       const prevLastDayDate = prevLastDay.getDate();
 
-      // 2026년 8월 이벤트 날짜
-      const eventDays = [8, 22];      // 8일(예식), 22일(추가 표시)
-      const holidays = [15, 17];      // 광복절, 대체공휴일
+      // ★ 2026년 8월 공휴일 추가
+      const holidays = [15, 17];   // 15일(광복절), 17일(대체공휴일)
 
       let html = '';
 
@@ -3144,32 +3975,23 @@
       // 현재 달 날짜
       for (let i = 1; i <= lastDayDate; i++) {
         const date = new Date(year, month, i);
-        const isEvent = eventDays.includes(i);
+        const isEvent = (i === 22);           // 결혼식 날짜
         const isSunday = date.getDay() === 0;
         const isSaturday = date.getDay() === 6;
-        const isHoliday = holidays.includes(i);
+        const isHoliday = holidays.includes(i); // 공휴일 여부
 
         let classes = 'calendar-day';
 
         if (isEvent) {
-          classes += ' event';
+          classes += ' event';                    // 결혼식은 event 우선 적용
         } else if (isHoliday || isSunday) {
-          classes += ' holiday';
+          classes += ' holiday';                  // 공휴일 + 일요일 → 빨간색
         } else if (isSaturday) {
           classes += ' saturday';
         }
 
         html += `<div class="${classes}">${i}</div>`;
       }
-
-      // 다음 달 날짜
-      const remainingDays = 42 - (firstDayOfWeek + lastDayDate);
-      for (let i = 1; i <= remainingDays; i++) {
-        html += `<div class="calendar-day other-month">${i}</div>`;
-      }
-
-      calendarDays.innerHTML = html;
-    }
 
       // 다음 달 날짜
       const remainingDays = 42 - (firstDayOfWeek + lastDayDate);
@@ -3207,7 +4029,7 @@
     // Kakao SDK 초기화 (즉시 실행)
     if (window.Kakao && !window.Kakao.isInitialized()) {
       try {
-        Kakao.init('aa4135e4740b45fa29217b0d339a7624');
+        Kakao.init('73429cabef01380bd88bd6a154ea3368');
         console.log('✓ Kakao SDK 초기화 완료');
       } catch (error) {
         console.error('Kakao 초기화 실패:', error);
@@ -3223,7 +4045,34 @@
       animateGreetingLines();
 
       const bgmBtn = document.getElementById('bgmToggle');
+
       if (bgmBtn) bgmBtn.addEventListener('click', toggleBgm);
+
+      // ════════════════════════════════════
+      // 맨 위로 이동 버튼 (Scroll-to-Top FAB)
+      // 스크롤 400px 이상일 때 표시, 클릭 시 부드럽게 맨 위로 이동
+      // ════════════════════════════════════
+      const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+      if (scrollTopBtn) {
+        // 버튼 클릭 시: 부드러운 스크롤로 맨 위로 이동
+        scrollTopBtn.addEventListener('click', () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+
+        // 스크롤 위치에 따라 버튼 표시/숨김
+        // 400px 이상 스크롤 시 보임, 미만 시 숨김
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 400) {
+            scrollTopBtn.classList.add('is-visible');
+          } else {
+            scrollTopBtn.classList.remove('is-visible');
+          }
+        });
+      }
 
       const heroImage = document.getElementById('heroImage');
       if (heroImage) {
@@ -3557,13 +4406,11 @@
       const nameInput = document.getElementById('guestName');
       const messageInput = document.getElementById('guestMessage');
       const passwordInput = document.getElementById('guestPassword');
-      const submitButton = document.querySelector(
-        '.guestbook-form .submit-btn'
-      );
+      const submitButton = document.querySelector('.guestbook-form .submit-btn');
 
       const name = nameInput.value.trim();
       const message = messageInput.value.trim();
-      const deletePassword = passwordInput.value.trim();
+      const deletePassword = passwordInput ? passwordInput.value.trim() : '';
 
       if (!name || !message) {
         alert('이름과 메시지를 모두 입력해주세요.');
@@ -3609,7 +4456,7 @@
 
         nameInput.value = '';
         messageInput.value = '';
-        passwordInput.value = '';
+        if (passwordInput) passwordInput.value = '';
 
         alert('메시지가 등록되었습니다.');
       } catch (error) {
@@ -3671,7 +4518,7 @@
       }
     }
   </script>
-  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=aa4135e4740b45fa29217b0d339a7624&libraries=services"></script>
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=73429cabef01380bd88bd6a154ea3368&libraries=services"></script>
   <script>
     bootKakaoMap();
   </script>
