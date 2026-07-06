@@ -1222,24 +1222,88 @@
     }
 
     .gallery-expand-btn {
-      display: block;
-      width: 100%;
-      margin-top: 16px;
-      padding: 12px 16px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--white);
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+
+      width: auto;
+      min-width: 168px;
+      margin: 22px auto 0;
+      padding: 13px 22px;
+
+      border: 1px solid rgba(197, 213, 227, 0.95);
+      border-radius: 999px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 252, 255, 0.84));
       color: var(--primary);
+
       font-family: var(--font-body);
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+
       cursor: pointer;
-      transition: all 0.25s ease;
+      box-shadow:
+        0 8px 22px rgba(26, 35, 50, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+
+      transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease,
+        color 0.22s ease;
+    }
+
+    .gallery-expand-btn::after {
+      content: '⌄';
+      width: 23px;
+      height: 23px;
+      border-radius: 50%;
+      background: rgba(197, 213, 227, 0.52);
+      color: var(--accent);
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1;
+
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        color 0.25s ease;
+    }
+
+    .gallery-expand-btn[aria-expanded="true"]::after {
+      transform: rotate(180deg);
     }
 
     .gallery-expand-btn:hover {
       border-color: var(--accent);
-      background: var(--primary-light);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(245, 250, 253, 0.95));
+      color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow:
+        0 12px 28px rgba(26, 35, 50, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    }
+
+    .gallery-expand-btn:hover::after {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .gallery-expand-btn:active {
+      transform: scale(0.98);
     }
 
     .gallery-expand-btn[hidden] {
@@ -1263,6 +1327,11 @@
 
     .gallery-section .container {
       padding: 0;
+      text-align: center;
+    }
+
+    .gallery {
+      text-align: initial;
     }
 
     /* ════════════════════════════════════
@@ -3199,7 +3268,7 @@
         return;
       }
       btn.hidden = false;
-      btn.textContent = expanded ? '사진 접기' : `더 보기`;
+      btn.textContent = expanded ? '접기' : `더 보기`;
       btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
     }
 
