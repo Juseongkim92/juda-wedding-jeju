@@ -1330,14 +1330,21 @@
         background 0.22s ease;
     }
 
-    .gallery-expand-icon {
+    .gallery-expand-btn::after {
+      content: '⌄';
       display: inline-block;
-      margin-left: 6px;
-      vertical-align: middle;
+      margin-left: 2px;
+      margin-top: -2px;
+
+      color: var(--accent);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1;
+
       transition: transform 0.25s ease;
     }
 
-    .gallery-expand-btn[aria-expanded="true"] .gallery-expand-icon {
+    .gallery-expand-btn[aria-expanded="true"]::after {
       transform: rotate(180deg);
     }
 
@@ -3701,7 +3708,7 @@
         return;
       }
       btn.hidden = false;
-      btn.textContent = expanded ? '접기' : `더 보기`;
+      btn.textContent = expanded ? '사진 접기' : `더 보기`;
       btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
     }
 
