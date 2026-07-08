@@ -1222,21 +1222,19 @@
     }
 
     .gallery-expand-btn {
-      position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 9px;
+      gap: 6px;
 
       width: auto;
-      min-width: 168px;
+      min-width: 150px;
       margin: 22px auto 0;
-      padding: 13px 22px;
+      padding: 13px 24px;
 
       border: 1px solid rgba(197, 213, 227, 0.95);
       border-radius: 999px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 252, 255, 0.84));
+      background: rgba(255, 255, 255, 0.86);
       color: var(--primary);
 
       font-family: var(--font-body);
@@ -1245,9 +1243,7 @@
       letter-spacing: -0.01em;
 
       cursor: pointer;
-      box-shadow:
-        0 8px 22px rgba(26, 35, 50, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      box-shadow: 0 8px 22px rgba(26, 35, 50, 0.08);
 
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
@@ -1256,30 +1252,20 @@
         transform 0.22s ease,
         box-shadow 0.22s ease,
         border-color 0.22s ease,
-        background 0.22s ease,
-        color 0.22s ease;
+        background 0.22s ease;
     }
 
     .gallery-expand-btn::after {
       content: '⌄';
-      width: 23px;
-      height: 23px;
-      border-radius: 50%;
-      background: rgba(197, 213, 227, 0.52);
-      color: var(--accent);
+      display: inline-block;
+      margin-top: -2px;
 
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 700;
       line-height: 1;
+      color: var(--accent);
 
-      transition:
-        transform 0.25s ease,
-        background 0.25s ease,
-        color 0.25s ease;
+      transition: transform 0.25s ease;
     }
 
     .gallery-expand-btn[aria-expanded="true"]::after {
@@ -1288,18 +1274,9 @@
 
     .gallery-expand-btn:hover {
       border-color: var(--accent);
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(245, 250, 253, 0.95));
-      color: var(--primary);
-      transform: translateY(-2px);
-      box-shadow:
-        0 12px 28px rgba(26, 35, 50, 0.12),
-        inset 0 1px 0 rgba(255, 255, 255, 0.95);
-    }
-
-    .gallery-expand-btn:hover::after {
-      background: var(--primary);
-      color: #fff;
+      background: rgba(255, 255, 255, 0.96);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 26px rgba(26, 35, 50, 0.11);
     }
 
     .gallery-expand-btn:active {
@@ -2049,14 +2026,6 @@
       opacity: 0;
     }
 
-    .lightbox-content {
-      position: relative;
-      width: 90%;
-      max-width: 600px;
-      animation: zoomIn 0.3s ease;
-      overflow: visible;
-    }
-
     @keyframes zoomIn {
       from { transform: scale(0.9); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
@@ -2070,21 +2039,63 @@
 
     .lightbox-content {
       position: relative;
-      width: 90%;
-      max-width: 600px;
-      animation: zoomIn 0.3s ease;
+      width: 100%;
+      max-width: 480px;
+      height: 100dvh;
       overflow: hidden;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      animation: none;
+    }
+
+    .lightbox-viewport {
+      width: 100%;
+      max-width: 480px;
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    .lightbox-track {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: max-content;
+      will-change: transform;
+    }
+
+    .lightbox-slide {
+      flex: 0 0 auto;
+      width: min(82vw, 390px);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      opacity: 0.42;
+      transform: scale(0.92);
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+    }
+
+    .lightbox-slide.is-current {
+      opacity: 1;
+      transform: scale(1);
     }
 
     .lightbox-image {
       width: 100%;
-      max-height: 80vh;
+      max-height: 78dvh;
       object-fit: contain;
-      border-radius: 4px;
+      border-radius: 8px;
       user-select: none;
+      -webkit-user-drag: none;
       cursor: grab;
-      transform-origin: center center;
-      transition: transform 0.04s linear;
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.28);
     }
 
     .lightbox-image:active {
@@ -2092,7 +2103,7 @@
     }
 
     .lightbox-counter {
-      margin-top: 12px;
+      margin-top: 14px;
       text-align: center;
       color: rgba(255, 255, 255, 0.85);
       font-size: 13px;
@@ -3138,7 +3149,21 @@
       <!-- 이전 이미지 버튼 -->
       <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">&lsaquo;</button>
       <!-- 확대 이미지 -->
-      <img id="lightboxImage" src="" alt="확대 이미지" class="lightbox-image">
+      <div class="lightbox-viewport" id="lightboxViewport">
+        <div class="lightbox-track" id="lightboxTrack">
+          <div class="lightbox-slide">
+            <img id="lightboxPrevImage" src="" alt="이전 사진" class="lightbox-image">
+          </div>
+
+          <div class="lightbox-slide is-current">
+            <img id="lightboxImage" src="" alt="확대 이미지" class="lightbox-image">
+          </div>
+
+          <div class="lightbox-slide">
+            <img id="lightboxNextImage" src="" alt="다음 사진" class="lightbox-image">
+          </div>
+        </div>
+      </div>
       <!-- 다음 이미지 버튼 -->
       <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">&rsaquo;</button>
       <!-- 이미지 카운터 (현재/전체) -->
@@ -3307,6 +3332,69 @@
     let touchStartDistance = 0;
     let dragStart = { x: 0, y: 0 };
     let lightboxSwipeStart = { x: 0, y: 0 };
+    let lightboxSwipeDeltaX = 0;
+    let lightboxIsAnimating = false;
+    let lightboxSwipeReady = false;
+
+    function normalizeGalleryIndex(index) {
+      return (index + GALLERY_IMAGES.length) % GALLERY_IMAGES.length;
+    }
+
+    function getGalleryImageSrc(index) {
+      const image = GALLERY_IMAGES[normalizeGalleryIndex(index)];
+
+      // 기존 JPG 배열 방식도 지원하고,
+      // WebP thumb/full 객체 방식도 지원
+      if (typeof image === 'string') return image;
+      return image.full;
+    }
+
+    function getLightboxBaseX() {
+      const viewport = document.getElementById('lightboxViewport');
+      const track = document.getElementById('lightboxTrack');
+      const currentSlide = document.querySelector('.lightbox-slide.is-current');
+
+      if (!viewport || !track || !currentSlide) return 0;
+
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      const slideWidth = currentSlide.getBoundingClientRect().width;
+
+      return (viewport.clientWidth - slideWidth) / 2 - (slideWidth + gap);
+    }
+
+    function setLightboxTrackX(x, animate = false) {
+      const track = document.getElementById('lightboxTrack');
+      if (!track) return;
+
+      gsap.killTweensOf(track);
+
+      if (animate) {
+        gsap.to(track, {
+          x,
+          duration: 0.28,
+          ease: 'power3.out'
+        });
+      } else {
+        gsap.set(track, { x });
+      }
+    }
+
+    function renderLightboxSlides() {
+      const prevImg = document.getElementById('lightboxPrevImage');
+      const currentImg = document.getElementById('lightboxImage');
+      const nextImg = document.getElementById('lightboxNextImage');
+
+      prevImg.src = getGalleryImageSrc(currentImageIndex - 1);
+      currentImg.src = getGalleryImageSrc(currentImageIndex);
+      nextImg.src = getGalleryImageSrc(currentImageIndex + 1);
+
+      updateLightboxCounter();
+      resetLightboxZoom();
+
+      requestAnimationFrame(() => {
+        setLightboxTrackX(getLightboxBaseX(), false);
+      });
+    }
 
     function resetLightboxZoom() {
       lightboxZoom = 1;
@@ -3358,28 +3446,21 @@
 
     function openLightbox(index) {
       currentImageIndex = index;
+
       const modal = document.getElementById('lightboxModal');
-      const img = document.getElementById('lightboxImage');
-      img.src = GALLERY_IMAGES[currentImageIndex].full;
-      updateLightboxCounter();
-      resetLightboxZoom();
+
+      renderLightboxSlides();
+
       modal.style.display = 'flex';
-      gsap.to(modal, { opacity: 1, duration: 0.3 });
+      gsap.fromTo(
+        modal,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.25, ease: 'power2.out' }
+      );
+
       document.body.style.overflow = 'hidden';
-      img.addEventListener('touchstart', (e) => {
-        if (e.touches.length === 1) lightboxSwipeStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-      }, { passive: true });
-      img.addEventListener('touchmove', handleLightboxTouch, { passive: false });
-      img.addEventListener('touchend', (e) => {
-        touchStartDistance = 0;
-        dragStart = { x: 0, y: 0 };
-        if (e.changedTouches.length === 1 && lightboxZoom === 1) {
-          const deltaX = e.changedTouches[0].clientX - lightboxSwipeStart.x;
-          if (Math.abs(deltaX) > 50) {
-            changeImage(deltaX > 0 ? -1 : 1);
-          }
-        }
-      });
+
+      initLightboxSwipe();
     }
 
     function closeLightbox() {
@@ -3405,19 +3486,98 @@
     }
 
     function changeImage(step) {
-      currentImageIndex = (currentImageIndex + step + GALLERY_IMAGES.length) % GALLERY_IMAGES.length;
-      const img = document.getElementById('lightboxImage');
-      gsap.to(img, {
-        opacity: 0,
-        scale: 0.95,
-        duration: 0.15,
+      if (lightboxIsAnimating) return;
+
+      const track = document.getElementById('lightboxTrack');
+      const currentSlide = document.querySelector('.lightbox-slide.is-current');
+      if (!track || !currentSlide) return;
+
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      const slideWidth = currentSlide.getBoundingClientRect().width;
+      const moveAmount = slideWidth + gap;
+      const baseX = getLightboxBaseX();
+
+      lightboxIsAnimating = true;
+
+      gsap.to(track, {
+        x: baseX + (step > 0 ? -moveAmount : moveAmount),
+        duration: 0.32,
+        ease: 'power3.out',
         onComplete: () => {
-          img.src = GALLERY_IMAGES[currentImageIndex].full;
-          updateLightboxCounter();
-          gsap.to(img, { opacity: 1, scale: 1, duration: 0.2 });
+          currentImageIndex = normalizeGalleryIndex(currentImageIndex + step);
+          renderLightboxSlides();
+          lightboxIsAnimating = false;
         }
       });
     }
+
+    function initLightboxSwipe() {
+      if (lightboxSwipeReady) return;
+
+      const viewport = document.getElementById('lightboxViewport');
+      if (!viewport) return;
+
+      viewport.addEventListener('touchstart', handleLightboxSwipeStart, { passive: true });
+      viewport.addEventListener('touchmove', handleLightboxSwipeMove, { passive: false });
+      viewport.addEventListener('touchend', handleLightboxSwipeEnd, { passive: true });
+
+      window.addEventListener('resize', () => {
+        const modal = document.getElementById('lightboxModal');
+        if (modal && modal.style.display === 'flex') {
+          setLightboxTrackX(getLightboxBaseX(), false);
+        }
+      });
+
+      lightboxSwipeReady = true;
+    }
+
+    function handleLightboxSwipeStart(e) {
+      if (e.touches.length !== 1 || lightboxIsAnimating || lightboxZoom > 1) return;
+
+      lightboxSwipeStart = {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY
+      };
+
+      lightboxSwipeDeltaX = 0;
+    }
+
+    function handleLightboxSwipeMove(e) {
+      if (!lightboxSwipeStart.x || e.touches.length !== 1 || lightboxIsAnimating || lightboxZoom > 1) return;
+
+      const touch = e.touches[0];
+      const deltaX = touch.clientX - lightboxSwipeStart.x;
+      const deltaY = touch.clientY - lightboxSwipeStart.y;
+
+      if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 12) return;
+
+      e.preventDefault();
+
+      lightboxSwipeDeltaX = deltaX;
+
+      const baseX = getLightboxBaseX();
+
+      // 손가락을 따라오되 살짝 부드럽게
+      setLightboxTrackX(baseX + deltaX * 0.92, false);
+    }
+
+    function handleLightboxSwipeEnd() {
+      if (!lightboxSwipeStart.x || lightboxIsAnimating || lightboxZoom > 1) return;
+
+      const threshold = 58;
+
+      if (lightboxSwipeDeltaX < -threshold) {
+        changeImage(1);
+      } else if (lightboxSwipeDeltaX > threshold) {
+        changeImage(-1);
+      } else {
+        setLightboxTrackX(getLightboxBaseX(), true);
+      }
+
+      lightboxSwipeStart = { x: 0, y: 0 };
+      lightboxSwipeDeltaX = 0;
+    }
+
 
     // ════════════════════════════════════
     // [3] UTILITY FUNCTIONS - 유틸리티 함수 모음
