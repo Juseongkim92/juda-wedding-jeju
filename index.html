@@ -1255,20 +1255,14 @@
         background 0.22s ease;
     }
 
-    .gallery-expand-btn::after {
-      content: '⌄';
+    .gallery-expand-icon {
       display: inline-block;
-      margin-top: -2px;
-
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 1;
-      color: var(--accent);
-
+      margin-left: 6px;
+      vertical-align: middle;
       transition: transform 0.25s ease;
     }
 
-    .gallery-expand-btn[aria-expanded="true"]::after {
+    .gallery-expand-btn[aria-expanded="true"] .gallery-expand-icon {
       transform: rotate(180deg);
     }
 
@@ -2814,6 +2808,7 @@
 
       <button type="button" id="galleryExpandBtn" class="gallery-expand-btn" onclick="toggleGallery()" hidden>
         사진 더 보기
+        <img src="images/icons/down_arrow.png" alt="" width="16" height="16" class="gallery-expand-icon" />
       </button>
     </div>
   </section>
