@@ -1866,6 +1866,100 @@
       color: var(--text);
     }
 
+    .message-count {
+      margin-bottom: 12px;
+      text-align: center;
+      color: var(--text-light);
+      font-size: 12.5px;
+      line-height: 1.6;
+    }
+
+    .message-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 17px 15px;
+      box-shadow: 0 6px 18px rgba(26, 35, 50, 0.06);
+
+      opacity: 0;
+      transform: translateY(10px);
+      animation: messageCardFadeUp 0.42s ease forwards;
+      animation-delay: var(--delay, 0s);
+    }
+
+    .message-card.is-hidden {
+      display: none;
+    }
+
+    @keyframes messageCardFadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message-toggle-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 18px;
+    }
+
+    .message-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+
+      min-width: 166px;
+      padding: 13px 24px;
+
+      border: 1px solid rgba(197, 213, 227, 0.95);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--primary);
+
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+
+      box-shadow: 0 8px 22px rgba(26, 35, 50, 0.08);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+
+      transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease;
+    }
+
+    .message-toggle-btn::after {
+      content: '⌄';
+      display: inline-block;
+      margin-top: -2px;
+      color: var(--accent);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1;
+      transition: transform 0.25s ease;
+    }
+
+    .message-toggle-btn[aria-expanded="true"]::after {
+      transform: rotate(180deg);
+    }
+
+    .message-toggle-btn:hover {
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.96);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 26px rgba(26, 35, 50, 0.11);
+    }
+
+    .message-toggle-btn:active {
+      transform: scale(0.98);
+    }
+
     /* ════════════════════════════════════
       PRAYER SECTION
     ════════════════════════════════════ */
@@ -3217,6 +3311,207 @@
   </div>
 
   <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /* ════════════════════════════════════════════════════════════════
        자바스크립트 애플리케이션 로직
 
@@ -3624,7 +3919,6 @@
       lightboxSwipeStart = { x: 0, y: 0 };
       lightboxSwipeDeltaX = 0;
     }
-
 
     // ════════════════════════════════════
     // [3] UTILITY FUNCTIONS - 유틸리티 함수 모음
@@ -4382,6 +4676,10 @@
     let guestbookRef = null;
     let GUESTBOOK_DELETE_PASSWORD = '260822';
 
+    const MESSAGE_PREVIEW_COUNT = 3;
+    let guestbookExpanded = false;
+    let lastGuestbookSnapshot = null;
+
     try {
       const app = initializeApp(firebaseConfig);
       db = getFirestore(app);
@@ -4421,6 +4719,8 @@
       const container = document.getElementById('messageList');
       if (!container) return;
 
+      lastGuestbookSnapshot = snapshot;
+
       if (snapshot.empty) {
         container.innerHTML = `
           <p style="
@@ -4435,12 +4735,18 @@
         return;
       }
 
-      container.innerHTML = snapshot.docs.map((doc) => {
+      const docs = snapshot.docs;
+      const totalCount = docs.length;
+      const hiddenCount = Math.max(totalCount - MESSAGE_PREVIEW_COUNT, 0);
+
+      const cardsHtml = docs.map((doc, index) => {
         const data = doc.data();
         const safeName = escapeHtml(data.name);
         const safeMessage = escapeHtml(data.message).replace(/\n/g, '<br>');
+        const isHidden = !guestbookExpanded && index >= MESSAGE_PREVIEW_COUNT;
+
         return `
-          <div class="message-card">
+          <div class="message-card ${isHidden ? 'is-hidden' : ''}" style="--delay:${Math.min(index, 6) * 0.04}s">
             <div class="message-header">
               <span class="message-author">${safeName}</span>
               <div class="message-meta">
@@ -4460,6 +4766,26 @@
           </div>
         `;
       }).join('');
+
+      const toggleHtml = hiddenCount > 0 ? `
+        <div class="message-toggle-wrap">
+          <button
+            type="button"
+            class="message-toggle-btn"
+            aria-expanded="${guestbookExpanded ? 'true' : 'false'}"
+          >
+            ${guestbookExpanded ? '메시지 접기' : `메시지 더 보기 · ${hiddenCount}개`}
+          </button>
+        </div>
+      ` : '';
+
+      container.innerHTML = `
+        <div class="message-count">
+          ${totalCount}개의 축하 메시지가 도착했어요
+        </div>
+        ${cardsHtml}
+        ${toggleHtml}
+      `;
     }
 
     function isDeletePasswordValid(inputPassword, storedPassword) {
@@ -4518,8 +4844,21 @@
     const messageListEl = document.getElementById('messageList');
     if (messageListEl) {
       messageListEl.addEventListener('click', (event) => {
+        const toggleBtn = event.target.closest('.message-toggle-btn');
+
+        if (toggleBtn) {
+          guestbookExpanded = !guestbookExpanded;
+
+          if (lastGuestbookSnapshot) {
+            renderFirebaseMessages(lastGuestbookSnapshot);
+          }
+
+          return;
+        }
+
         const deleteBtn = event.target.closest('.message-delete-btn');
         if (!deleteBtn) return;
+
         deleteGuestMessage(deleteBtn.dataset.id);
       });
     }
