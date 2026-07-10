@@ -297,10 +297,11 @@
       opacity: 0.85;
     }
 
-    .hero-image {
+    /* .hero-image {
       display: block;
       width: calc(100% - 16px);
-      height: 90vh;
+      height: auto;
+      aspect-ratio: 3 / 4;
       max-height: none;
       object-fit: cover;
       /* 가로 사진(3:2) → 좌우만 살짝 잘리고 위아래는 화면에 맞춤 */
@@ -311,6 +312,20 @@
       user-select: none;
       margin: 12px 8px;
       border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(26, 35, 50, 0.08);
+    } */
+
+    .hero-image {
+      display: block;
+      width: calc(100% - 16px);
+      height: min(calc((100vw - 16px) * 5 / 3), 88dvh);
+
+      object-fit: contain;
+      object-position: center;
+
+      margin: 12px 8px;
+      border-radius: 16px;
+      background: #f4f6f8;
       box-shadow: 0 8px 24px rgba(26, 35, 50, 0.08);
     }
 
@@ -565,8 +580,11 @@
     }
 
     .calendar-weekdays div:last-child {
-      /* color: var(--accent); */
-      color: #0000ff;
+      color: var(--text-light);
+    }
+
+    .calendar-day.saturday {
+      color: var(--text);
     }
 
     .calendar-days {
@@ -610,11 +628,11 @@
     }
 
     .calendar-day.event {
-      background: rgba(197, 213, 227, 0.55);
-      /* color: var(--primary); */
-      color: #0000ff;
-      font-weight: 600;
-      border-radius: 6px;
+      background: rgba(42, 74, 102, 0.12);
+      color: var(--primary);
+      font-weight: 700;
+      border: 1px solid rgba(42, 74, 102, 0.35);
+      border-radius: 50%;
     }
 
     /* 달력 헤더 배경 이미지 영역 (정사각형 이미지 대응) */
