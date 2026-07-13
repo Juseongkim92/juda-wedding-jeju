@@ -774,34 +774,43 @@
     }
 
     .family-line {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-bottom: 12px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 48px 54px;
+      align-items: baseline;
+      column-gap: 7px;
+
+      width: 100%;
+      max-width: 330px;
+      margin: 0 auto 12px;
+
       font-size: 15px;
       line-height: 1.8;
     }
 
     .family-parents {
+      text-align: right;
       color: var(--text);
       font-size: 18px;
       font-weight: 600;
       letter-spacing: 0.03em;
+      white-space: nowrap;
     }
 
     .family-relation {
+      text-align: center;
       color: var(--text-light);
       font-size: 14px;
       font-weight: 500;
+      white-space: nowrap;
     }
 
     .family-name {
+      text-align: left;
       color: var(--primary);
       font-size: 20px;
       font-weight: 700;
       letter-spacing: 0.12em;
+      white-space: nowrap;
     }
 
     .contact-open-btn {
@@ -2828,12 +2837,14 @@
       <!-- 양가 소개 -->
       <div class="family-intro">
         <div class="family-line">
-          <span class="family-parents">김한섭 · 박희숙<span class="family-relation">의 아들</span></span>
+          <span class="family-parents">김한섭 · 박희숙</span>
+          <span class="family-relation">의 아들</span>
           <strong class="family-name">주성</strong>
         </div>
 
         <div class="family-line">
-          <span class="family-parents">조진형 · 주봉은<span class="family-relation">의   딸 </span></span>
+          <span class="family-parents">조진형 · 주봉은</span>
+          <span class="family-relation">의 딸</span>
           <strong class="family-name">다빈</strong>
         </div>
       </div>
