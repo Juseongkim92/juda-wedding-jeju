@@ -497,6 +497,37 @@
       color: var(--text-light);
     }
 
+    .event-link-btn{
+        display:inline-flex;
+        align-items:center;
+        gap:6px;
+
+        margin-top:12px;
+        padding:8px 14px;
+
+        border:1px solid var(--accent-soft);
+        border-radius:999px;
+
+        color:var(--primary);
+        background:rgba(255,255,255,.75);
+
+        font-size:12px;
+        font-weight:600;
+
+        transition:.2s;
+    }
+
+    .event-link-btn:hover{
+        border-color:var(--accent);
+        background:#fff;
+        transform:translateY(-1px);
+    }
+
+    .event-link-btn span{
+        font-size:13px;
+    }
+
+
     .calendar-container {
       margin-top: 28px;
     }
@@ -2890,9 +2921,23 @@
 
       <!-- 서브: 본식 안내 -->
       <div class="event-sub">
-        <div class="event-sub-label">본식 안내</div>
-        <div class="event-sub-date">2026년 8월 22일 토요일 낮 12시</div>
-        <div class="event-sub-place">호텔 인터불고 대구 웨딩인터빌리지홀</div>
+          <div class="event-sub-label">본식 안내</div>
+
+          <div class="event-sub-date">
+              2026년 8월 22일 토요일 낮 12시
+          </div>
+
+          <div class="event-sub-place">
+              호텔 인터불고 대구 웨딩인터빌리지홀
+          </div>
+
+          <a
+            href="본식 모바일청첩장 URL"
+            target="_blank"
+            class="event-link-btn">
+            본식 모바일 청첩장 보기
+            <span>↗</span>
+          </a>
       </div>
     </div>
 
