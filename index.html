@@ -609,17 +609,80 @@
     }
 
     .calendar-day {
-      aspect-ratio: 1;
+      position: relative;
+      min-width: 0;
+      height: 58px;
+
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+
+      padding-top: 7px;
       font-family: var(--font-display);
       font-size: 14px;
       font-weight: 400;
       color: var(--text);
+
       border: none;
       background: transparent;
     }
+
+    /* 날짜 숫자 */
+    .calendar-day-number {
+      position: relative;
+      z-index: 1;
+
+      width: 28px;
+      height: 28px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+      line-height: 1;
+    }
+
+    /* 8일: 제주 피로연 */
+    .calendar-day.reception .calendar-day-number {
+      background: rgba(42, 74, 102, 0.14);
+      border: 1px solid rgba(42, 74, 102, 0.42);
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* 날짜 아래 작은 문구 */
+    .calendar-day-label {
+      display: block;
+      margin-top: 2px;
+
+      font-family: var(--font-body);
+      font-size: 8px;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      white-space: nowrap;
+    }
+
+    /* 8일 라벨 */
+    .calendar-day.reception .calendar-day-label {
+      color: var(--primary);
+    }
+
+    /* 22일: 본식 */
+    .calendar-day.wedding .calendar-day-number {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .calendar-day.wedding .calendar-day-label {
+      color: var(--accent);
+      font-size: 8.5px;
+      font-weight: 700;
+    }
+
+
 
     .calendar-day.other-month {
       opacity: 0.28;
@@ -641,23 +704,6 @@
       color: var(--accent);
       /* color: #0000ff; */
     }
-
-    .calendar-day.event {
-      background: rgba(42, 74, 102, 0.12);
-      color: var(--primary);
-      font-weight: 700;
-      border: 1px solid rgba(42, 74, 102, 0.35);
-      border-radius: 50%;
-    }
-
-    /* 달력 헤더 배경 이미지 영역 (정사각형 이미지 대응) */
-    /* .calendar-header-image {
-      position: relative;
-      margin-bottom: 8px;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-    } */
 
     .calendar-header-bg {
       width: 100%;
@@ -4533,6 +4579,8 @@
     // ════════════════════════════════════
     function generateCalendar(year, month) {
       const calendarDays = document.getElementById('calendarDays');
+      if (!calendarDays) return;
+
       const firstDay = new Date(year, month, 1);
       const lastDay = new Date(year, month + 1, 0);
       const prevLastDay = new Date(year, month, 0);
@@ -4541,42 +4589,65 @@
       const lastDayDate = lastDay.getDate();
       const prevLastDayDate = prevLastDay.getDate();
 
-      // ★ 2026년 8월 공휴일 추가
-      const eventDays = [8, 22];      // 8일(예식), 22일(추가 표시)
-      const holidays = [15, 17];      // 광복절, 대체공휴일
+      const receptionDay = 8;  // 제주 피로연
+      const weddingDay = 22;   // 본식
+      const holidays = [15, 17];
 
       let html = '';
 
       // 이전 달 날짜
       for (let i = firstDayOfWeek - 1; i >= 0; i--) {
-        html += `<div class="calendar-day other-month">${prevLastDayDate - i}</div>`;
+        const day = prevLastDayDate - i;
+
+        html += `
+          <div class="calendar-day other-month">
+            <span class="calendar-day-number">${day}</span>
+          </div>
+        `;
       }
 
       // 현재 달 날짜
-      for (let i = 1; i <= lastDayDate; i++) {
-        const date = new Date(year, month, i);
-        const isEvent = eventDays.includes(i);           // 결혼식 날짜
+      for (let day = 1; day <= lastDayDate; day++) {
+        const date = new Date(year, month, day);
+
+        const isReception = day === receptionDay;
+        const isWedding = day === weddingDay;
         const isSunday = date.getDay() === 0;
         const isSaturday = date.getDay() === 6;
-        const isHoliday = holidays.includes(i); // 공휴일 여부
+        const isHoliday = holidays.includes(day);
 
         let classes = 'calendar-day';
+        let label = '';
 
-        if (isEvent) {
-          classes += ' event';                    // 결혼식은 event 우선 적용
+        if (isReception) {
+          classes += ' reception';
+          label = '제주 피로연';
+        } else if (isWedding) {
+          classes += ' wedding';
+          label = '본식';
         } else if (isHoliday || isSunday) {
-          classes += ' holiday';                  // 공휴일 + 일요일 → 빨간색
+          classes += ' holiday';
         } else if (isSaturday) {
           classes += ' saturday';
         }
 
-        html += `<div class="${classes}">${i}</div>`;
+        html += `
+          <div class="${classes}">
+            <span class="calendar-day-number">${day}</span>
+            ${label ? `<span class="calendar-day-label">${label}</span>` : ''}
+          </div>
+        `;
       }
 
       // 다음 달 날짜
       const remainingDays = 42 - (firstDayOfWeek + lastDayDate);
-      for (let i = 1; i <= remainingDays; i++) {
-        html += `<div class="calendar-day other-month">${i}</div>`;
+
+      for (let day = 1; day <= remainingDays; day++) {
+        html += `
+          <div class="calendar-day other-month">
+            <span class="calendar-day-number">${day}</span>
+          </div>
+        `;
       }
 
       calendarDays.innerHTML = html;
@@ -4840,8 +4911,8 @@
     let guestbookRef = null;
     let GUESTBOOK_DELETE_PASSWORD = '260822';
 
-    const MESSAGES_PER_PAGE = 5;
-    const MAX_VISIBLE_MESSAGE_PAGES = 5;
+    const MESSAGES_PER_PAGE = 4;
+    const MAX_VISIBLE_MESSAGE_PAGES = 4;
 
     let currentMessagePage = 1;
     let lastGuestbookSnapshot = null;
