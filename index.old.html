@@ -1,0 +1,5328 @@
+<!DOCTYPE html>
+<html lang="ko" class="theme-minimal-elegant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>김주성 · 조다빈 결혼합니다 (제주 피로연)</title>
+  <meta property="og:title" content="김주성 · 조다빈 결혼합니다 (제주 피로연)" />
+  <meta property="og:description" content="2026년 8월 8일 토요일 · 제주 파라다이스회관" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://juseongkim92.github.io/juda-wedding-jeju/images/main.jpg?v=2" />
+  <meta property="og:url" content="https://juseongkim92.github.io/juda-wedding-jeju/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://hangeul.pstatic.net" crossorigin />
+  <link rel="preload" as="image" href="https://juseongkim92.github.io/juda-wedding-jeju/images/main.jpg" fetchpriority="high" />
+  <link rel="preload" as="font" type="font/woff2" href="https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-Light.woff2" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+  <style>
+    /* ════════════════════════════════════
+       RESET & BASE
+    ════════════════════════════════════ */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @font-face {
+      font-family: 'MaruBuri';
+      src: url('https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-Light.woff2') format('woff2');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         색상 시스템 (Color Variables)
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      /* 주요 색상 */
+      --primary: #1a2d42;              /* 짙은 네이비 (제목, 강조) */
+      --primary-light: rgba(255, 255, 255, 0.92);  /* 밝은 흰색 */
+      --accent: #2a4a66;               /* 중간 파란색 (보조 강조) */
+      --accent-soft: #c5d5e3;          /* 옅은 파란색 (테두리, 구분선) */
+      --meadow: #3d6b5a;               /* 초록색 (선택적 강조) */
+      --bg: #f8fcff;                   /* 페이지 배경 */
+      --white: rgba(255, 255, 255, 0.94);  /* 흰색 배경 */
+      --text: #1a2332;                 /* 기본 텍스트 */
+      --text-light: #3d4f63;           /* 가벼운 텍스트 (보조 정보) */
+      --border: rgba(220, 234, 242, 0.75);  /* 경계선 */
+      --shadow: rgba(168, 212, 230, 0.1);   /* 그림자 */
+
+      /* 배경 오버레이 (0~1: 낮을수록 배경 선명) */
+      --page-bg-overlay: 0.9;
+
+      /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+         글꼴 시스템 (Font Families)
+         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+      --font-body: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;  /* 본문 */
+      --font-display: 'Noto Serif KR', serif;  /* 제목 */
+      --font-greeting: 'Nanum Myeongjo', serif;  /* 인사말 */
+      --font-hero: 'MaruBuri', 'Noto Serif KR', serif;  /* 영웅 텍스트 */
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      position: relative;
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--bg);
+      max-width: 480px;
+      margin: 0 auto;
+      overflow-x: hidden;
+      isolation: isolate;
+      scroll-behavior: smooth;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 50%;
+      width: 100%;
+      max-width: 480px;
+      height: 100%;
+      transform: translateX(-50%);
+      background: url('images/background.png') center top / cover no-repeat;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 50%;
+      width: 100%;
+      max-width: 480px;
+      height: 100%;
+      transform: translateX(-50%);
+      background: rgba(248, 252, 255, var(--page-bg-overlay));
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* ════════════════════════════════════
+       TYPOGRAPHY - 제목 및 텍스트 스타일
+       모든 제목, 본문 텍스트 포맷팅
+    ════════════════════════════════════ */
+    /* 제목 기본 스타일 (h1, h2, h3) */
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      line-height: 1.3;
+      color: var(--primary);
+    }
+
+    h1 {
+      font-size: 48px;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      text-align: center;
+      letter-spacing: -0.4px;           /* 살짝 타이트하게 */
+      color: var(--primary);
+    }
+
+    h2::after {
+      content: '';
+      display: block;
+      width: 48px;                      /* 고정 너비 (더 세련됨) */
+      height: 1px;
+      margin: 10px auto 0;
+      border-radius: 3px;               /* 살짝 둥글게 */
+      opacity: 0.65;                    /* 부드럽게 */
+      background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.8), transparent);
+      /* background: var(--accent);         */
+    }
+
+    h3 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    p {
+      margin-bottom: 12px;
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-light);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--primary);
+    }
+
+    /* ════════════════════════════════════
+       LAYOUT - 레이아웃 및 컨테이너
+       섹션 내부 콘텐츠 배치 및 간격
+    ════════════════════════════════════ */
+    /* 콘텐츠 컨테이너 (모든 섹션의 내용 감싸기) */
+    .container {
+      padding: 0 20px;
+    }
+
+    .section-note {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--text-light);
+    }
+
+    h2 + .section-note {
+      margin-top: -10px;
+      margin-bottom: 22px;
+    }
+
+    section {
+      position: relative;
+      z-index: 1;
+      min-height: auto;
+      padding: 40px 20px;
+      background: transparent;
+      opacity: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-sizing: border-box;
+      margin: 0 8px 12px 8px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(26, 35, 50, 0.08);
+    }
+
+
+    section > .container {
+      width: 100%;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-compact {
+      min-height: auto;
+      padding: 28px 20px 32px;
+    }
+
+    .section-compact h2 {
+      margin-bottom: 16px;
+    }
+
+    .map-section {
+      padding: 40px 8px 80px 8px !important;
+    }
+
+    .map-section .container {
+      padding: 0;
+    }
+
+    .location-card {
+      width: 100%;
+      padding: 16px;
+      border-radius: 12px;
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      margin: 20px auto;
+    }
+
+    /* ════════════════════════════════════
+       MAIN IMAGE HERO
+    ════════════════════════════════════ */
+    .hero-section {
+      position: relative;
+      min-height: auto;
+      padding: 12px 0 !important;
+      border-bottom: none !important;
+      display: block !important;
+      opacity: 1 !important;
+      overflow: hidden;
+      /* background: transparent; */
+      line-height: 0;
+      contain: layout style paint;
+    }
+
+    .hero-names {
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      padding: calc(env(safe-area-inset-top, 0px) + 48px) 20px 0;
+      text-align: center;
+      font-family: var(--font-hero);
+      font-size: clamp(34px, 9.2vw, 46px);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      color: #fff;
+      text-shadow:
+        0 2px 18px rgba(26, 35, 50, 0.38),
+        0 1px 4px rgba(26, 35, 50, 0.28);
+      pointer-events: none;
+      line-height: 1.3;
+      visibility: hidden;
+    }
+
+    html.fonts-ready .hero-names {
+      visibility: visible;
+    }
+
+    .hero-name-bullet {
+      font-weight: 400;
+      letter-spacing: 0;
+      opacity: 0.85;
+    }
+
+    .hero-image {
+      display: block;
+      width: calc(100% - 16px);
+      height: 90vh;
+      max-height: none;
+      object-fit: cover;
+      object-position: center center;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-drag: none;
+      user-select: none;
+      margin: 12px 8px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(26, 35, 50, 0.08);
+    }
+
+    .gallery-item img,
+    .lightbox-image {
+      -webkit-user-drag: none;
+      user-select: none;
+    }
+
+    .greeting-block-section {
+      padding: 32px 8px 32px 8px !important;
+    }
+
+    .greeting-block-section .container {
+      padding: 0;
+    }
+
+    .greeting-card {
+      width: 100%;
+      padding: 28px 18px;
+    }
+    .greeting-block-section .family-intro {
+      padding: 4px 0 0;
+    }
+
+    /* ════════════════════════════════════
+       GREETING SECTION
+    ════════════════════════════════════ */
+    .greeting-section {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .couple-intro {
+      text-align: center;
+      padding: 12px 8px 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .bride-groom {
+      font-size: 30px;
+      font-family: var(--font-display);
+      font-weight: 500;
+      margin: 0 0 12px;
+      color: var(--primary);
+      letter-spacing: 0.02em;
+    }
+
+    .bride-groom em {
+      color: var(--primary);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .wedding-info {
+      font-size: 18px;
+      color: var(--text-light);
+      line-height: 1.85;
+      padding-top: 0px;
+      border-top: 1px solid var(--border);
+    }
+
+    .wedding-info strong {
+      display: block;
+      color: var(--primary);
+      font-family: var(--font-display);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .greeting-card {
+      text-align: center;
+      padding: 28px 20px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px var(--shadow);
+    }
+
+    .greeting-text {
+      font-family: var(--font-greeting);
+      font-size: 15px;
+      line-height: 2;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .quote {
+      font-size: 14px;
+      color: var(--text-light);
+      font-weight: 400;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--accent-soft);
+    }
+
+    .greeting-message {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 2.15;
+      color: var(--text);
+    }
+
+
+    /* ════════════════════════════════════
+       CALENDAR — stationery / poster feel
+    ════════════════════════════════════ */
+
+    .reception-info-card {
+      margin: 4px 0 26px;
+      padding: 24px 18px 20px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 6px 20px rgba(26, 35, 50, 0.06);
+      text-align: center;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .event-main {
+      margin-bottom: 18px;
+    }
+
+    .event-label {
+      display: inline-block;
+      margin-bottom: 11px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(197, 213, 227, 0.38);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .event-date {
+      color: var(--primary);
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.55;
+    }
+
+    .event-time {
+      margin-top: 2px;
+      color: var(--text-light);
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.65;
+    }
+
+    .event-place {
+      margin-top: 6px;
+      color: var(--primary);
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .event-sub {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      color: var(--text-light);
+      font-size: 12.5px;
+      line-height: 1.75;
+    }
+
+    .event-sub-label {
+      margin-bottom: 5px;
+      color: var(--accent);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    .event-sub-date,
+    .event-sub-place {
+      color: var(--text-light);
+    }
+
+    .event-link-btn{
+        display:inline-flex;
+        align-items:center;
+        gap:6px;
+
+        margin-top:12px;
+        padding:8px 14px;
+
+        border:1px solid var(--accent-soft);
+        border-radius:999px;
+
+        color:var(--primary);
+        background:rgba(255,255,255,.75);
+
+        font-size:12px;
+        font-weight:600;
+
+        transition:.2s;
+    }
+
+    .event-link-btn:hover{
+        border-color:var(--accent);
+        background:#fff;
+        transform:translateY(-1px);
+    }
+
+    .event-link-btn span{
+        font-size:13px;
+    }
+
+
+    .calendar-container {
+      margin-top: 28px;
+    }
+
+    .calendar {
+      background: #fff;
+      border: none;
+      border-radius: 14px;
+      padding: 28px 18px 22px;
+      box-shadow: 0 10px 32px rgba(26, 35, 50, 0.07);
+    }
+
+    .calendar-header {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .calendar-header-year {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      opacity: 0.9;
+      margin-bottom: 2px;
+    }
+
+    .calendar-header-month {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: 0.04em;
+    }
+
+    .calendar-header-label {
+      display: block;
+      margin-top: 2px;
+      font-size: 10px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    .calendar-weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0;
+      margin-bottom: 6px;
+    }
+
+    .calendar-weekdays div {
+      padding: 0 4px 12px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text-light);
+      border: none;
+    }
+
+    .calendar-weekdays div:first-child {
+      color: #ff0000;
+    }
+
+    .calendar-weekdays div:last-child {
+      color: var(--text-light);
+    }
+
+    .calendar-day.saturday {
+      color: var(--text);
+    }
+
+    .calendar-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px 0;
+    }
+
+    .calendar-day {
+      position: relative;
+      min-width: 0;
+      height: 58px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+
+      padding-top: 7px;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text);
+
+      border: none;
+      background: transparent;
+    }
+
+    /* 날짜 숫자 */
+    .calendar-day-number {
+      position: relative;
+      z-index: 1;
+
+      width: 28px;
+      height: 28px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+      line-height: 1;
+    }
+
+    /* 8일: 제주 피로연 */
+    .calendar-day.reception .calendar-day-number {
+      background: rgba(42, 74, 102, 0.14);
+      border: 1px solid rgba(42, 74, 102, 0.42);
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* 날짜 아래 작은 문구 */
+    .calendar-day-label {
+      display: block;
+      margin-top: 2px;
+
+      font-family: var(--font-body);
+      font-size: 8px;
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      white-space: nowrap;
+    }
+
+    /* 8일 라벨 */
+    .calendar-day.reception .calendar-day-label {
+      color: var(--primary);
+    }
+
+    /* 22일: 본식 */
+    .calendar-day.wedding .calendar-day-number {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .calendar-day.wedding .calendar-day-label {
+      color: var(--accent);
+      font-size: 8.5px;
+      font-weight: 700;
+    }
+
+
+
+    .calendar-day.other-month {
+      opacity: 0.28;
+      color: var(--text-light);
+    }
+
+    /* 공휴일 (빨간 날) */
+    .calendar-day.holiday {
+      color: #ff0000;
+      font-weight: 600;
+    }
+
+    .calendar-day.sunday {
+      /* color: #b85454; */
+      color: #ff0000;
+    }
+
+    .calendar-day.saturday {
+      color: var(--accent);
+      /* color: #0000ff; */
+    }
+
+    .calendar-header-bg {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+
+
+    /* ════════════════════════════════════
+       CONTACT SECTION
+    ════════════════════════════════════ */
+    .contact-accordion {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .contact-side-group {
+      min-width: 0;
+    }
+
+    .contact-side-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      padding: 12px 10px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--primary);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .contact-side-toggle:hover {
+      border-color: var(--accent);
+      background: var(--primary-light);
+    }
+
+    .contact-side-group.is-open .contact-side-toggle {
+      border-color: var(--accent);
+      background: var(--primary-light);
+    }
+
+    .contact-side-arrow {
+      font-size: 12px;
+      color: var(--accent);
+      transition: transform 0.3s ease;
+    }
+
+    .contact-side-group.is-open .contact-side-arrow {
+      transform: rotate(180deg);
+    }
+
+    .contact-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .contact-side-group.is-open .contact-panel {
+      max-height: 680px;
+    }
+
+    .contact-column {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-top: 12px;
+    }
+
+    .contact-card {
+      padding: 12px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    .contact-name {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 6px;
+      font-size: 13px;
+    }
+
+    .contact-relation {
+      font-size: 12px;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-label {
+      font-size: 10px;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .contact-value {
+      font-size: 12px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ════════════════════════════════════
+       FAMILY INTRO & CONTACT BUTTON
+    ════════════════════════════════════ */
+    .family-intro {
+      margin-top: 0px;
+      padding: 4px 8px 0;
+      text-align: center;
+      font-family: var(--font-greeting);
+      color: var(--text);
+    }
+
+    .family-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 12px;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .family-parents {
+      color: var(--text);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .family-relation {
+      color: var(--text-light);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .family-name {
+      color: var(--primary);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    .contact-open-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-width: 142px;
+      margin-top: 18px;
+      padding: 14px 20px;
+      border: 1px solid var(--accent);
+      border-radius: 7px;
+      background: transparent;
+      color: var(--accent);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .contact-open-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    .contact-open-btn:active {
+      transform: scale(0.98);
+    }
+
+    .contact-btn-icon {
+      width: auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      object-fit: contain;
+      flex-shrink: 0;
+      max-height: 32px;
+    }
+
+    .section-action {
+      display: flex;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .contact-side-actions {
+      margin-top: 18px;
+    }
+
+    .contact-side-actions .contact-open-btn {
+      margin-top: 0;
+      min-width: 0;
+      width: 100%;
+      font-size: 13px;
+      padding: 12px 10px;
+    }
+
+    .gift-side-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .gift-side-btn {
+      margin-top: 0;
+      min-width: 0;
+      width: 100%;
+    }
+
+    .gift-side-btn--groom {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .gift-side-btn--groom:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .gift-side-btn--bride {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .gift-side-btn--bride:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* ════════════════════════════════════
+       CONTACT MODAL
+    ════════════════════════════════════ */
+    .contact-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1300;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(15, 25, 35, 0.55);
+      opacity: 0;
+    }
+
+    .contact-modal.is-open {
+      display: flex;
+    }
+
+    .contact-modal-card {
+      position: relative;
+      width: 100%;
+      max-width: 390px;
+      max-height: 82vh;
+      overflow-y: auto;
+      padding: 34px 18px 20px;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 16px 40px rgba(26, 35, 50, 0.18);
+    }
+
+    .contact-modal-title {
+      margin-bottom: 10px;
+      color: var(--primary);
+      font-family: var(--font-display);
+      font-size: 21px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .contact-modal-note {
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.65;
+      color: var(--text-light);
+    }
+
+    .contact-pending-note {
+      font-size: 12px;
+      color: var(--text-light);
+      white-space: nowrap;
+    }
+
+
+    /* ════════════════════════════════════
+      CONTACT MODAL - 계좌번호 스타일에 맞춘 연락처 보정
+    ════════════════════════════════════ */
+
+    .contact-modal-person {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 92px;
+      align-items: stretch;
+      gap: 10px;
+      padding: 14px 12px;
+      border-bottom: 1px solid rgba(220, 234, 242, 0.65);
+      border-radius: 6px;
+      margin: 4px 0;
+    }
+
+    .contact-modal-person:last-child {
+      border-bottom: none;
+    }
+
+    .contact-modal-person.is-principal {
+      padding: 14px 12px;
+      border-radius: 6px;
+      margin: 8px 0;
+    }
+
+    /* 왼쪽 이름 + 전화번호 영역 */
+    .contact-modal-person > div:first-child {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-modal-name {
+      color: var(--primary);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .contact-modal-relation {
+      display: inline;
+      margin-left: 5px;
+      color: var(--text-light);
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    .contact-modal-phone {
+      display: block;
+      margin-top: 6px;
+      color: var(--primary);
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      text-decoration: none !important;
+      -webkit-text-decoration: none !important;
+      word-break: keep-all;
+    }
+
+    /* 오른쪽 전화/문자 버튼 */
+    .contact-modal-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      align-self: stretch;
+    }
+
+    .contact-action-link {
+      width: auto;
+      height: auto;
+      min-height: 52px;
+      border: 1px solid var(--accent-soft);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.75);
+      color: var(--accent);
+      text-decoration: none;
+      cursor: pointer;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .contact-action-link svg {
+      width: 40px;
+      height: 20px;
+    }
+
+    /* 전화 / 문자 글자 표시 */
+    .contact-action-link::after {
+      content: attr(title);
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .contact-action-link:hover {
+      border-color: var(--accent);
+      background: var(--primary-light);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    .contact-action-link:active {
+      transform: scale(0.97);
+    }
+
+    .gift-modal-item {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .gift-modal-item:last-child {
+      border-bottom: none;
+    }
+
+    .gift-modal-item.is-principal {
+      padding: 14px 12px;
+      border-radius: 6px;
+      margin: 8px 0;
+    }
+
+    .gift-modal-item.is-principal.is-bride {
+      background-color: rgba(200, 220, 255, 0.25);
+    }
+
+    .gift-modal-item.is-principal.is-groom {
+      background-color: rgba(200, 220, 255, 0.25);
+    }
+
+    .gift-modal-item:not(.is-principal) {
+      padding: 14px 12px;
+      border-radius: 6px;
+      margin: 4px 0;
+    }
+
+    .gift-modal-person {
+      display: flex;
+      align-items: baseline;
+      gap: 7px;
+      margin-bottom: 8px;
+    }
+
+    .gift-modal-person strong {
+      color: var(--primary);
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .gift-modal-person span {
+      color: var(--text-light);
+      font-size: 15px;
+    }
+
+
+    .gift-modal-account {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 58px;
+      grid-template-rows: auto auto;
+      column-gap: 10px;
+      row-gap: 4px;
+      align-items: stretch;
+    }
+
+    .gift-modal-bank {
+      grid-column: 1;
+      grid-row: 1;
+      color: var(--text-light);
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+
+    .gift-modal-number {
+      grid-column: 1;
+      grid-row: 2;
+      color: var(--primary);
+      font-family: 'Courier New', monospace;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      text-decoration: none !important;
+      -webkit-text-decoration: none !important;
+      word-break: keep-all;
+    }
+
+    .gift-modal-copy {
+      grid-column: 2;
+      grid-row: 1 / 3;
+      align-self: stretch;
+      justify-self: stretch;
+      margin-left: 0;
+      padding: 0 10px;
+      border: 1px solid var(--accent-soft);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.75);
+      color: var(--accent);
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.2;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .gift-modal-copy:hover {
+      border-color: var(--accent);
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .gift-modal-copy:active {
+      transform: scale(0.98);
+    }
+
+    /* 복사 성공 시 해당 인물 박스 하이라이트 */
+    .gift-modal-item {
+      transition:
+        background-color 0.45s ease,
+        box-shadow 0.45s ease,
+        transform 0.25s ease;
+    }
+
+    .gift-modal-item.is-copied {
+      background-color: rgba(197, 213, 227, 0.45) !important;
+      box-shadow: 0 4px 14px rgba(26, 35, 50, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .contact-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      width: 30px;
+      height: 30px;
+      border: none;
+      background: transparent;
+      color: var(--text-light);
+      font-size: 25px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .contact-modal-group + .contact-modal-group {
+      margin-top: 22px;
+    }
+
+    .contact-modal-group-title {
+      margin-bottom: 10px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .copy-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--accent);
+      padding: 0;
+      width: 14px;
+      height: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s;
+    }
+
+    .copy-btn:hover {
+      color: var(--primary);
+    }
+
+
+    .schedule-section {
+      padding: 20px 8px 32px 8px !important;
+    }
+
+    .schedule-section .container {
+      padding: 0;
+    }
+
+    .schedule-section .calendar {
+      width: 100%;
+    }
+
+    /* ════════════════════════════════════
+       GALLERY
+    ════════════════════════════════════ */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    @keyframes gallery-slide-up-fade {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      border-radius: 6px;
+      background: var(--border);
+      cursor: pointer;
+    }
+
+    .gallery-item.is-collapsed {
+      display: none;
+    }
+
+    .gallery-item.is-visible {
+      animation: gallery-slide-up-fade 0.5s ease-out forwards;
+      animation-delay: var(--delay, 0s);
+    }
+
+    .gallery-expand-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+
+      width: auto;
+      min-width: 150px;
+      margin: 22px auto 0;
+      padding: 13px 24px;
+
+      border: 1px solid rgba(197, 213, 227, 0.95);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--primary);
+
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(26, 35, 50, 0.08);
+
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+
+      transition:
+        transform 0.22s ease,
+        box-shadow 0.22s ease,
+        border-color 0.22s ease,
+        background 0.22s ease;
+    }
+
+    .gallery-expand-btn::after {
+      content: '⌄';
+      display: inline-block;
+      margin-left: 2px;
+      margin-top: -2px;
+
+      color: var(--accent);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1;
+
+      transition: transform 0.25s ease;
+    }
+
+    .gallery-expand-btn[aria-expanded="true"]::after {
+      transform: rotate(180deg);
+    }
+
+    .gallery-expand-btn:hover {
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.96);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 26px rgba(26, 35, 50, 0.11);
+    }
+
+    .gallery-expand-btn:active {
+      transform: scale(0.98);
+    }
+
+    .gallery-expand-btn[hidden] {
+      display: none;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-section {
+      padding: 40px 8px !important;
+    }
+
+    .gallery-section .container {
+      padding: 0;
+      text-align: center;
+    }
+
+    .gallery {
+      text-align: initial;
+    }
+
+    /* ════════════════════════════════════
+       MAP & DIRECTIONS
+    ════════════════════════════════════ */
+    .location-card {
+      border: 1px solid var(--border);          /* 연한 테두리 */
+      border-radius: 12px;                      /* 둥근 모서리 */
+      padding: 20px;                            /* 내부 여백 */
+      background: var(--white);                 /* 흰색 반투명 배경 */
+      backdrop-filter: blur(8px);               /* 배경 흐림 효과 */
+      -webkit-backdrop-filter: blur(8px);       /* Safari용 blur */
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);   /* 약한 그림자 */
+      margin-bottom: 20px;                      /* 아래 여백 */
+    }
+
+    /* 오시는 길 아코디언 가독성 개선 */
+    .info-list {
+      gap: 12px;
+    }
+
+    .info-item.active .info-content {
+      padding: 18px 16px;
+    }
+    /* ════════════════════════════════════
+      전세버스 안내 (세련된 버전)
+    ════════════════════════════════════ */
+    .bus-notice {
+      margin-top: 30px;
+      padding: 24px 18px;
+      background: var(--primary-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .bus-notice-content {
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .bus-notice-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--primary);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .bus-notice-desc {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .bus-notice-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 260px;
+      padding: 14px 20px;
+      font-size: 16px;
+      font-weight: 700;
+      gap: 8px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 8px rgba(26, 45, 66, 0.15);
+    }
+
+    .bus-notice-btn:hover {
+      background: #223a55;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(26, 45, 66, 0.2);
+    }
+
+    .bus-notice-btn:active {
+      transform: scale(0.98);
+    }
+
+    .info-item {
+      border: 1px solid #f0f0f0;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.2s;
+      font-size: 18px;
+    }
+
+    .info-header {
+      width: 100%;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      border: none;
+      background: var(--white);
+      color: var(--primary);
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .info-header:hover {
+      background: #fafafa;
+    }
+
+    .info-content {
+      max-height: 0;
+      padding: 0 16px;
+      transition: all 0.3s ease;
+      background: var(--white);
+      font-size: 15px;
+      color: #555;
+      overflow: hidden;
+    }
+    
+    .info-item.active {
+      border-color: var(--accent);
+    }
+
+    .info-item.active .info-content {
+      max-height: 1800px;
+      padding: 16px;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .info-item.active .arrow {
+      transform: rotate(180deg);
+    }
+
+    .arrow {
+      transition: transform 0.3s;
+      color: var(--accent);
+      display: inline-block;
+      font-size: 12px;
+    }
+
+    .point-label {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    .bg-on { background: #eef4f8; color: #2a4a66; }
+    .bg-off { background: #edf3ef; color: #3d6b5a; }
+
+    .address-box {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 14px;
+      background: var(--primary-light);
+      padding: 16px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .address-text {
+      font-size: 13px;
+      line-height: 1.65;
+      width: 100%;
+      color: var(--text);
+      text-align: center;
+      word-break: keep-all;
+    }
+
+    .address-text .address-line {
+      display: block;
+      font-size: 16px;
+
+    }
+
+    .address-actions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      padding-top: 4px;
+    }
+
+    .copy-address-btn,
+    .map-btn {
+      width: 100%;
+      min-height: 70px;
+      border: 1px solid var(--accent-soft);
+      background: rgba(255, 255, 255, 0.65);
+      padding: 9px 4px;
+      cursor: pointer;
+      border-radius: 10px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+
+      transition: transform 0.2s ease, background 0.2s ease;
+      text-align: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .copy-address-btn:hover,
+    .map-btn:hover {
+      background: rgba(255, 255, 255, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .copy-address-btn:active,
+    .map-btn:active {
+      transform: scale(0.96);
+    }
+
+    .copy-address-btn img,
+    .map-btn img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .copy-address-btn span,
+    .map-btn span {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--primary);
+      white-space: nowrap;
+      line-height: 1.2;
+    }
+
+    /* ════════════════════════════════════
+       DETAILED ROUTES
+    ════════════════════════════════════ */
+    .route-block {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .route-block--separated {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .route-title {
+      color: var(--primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .route-summary {
+      margin: -5px 0 2px;
+      color: var(--text-light);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .route-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .route-label {
+      flex: 0 0 auto;
+      min-width: 37px;
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: #eef4f8;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .route-path {
+      flex: 1;
+      margin: 0;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.85;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+
+    .route-options {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .route-options .route-path {
+      padding-bottom: 9px;
+      border-bottom: 1px dashed rgba(220, 234, 242, 0.95);
+    }
+
+    .route-options .route-path:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .route-arrow {
+      display: inline-block;
+      margin: 0 3px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .route-time {
+      display: inline-block;
+      margin-left: 4px;
+      color: var(--meadow);
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .route-note {
+      margin-top: 4px;
+      padding: 10px 11px;
+      border-radius: 6px;
+      background: rgba(238, 244, 248, 0.8);
+      color: var(--text-light);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    /* ════════════════════════════════════
+      GUESTBOOK - width & readability
+    ════════════════════════════════════ */
+
+    .guestbook-section {
+      padding: 40px 8px 40px 8px !important;
+    }
+
+    .guestbook-section .container {
+      padding: 0;
+    }
+
+    /* 안내 문구 */
+    .guestbook-section > .container > p {
+      font-size: 14px !important;
+      line-height: 1.7;
+      margin-bottom: 14px !important;
+    }
+
+    /* 입력 카드 */
+    .guestbook-section .guestbook-form {
+      width: 100%;
+      padding: 22px 16px;
+      border-radius: 12px;
+      margin-bottom: 28px;
+    }
+
+    /* 입력 항목 간격 */
+    .guestbook-section .form-group {
+      margin-bottom: 17px;
+    }
+
+    /* 라벨 */
+    .guestbook-section .form-group label {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    /* input / textarea */
+    .guestbook-section .form-group input,
+    .guestbook-section .form-group textarea {
+      padding: 13px 12px;
+      border-radius: 8px;
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+
+    /* 메시지 입력창 */
+    .guestbook-section .form-group textarea {
+      height: 118px;
+    }
+
+    /* 등록 버튼 */
+    .guestbook-section .submit-btn {
+      padding: 15px 14px;
+      border-radius: 8px;
+      font-size: 14.5px;
+      font-weight: 700;
+    }
+
+    /* 메시지 목록 */
+    .guestbook-section .message-list {
+      gap: 12px;
+    }
+
+    /* 메시지 카드 */
+    .guestbook-section .message-card {
+      width: 100%;
+      padding: 17px 15px;
+      border-radius: 10px;
+    }
+
+    /* 작성자 / 날짜 영역 */
+    .guestbook-section .message-header {
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+
+    /* 작성자 */
+    .guestbook-section .message-author {
+      font-size: 14.5px;
+      font-weight: 700;
+    }
+
+    /* 날짜 */
+    .guestbook-section .message-date {
+      font-size: 11.5px;
+    }
+
+    /* 삭제 버튼 */
+    .guestbook-section .message-delete-btn {
+      font-size: 11.5px;
+    }
+
+    /* 메시지 본문 */
+    .guestbook-section .message-text {
+      font-size: 13.8px;
+      line-height: 1.75;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+    .guestbook-form {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    .form-group textarea {
+      height: 100px;
+      resize: none;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: #1f3a52;
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .message-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .message-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .message-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .message-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .message-delete-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-light);
+      font-family: var(--font-body);
+      font-size: 11px;
+      cursor: pointer;
+      padding: 2px 0;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .message-delete-btn:hover {
+      color: var(--accent);
+    }
+
+    .message-author {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--primary);
+    }
+
+    .message-date {
+      font-size: 11px;
+      color: var(--text-light);
+    }
+
+    .message-text {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    .message-count {
+      margin-bottom: 12px;
+      text-align: center;
+      color: var(--text-light);
+      font-size: 12.5px;
+      line-height: 1.6;
+    }
+
+    .message-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 17px 15px;
+      box-shadow: 0 6px 18px rgba(26, 35, 50, 0.06);
+
+      opacity: 0;
+      transform: translateY(10px);
+      animation: messageCardFadeUp 0.42s ease forwards;
+      animation-delay: var(--delay, 0s);
+    }
+
+    /* .message-card.is-hidden {
+      display: none;
+    } */
+
+    @keyframes messageCardFadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message-page-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .message-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 20px;
+      white-space: nowrap;
+    }
+
+    .message-page-numbers {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+    }
+
+    .message-page-number {
+      width: 31px;
+      height: 31px;
+      padding: 0;
+
+      border: 1px solid transparent;
+      border-radius: 50%;
+      background: transparent;
+      color: var(--text-light);
+
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+    .message-page-number:hover {
+      background: rgba(197, 213, 227, 0.35);
+      color: var(--primary);
+    }
+
+    .message-page-number.is-current {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .message-page-number:active {
+      transform: scale(0.93);
+    }
+
+    .message-page-nav {
+      min-height: 31px;
+      padding: 0 4px;
+      border: none;
+      background: transparent;
+      color: var(--accent);
+
+      font-family: var(--font-body);
+      font-size: 11.5px;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .message-page-nav:disabled {
+      opacity: 0.28;
+      cursor: default;
+    }
+
+    @media (max-width: 380px) {
+      .message-pagination {
+        gap: 3px;
+      }
+
+      .message-page-numbers {
+        gap: 1px;
+      }
+
+      .message-page-number {
+        width: 28px;
+        height: 28px;
+        font-size: 11px;
+      }
+
+      .message-page-nav {
+        padding: 0 2px;
+        font-size: 10.5px;
+      }
+    }
+
+    /* ════════════════════════════════════
+      PRAYER SECTION
+    ════════════════════════════════════ */
+
+    .prayer-section {
+      padding: 40px 8px 40px 8px !important;
+    }
+
+    .prayer-section .container {
+      padding: 0;
+    }
+
+    .prayer-card {
+      width: 100%;
+      padding: 30px 18px 28px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px var(--shadow);
+    }
+
+    .prayer-note {
+      margin-top: -4px;
+      margin-bottom: 22px;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .prayer-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .prayer-item {
+      position: relative;
+      padding: 18px 14px 18px 46px;
+      border: 1px solid rgba(220, 234, 242, 0.8);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.62);
+    }
+
+    .prayer-number {
+      position: absolute;
+      top: 18px;
+      left: 14px;
+      color: var(--accent);
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .prayer-item p {
+      margin: 0;
+      color: var(--text);
+      font-family: var(--font-greeting);
+      font-size: 14px;
+      line-height: 2;
+      letter-spacing: -0.02em;
+      word-break: keep-all;
+    }
+
+
+
+    /* ════════════════════════════════════
+       VIDEO SECTION
+    ════════════════════════════════════ */
+    .video-player {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000;
+      margin-bottom: 0;
+    }
+
+    .video-player video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    /* ════════════════════════════════════
+       THANKS MESSAGE
+    ════════════════════════════════════ */
+    .journey-card .video-player {
+      margin-bottom: 28px;
+    }
+
+    .journey-card .thanks-message {
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .thanks-card {
+      text-align: center;
+      padding: 32px 22px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px var(--shadow);
+    }
+
+    .thanks-message {
+      font-family: var(--font-greeting);
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 2.15;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    /* 우리의 여정 섹션 */
+    .journey-section {
+      padding: 40px 8px 40px 8px !important;
+    }
+
+    .journey-section .container {
+      padding: 0;
+    }
+
+    .journey-section .journey-card {
+      width: 100%;
+      padding: 20px 14px 28px;
+      border-radius: 12px;
+    }
+
+    .journey-section .video-player {
+      width: 100%;
+      margin-bottom: 26px;
+      border-radius: 10px;
+    }
+
+    .journey-section .thanks-message {
+      font-size: 15px;
+      line-height: 2.1;
+    }
+
+    /* ════════════════════════════════════
+       LIGHTBOX MODAL
+    ════════════════════════════════════ */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .lightbox-modal,
+    .lightbox-content,
+    .lightbox-image {
+      touch-action: none;
+    }
+
+    .lightbox-content {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      height: 100dvh;
+      overflow: hidden;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      animation: none;
+    }
+
+    .lightbox-viewport {
+      width: 100%;
+      max-width: 480px;
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    .lightbox-track {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: max-content;
+      will-change: transform;
+    }
+
+    .lightbox-slide {
+      flex: 0 0 auto;
+      width: min(82vw, 390px);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      opacity: 0.42;
+      transform: scale(0.92);
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+    }
+
+    .lightbox-slide.is-current {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .lightbox-image {
+      width: 100%;
+      max-height: 78dvh;
+      object-fit: contain;
+      border-radius: 8px;
+      user-select: none;
+      -webkit-user-drag: none;
+      cursor: grab;
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.28);
+    }
+
+    .lightbox-image:active {
+      cursor: grabbing;
+    }
+
+    .lightbox-counter {
+      margin-top: 14px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 13px;
+      letter-spacing: 0.5px;
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: calc(env(safe-area-inset-top, 0px) + 14px);
+      right: 16px;
+      z-index: 30;
+
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 50%;
+
+      background: rgba(0, 0, 0, 0.36);
+      color: #fff;
+
+      font-size: 30px;
+      font-weight: 300;
+      line-height: 1;
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .lightbox-close:active {
+      transform: scale(0.94);
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      font-size: 40px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .lightbox-prev { left: -60px; }
+    .lightbox-next { right: -60px; }
+
+    @media (max-width: 600px) {
+      .lightbox-prev { left: 10px; }
+      .lightbox-next { right: 10px; }
+      .lightbox-nav { background: rgba(0, 0, 0, 0.3); }
+    }
+
+    /* ════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════ */
+    footer {
+      position: relative;
+      z-index: 1;
+      background: var(--primary-light);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    footer p {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    .footer-divider {
+      width: 30px;
+      height: 1px;
+      background: var(--accent);
+      margin: 16px auto;
+    }
+
+    .footer-credit {
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    /* ════════════════════════════════════
+       BGM (YouTube)
+    ════════════════════════════════════ */
+    .bgm-fab {
+      position: fixed;
+      right: 16px;
+      bottom: 20px;
+      z-index: 120;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--primary);
+      box-shadow: 0 4px 16px rgba(26, 35, 50, 0.12);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      line-height: 1;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .bgm-fab:hover {
+      transform: scale(1.06);
+      background: #fff;
+    }
+
+    .bgm-fab.is-playing {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .youtube-player-host--hidden {
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+      overflow: hidden;
+      left: -9999px;
+      top: 0;
+    }
+
+
+    /* 맨 위로 이동 버튼 */
+    .scroll-top-fab {
+      position: fixed;
+      right: 16px;
+      bottom: 76px; /* BGM 버튼 위 */
+      z-index: 120;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--primary);
+      box-shadow: 0 4px 16px rgba(26, 35, 50, 0.12);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      line-height: 1;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        background 0.2s ease;
+    }
+
+    .scroll-top-fab.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .scroll-top-fab:hover {
+      background: #fff;
+      transform: translateY(0) scale(1.06);
+    }
+
+    .toast-message {
+      position: fixed;
+      left: 50%;
+      bottom: 138px;
+      z-index: 1600;
+
+      width: calc(100% - 36px);
+      max-width: 410px;
+      min-height: 64px;
+      padding: 17px 20px;
+
+      border-radius: 14px;
+      background: rgba(26, 45, 66, 0.96);
+      color: #fff;
+
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.65;
+      text-align: center;
+
+      box-shadow: 0 10px 28px rgba(26, 35, 50, 0.22);
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 12px);
+
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+
+      white-space: pre-line;
+    }
+
+    .toast-message.is-visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+
+
+    /* ════════════════════════════════════
+       OPENING / SHARE / SCROLL REVEAL
+    ════════════════════════════════════ */
+    .hero-opening {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: calc(env(safe-area-inset-top, 0px) + 72px);
+      z-index: 3;
+      padding: 0 20px;
+      text-align: center;
+      color: #fff;
+      text-shadow:
+        0 2px 18px rgba(26, 35, 50, 0.38),
+        0 1px 4px rgba(26, 35, 50, 0.28);
+      opacity: 0;
+      transform: translateY(18px);
+      animation: heroOpening 1.4s ease 0.35s forwards;
+      pointer-events: none;
+    }
+
+    .hero-date {
+      margin-bottom: 12px;
+      color: rgba(255, 255, 255, 0.92);
+      font-family: var(--font-body);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      line-height: 1.5;
+    }
+
+    .hero-names-text {
+      font-family: var(--font-hero);
+      font-size: clamp(34px, 9vw, 46px);
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      line-height: 1.3;
+    }
+
+    .hero-names-text span {
+      opacity: 0.85;
+      letter-spacing: 0;
+    }
+
+    .hero-subtitle {
+      margin-top: 14px;
+      color: rgba(255, 255, 255, 0.9);
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    .scroll-guide {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: calc(env(safe-area-inset-bottom, 0px) + 28px);
+      z-index: 3;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      animation: scrollGuide 1.6s ease-in-out infinite;
+      pointer-events: none;
+      text-shadow: 0 1px 8px rgba(26, 35, 50, 0.35);
+    }
+
+    .scroll-guide::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 26px;
+      margin: 8px auto 0;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    @keyframes heroOpening {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+        filter: blur(3px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes scrollGuide {
+      0%, 100% {
+        transform: translateY(0);
+        opacity: 0.65;
+      }
+      50% {
+        transform: translateY(8px);
+        opacity: 1;
+      }
+    }
+
+    .share-section {
+      padding: 32px 20px 40px;
+    }
+
+    .share-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .share-btn {
+      width: 100%;
+      min-height: 58px;
+      padding: 13px 10px;
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      line-height: 1.3;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .share-btn-icon {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .share-btn span {
+      white-space: nowrap;
+    }
+
+    .share-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .share-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* 카카오톡 버튼 */
+    .kakao-share-btn {
+      background: #fee500;
+      border: 1px solid #fee500;
+      color: #191919;
+    }
+
+    .kakao-share-btn:hover {
+      background: #fada00;
+      border-color: #fada00;
+    }
+
+    /* 링크 복사 버튼 */
+    .link-copy-btn {
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--primary);
+    }
+
+    .link-copy-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--accent);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      filter: blur(2px);
+      transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.9s ease;
+      will-change: opacity, transform;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.10s; }
+    .reveal-delay-2 { transition-delay: 0.22s; }
+    .reveal-delay-3 { transition-delay: 0.34s; }
+    .reveal-delay-4 { transition-delay: 0.46s; }
+    .reveal-delay-5 { transition-delay: 0.58s; }
+
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.96) translateY(18px);
+      transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .scale-in.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-opening,
+      .scroll-guide,
+      .reveal,
+      .scale-in {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ╔════════════════════════════════════════════════════════════════
+       ║ 웨딩 초대장 메인 페이지
+       ║ 구조: Hero → 인사말 → 연락처 → 일정 → 갤러리 → 오시는길 → 메시지
+       ╚════════════════════════════════════════════════════════════════ -->
+
+  <!-- ═══════════════════════════════════════════════════════
+       [1] HERO SECTION - 메인 이미지
+       영상/이미지가 전체 화면을 차지하는 첫 번째 섹션
+  ═══════════════════════════════════════════════════════ -->
+  <section class="hero-section">
+    <img
+      src="images/main.jpg"
+      alt="조다빈 · 김주성"
+      class="hero-image"
+      id="heroImage"
+      title="화면을 터치하면 음악이 재생됩니다"
+      width="1485"
+      height="2475"
+      loading="eager"
+      fetchpriority="high"
+      decoding="sync"
+      draggable="false"
+    >
+
+    <div class="scroll-guide" aria-hidden="true">아래로 내려주세요</div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       [2] GREETING SECTION - 인사말 및 신랑신부 소개
+       웨딩 문구 + 양가 부모님 소개 + 신랑신부 이름
+  ═══════════════════════════════════════════════════════ -->
+  <!-- <section class="greeting-block-section reveal" style="padding: 32px 20px 32px 20px;"> -->
+  <section class="greeting-block-section reveal">
+    <div class="container greeting-section">
+      <!-- 축하 인사말 -->
+      <div class="greeting-card">
+        <div class="greeting-text">
+          <!-- 셰익스피어 인용구 -->
+          <div class="quote">"하지만 그대의 영원한 여름은 지지 않고"<br>— 윌리엄 셰익스피어, 『소네트 18』</div>
+          <!-- 신랑신부의 인사 메시지 -->
+          <div class="greeting-message">
+            <div>서로를 향한</div>
+            <div>오늘의 찬란한 사랑을</div>
+            <div>오래도록 잃지 않겠습니다.</div>
+            <div style="margin-bottom: 12px;"></div>
+            <div>눈부신 순간도</div>
+            <div>평범한 하루도 소중히 여기며,</div>
+            <div>시간이 흐를수록 깊어지는 마음으로</div>
+            <div>서로의 곁을 지키겠습니다.</div>
+            <div style="margin-bottom: 12px;"></div>
+            <div>저희의 영원한 여름이 시작되는 날,</div>
+            <div>찬란한 축복으로 함께해 주세요.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 양가 소개 -->
+      <div class="family-intro">
+        <div class="family-line">
+          <span class="family-parents">김한섭 · 박희숙<span class="family-relation">의 아들</span></span>
+          <strong class="family-name">주성</strong>
+        </div>
+
+        <div class="family-line">
+          <span class="family-parents">조진형 · 주봉은<span class="family-relation">의 딸 </span></span>
+          <strong class="family-name">다빈</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       [3] CONTACT SECTION - 축하 연락처
+       신랑측/신부측 연락처 버튼 → 모달로 연락처 정보 표시
+  ═══════════════════════════════════════════════════════ -->
+  <section class="section-compact reveal">
+    <div class="container">
+      <h2>축하 연락하기</h2>
+      <!-- 신랑측/신부측 연락처 버튼 -->
+      <!-- 클릭 시 contact modal 열림 -->
+      <div class="gift-side-actions contact-side-actions">
+        <button
+          type="button"
+          class="contact-open-btn"
+          onclick="openContactModal('groom')"
+        >
+          <img src="images/icons/groom.png" alt="신랑" class="contact-btn-icon" />
+          신랑측
+        </button>
+        <button
+          type="button"
+          class="contact-open-btn"
+          onclick="openContactModal('bride')"
+        >
+          신부측
+          <img src="images/icons/bride.png" alt="신부" class="contact-btn-icon" />
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       [4] CALENDAR SECTION - 예식 일정
+       날짜, 시간, 장소 정보 + 달력 표시
+  ═══════════════════════════════════════════════════════ -->
+<section class="schedule-section reveal">
+  <div class="container">
+    <h2>피로연 일정</h2>
+
+    <!-- 피로연 / 본식 안내 -->
+    <div class="reception-info-card">
+      <!-- 메인: 제주 피로연 -->
+      <div class="event-main">
+        <div class="event-label">제주 피로연</div>
+        <div class="event-date">2026년 8월 8일 토요일</div>
+        <div class="event-time">오전 11시 ~ 오후 4시</div>
+        <div class="event-place">제주 파라다이스회관</div>
+      </div>
+
+      <!-- 서브: 본식 안내 -->
+      <div class="event-sub">
+          <div class="event-sub-label">본식 안내</div>
+
+          <div class="event-sub-date">
+              2026년 8월 22일 토요일 낮 12시
+          </div>
+
+          <div class="event-sub-place">
+              호텔 인터불고 대구 웨딩인터빌리지홀
+          </div>
+
+          <a
+            href="https://juseongkim92.github.io/juda-wedding/"
+            target="_blank"
+            class="event-link-btn">
+            본식 모바일 청첩장 보기
+            <span>↗</span>
+          </a>
+      </div>
+    </div>
+
+    <div class="calendar-container">
+      <div class="calendar">
+        <!-- 달력 헤더 영역 -->
+        <div class="calendar-header">
+          <span class="calendar-header-year">2026</span>
+          <span class="calendar-header-month">08</span>
+          <span class="calendar-header-label">August</span>
+        </div>
+
+        <div class="calendar-weekdays">
+          <div>일</div>
+          <div>월</div>
+          <div>화</div>
+          <div>수</div>
+          <div>목</div>
+          <div>금</div>
+          <div>토</div>
+        </div>
+
+        <div class="calendar-days" id="calendarDays"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       [5] GALLERY SECTION - 웨딩 사진 갤러리
+       3×3 그리드 미리보기 + 클릭 시 라이트박스로 확대
+  ═══════════════════════════════════════════════════════ -->
+  <section class="gallery-section">
+    <div class="container">
+      <h2>갤러리</h2>
+      <!-- 갤러리 아이템들 (JavaScript로 동적 생성) -->
+      <div class="gallery" id="gallery">
+        <!-- Gallery items will be dynamically loaded -->
+      </div>
+
+      <button type="button" id="galleryExpandBtn" class="gallery-expand-btn" onclick="toggleGallery()" hidden>
+        사진 더 보기
+        <img src="images/icons/down_arrow.png" alt="" width="16" height="16" class="gallery-expand-icon" />
+      </button>
+    </div>
+  </section>
+
+<!-- ═══════════════════════════════════════════════════════
+     [6] MAP & DIRECTIONS SECTION - 오시는 길
+     주소 + 지도 링크(네이버, 카카오, T맵) + 카카오맵 임베드
+═══════════════════════════════════════════════════════ -->
+<section class="map-section reveal">
+  <div class="container">
+    <h2>오시는 길</h2>
+
+    <!-- 위치 정보 카드 -->
+    <div class="location-card">
+      <!-- 주소 정보 -->
+      
+
+      <!-- Kakao Map Interactive -->
+      <div
+        id="kakaoMap"
+        style="width: 100%; margin: 20px 0; border-radius: 8px; overflow: hidden; height: 250px; border: 1px solid var(--border);"
+      ></div>
+
+
+      <div class="address-box">
+        <div class="address-text">
+            <span class="address-line">제주 파라다이스회관</span>
+            <span class="address-line">제주특별자치도 제주시 삼성로 9 1층</span>
+        </div>
+
+        <div class="address-actions">
+          <button type="button" class="copy-address-btn" onclick="copyVenueAddress()">
+            <img src="images/icons/copy.png" alt="">
+            <span>주소복사</span>
+          </button>
+
+          <button type="button" class="map-btn" onclick="openNavi('naver')">
+            <img src="images/icons/navermap.jpg" alt="">
+            <span>네이버지도</span>
+          </button>
+
+          <button type="button" class="map-btn" onclick="openNavi('kakao')">
+            <img src="images/icons/kakaomap.jpg" alt="">
+            <span>카카오맵</span>
+          </button>
+
+          <button type="button" class="map-btn" onclick="openNavi('tmap')">
+            <img src="images/icons/tmap.jpg" alt="">
+            <span>T맵</span>
+          </button>
+        </div>
+      </div>      
+  </div>
+</section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       [7] GIFT SECTION - 마음 전하실 곳
+       신랑측/신부측 계좌 정보 → 모달로 계좌 상세 정보 표시
+  ═══════════════════════════════════════════════════════ -->
+  <section class="section-compact reveal">
+    <div class="container">
+      <h2>마음 전하실 곳</h2>
+      <!-- 신랑측/신부측 계좌 버튼 -->
+      <div class="gift-side-actions">
+        <button
+          type="button"
+          class="contact-open-btn gift-side-btn gift-side-btn--groom"
+          onclick="openGiftAccountModal('groom')"
+        >
+          <img src="images/icons/groom.png" alt="신랑" class="contact-btn-icon" />
+          신랑측
+        </button>
+        <button
+          type="button"
+          class="contact-open-btn gift-side-btn gift-side-btn--bride"
+          onclick="openGiftAccountModal('bride')"
+        >
+          신부측
+          <img src="images/icons/bride.png" alt="신부" class="contact-btn-icon" />
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       [8] GUESTBOOK SECTION - 축하 메시지
+       방명록 폼(이름, 메시지 입력) + 메시지 목록 표시
+       Firebase Firestore 연동으로 메시지 저장
+  ═══════════════════════════════════════════════════════ -->
+<section class="guestbook-section reveal">
+  <div class="container">
+    <h2>축하 메시지</h2>
+      <!-- 입력 안내 -->
+      <p style="text-align: center; margin-bottom: 8px; color: var(--text-light); font-size: 16px;">
+        축하의 한마디를 남겨주세요
+      </p>
+
+      <div class="guestbook-form">
+        <div class="form-group">
+          <label>이름</label>
+          <input
+            type="text"
+            id="guestName"
+            maxlength="20"
+            placeholder="성함을 입력해주세요"
+          >
+        </div>
+        <div class="form-group">
+          <label>메시지</label>
+          <textarea
+            id="guestMessage"
+            maxlength="300"
+            placeholder="따뜻한 한마디를 남겨주세요"
+          ></textarea>
+        </div>
+        <button class="submit-btn" onclick="addMessage()">메시지 남기기</button>
+      </div>
+
+      <div id="messageList" class="message-list">
+        <!-- Messages will be added here -->
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+      [기도제목 SECTION]
+      함께 기도해 주실 제목
+  ═══════════════════════════════════════════════════════ -->
+  <section class="prayer-section reveal">
+    <div class="container">
+      <h2>기도제목</h2>
+
+      <div class="prayer-card">
+        <p class="section-note prayer-note">
+          저희 가정을 위해 함께 마음 모아 기도해 주세요.
+        </p>
+
+        <div class="prayer-list">
+          <div class="prayer-item">
+            <span class="prayer-number">01</span>
+            <p>
+              하나님과 늘 동행하며, 삶의 크고 작은 선택 앞에서 서로의 손을 잡고
+              먼저 하나님의 지혜를 구하는 가정이 되기를
+            </p>
+          </div>
+
+          <div class="prayer-item">
+            <span class="prayer-number">02</span>
+            <p>
+              기쁠 때나 슬플 때나 한결같은 사랑으로 서로를 품고 존중하는
+              단단한 부부로 세워지기를
+            </p>
+          </div>
+
+          <div class="prayer-item">
+            <span class="prayer-number">03</span>
+            <p>
+              하나님 안에서 서로 같은 마음과 비전을 품고,
+              세상에 선한 영향력을 끼치는 가정이 되기를
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       JOURNEY & THANKS
+  ═══════════════════════════════════════════════════════ -->
+  <section class="journey-section reveal">
+    <div class="container">
+      <h2>우리의 여정</h2>
+
+      <div class="thanks-card journey-card">
+        <div class="video-player">
+          <video controls playsinline preload="metadata" width="1280" height="720">
+            <source src="media/udo_video.mp4" type="video/mp4">
+            브라우저가 동영상 재생을 지원하지 않습니다.
+          </video>
+        </div>
+
+        <p class="thanks-message">
+          저희의 오늘이 있기까지<br>
+          늘 따뜻한 사랑과 응원으로<br>
+          함께해 주신 모든 분들께<br>
+          진심으로 감사드립니다.<br><br>
+          재미있고 행복하게<br>
+          잘 살아보겠습니다!<br>
+          앞으로도 많이 응원하고 기도해주세요.<br><br>
+          여러분의 모든 날도 <br>
+          행복하시기를 축복합니다🩵<br><br>
+
+          Let's Go~~~~
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-compact share-section reveal">
+    <div class="container">
+      <h2>청첩장 공유하기</h2>
+      <p class="section-note">
+        소중한 분들께 저희의 소식을 전해주세요.
+      </p>
+
+      <div class="share-actions">
+        <button type="button" class="share-btn kakao-share-btn" onclick="shareKakao()">
+          <img src="images/icons/kakaotalk.png" alt="" class="share-btn-icon">
+          <span>카카오톡 공유하기</span>
+        </button>
+
+        <button type="button" class="share-btn link-copy-btn" onclick="copyInvitationUrl()">
+          <img src="images/icons/linkcopy.png" alt="" class="share-btn-icon">
+          <span>링크 복사하기</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       [9] CONTACT MODAL - 축하 연락처 상세 정보
+       신랑/신부 당사자 + 부모님 연락처 표시
+  ═══════════════════════════════════════════════════════ -->
+  <div id="contactModal" class="contact-modal" onclick="closeContactModalByBackdrop(event)">
+    <div class="contact-modal-card" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+      <!-- 모달 닫기 버튼 -->
+      <button
+        type="button"
+        class="contact-modal-close"
+        onclick="closeContactModal()"
+        aria-label="닫기"
+      >
+        &times;
+      </button>
+
+      <!-- 모달 제목 (동적으로 변경됨) -->
+      <h3 id="contactModalTitle" class="contact-modal-title">신부측 연락처</h3>
+
+      <!-- 신부측 연락처 정보 -->
+      <div id="contactModalBride" class="contact-modal-group">
+        <div class="contact-modal-person">
+          <div>
+            <div class="contact-modal-name">조다빈 <span class="contact-modal-relation">신부</span></div>
+            <span class="contact-modal-phone">010-9555-0958</span>
+          </div>
+          <div class="contact-modal-actions">
+            <a href="tel:010-9555-0958" class="contact-action-link" title="전화"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></a>
+            <a href="sms:010-9555-0958" class="contact-action-link" title="문자"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></a>
+          </div>
+        </div>
+
+        <div class="contact-modal-person">
+          <div>
+            <div class="contact-modal-name">조진형 <span class="contact-modal-relation">신부 아버지</span></div>
+            <span class="contact-modal-phone">010-6535-0958</span>
+          </div>
+          <div class="contact-modal-actions">
+            <a href="tel:010-6535-0958" class="contact-action-link" title="전화"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></a>
+            <a href="sms:010-6535-0958" class="contact-action-link" title="문자"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></a>
+          </div>
+        </div>
+
+        <div class="contact-modal-person">
+          <div>
+            <div class="contact-modal-name">주봉은 <span class="contact-modal-relation">신부 어머니</span></div>
+            <span class="contact-modal-phone">010-4172-0958</span>
+          </div>
+          <div class="contact-modal-actions">
+            <a href="tel:010-4172-0958" class="contact-action-link" title="전화"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></a>
+            <a href="sms:010-4172-0958" class="contact-action-link" title="문자"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div id="contactModalGroom" class="contact-modal-group" hidden>
+        <div class="contact-modal-person">
+          <div>
+            <div class="contact-modal-name">김주성 <span class="contact-modal-relation">신랑</span></div>
+            <span class="contact-modal-phone">010-9113-6540</span>
+          </div>
+          <div class="contact-modal-actions">
+            <a href="tel:010-9113-6540" class="contact-action-link" title="전화"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></a>
+            <a href="sms:010-9113-6540" class="contact-action-link" title="문자"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></a>
+          </div>
+        </div>
+
+        <div class="contact-modal-person">
+          <div>
+            <div class="contact-modal-name">김한섭 <span class="contact-modal-relation">신랑 아버지</span></div>
+            <span class="contact-modal-phone">010-4595-6540</span>
+          </div>
+          <div class="contact-modal-actions">
+            <a href="tel:010-4595-6540" class="contact-action-link" title="전화"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></a>
+            <a href="sms:010-4595-6540" class="contact-action-link" title="문자"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></a>
+          </div>
+        </div>
+
+        <div class="contact-modal-person">
+          <div>
+            <div class="contact-modal-name">박희숙 <span class="contact-modal-relation">신랑 어머니</span></div>
+            <span class="contact-modal-phone">010-2692-6540</span>
+          </div>
+          <div class="contact-modal-actions">
+            <a href="tel:010-2692-6540" class="contact-action-link" title="전화"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></a>
+            <a href="sms:010-2692-6540" class="contact-action-link" title="문자"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       [10] GIFT ACCOUNT MODAL - 계좌 정보
+       신랑/신부 당사자 + 부모님 계좌 정보 표시
+  ═══════════════════════════════════════════════════════ -->
+  <div id="giftAccountModal" class="contact-modal" onclick="closeGiftAccountModalByBackdrop(event)">
+    <div class="contact-modal-card" role="dialog" aria-modal="true" aria-labelledby="giftAccountModalTitle">
+      <!-- 모달 닫기 버튼 -->
+      <button
+        type="button"
+        class="contact-modal-close"
+        onclick="closeGiftAccountModal()"
+        aria-label="닫기"
+      >
+        &times;
+      </button>
+
+      <!-- 모달 제목 (동적으로 변경됨) -->
+      <h3 id="giftAccountModalTitle" class="contact-modal-title">신부측</h3>
+
+      <!-- 신부측 계좌 정보 -->
+      <div id="giftModalBride" class="contact-modal-group">
+
+        <div class="gift-modal-item">
+          <div class="gift-modal-person">
+            <strong>조다빈</strong>
+            <span>신부</span>
+          </div>
+          <div class="gift-modal-account">
+            <span class="gift-modal-bank">국민은행</span>
+            <span class="gift-modal-number">733702-00-129377 </span>
+            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '국민은행', '73370200129377')">복사</button>
+          </div>
+        </div>
+
+        <div class="gift-modal-item">
+          <div class="gift-modal-person">
+            <strong>조진형</strong>
+            <span>신부 아버지</span>
+          </div>
+          <div class="gift-modal-account">
+            <span class="gift-modal-bank">하나은행</span>
+            <span class="gift-modal-number">330-890503-54107</span>
+            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '하나은행', '33089050354107')">복사</button>
+          </div>
+        </div>
+
+        <div class="gift-modal-item">
+          <div class="gift-modal-person">
+            <strong>주봉은</strong>
+            <span>신부 어머니</span>
+          </div>
+          <div class="gift-modal-account">
+            <span class="gift-modal-bank">대구은행</span>
+            <span class="gift-modal-number">211-07-0097218</span>
+            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '대구은행', '211070097218')">복사</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="giftModalGroom" class="contact-modal-group" hidden>
+        <div class="gift-modal-item">
+          <div class="gift-modal-person">
+            <strong>김주성</strong>
+            <span>신랑</span>
+          </div>
+          <div class="gift-modal-account">
+            <span class="gift-modal-bank">카카오뱅크</span>
+            <span class="gift-modal-number">3333-08-7103596</span>
+            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '카카오뱅크', '3333087103596')">복사</button>
+          </div>
+        </div>
+
+        <div class="gift-modal-item">
+          <div class="gift-modal-person">
+            <strong>김한섭</strong>
+            <span>신랑 아버지</span>
+          </div>
+          <div class="gift-modal-account">
+            <span class="gift-modal-bank">농협</span>
+            <span class="gift-modal-number">901055-56-046477</span>
+            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '농협', '90105556046477')">복사</button>
+          </div>
+        </div>
+
+        <div class="gift-modal-item">
+          <div class="gift-modal-person">
+            <strong>박희숙</strong>
+            <span>신랑 어머니</span>
+          </div>
+          <div class="gift-modal-account">
+            <span class="gift-modal-bank">농협</span>
+            <span class="gift-modal-number">901055-52-131187</span>
+            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '농협', '90105552131187')">복사</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BACKGROUND MUSIC TOGGLE
+  ═══════════════════════════════════════════════════════ -->
+  <!-- YouTube 플레이어 (숨김) -->
+  <div id="ytPlayer"></div>
+
+  <!-- 맨 위로 이동 버튼 -->
+  <button
+    type="button"
+    id="scrollTopBtn"
+    class="scroll-top-fab"
+    aria-label="맨 위로 이동"
+    title="맨 위로"
+  >
+    ↑
+  </button>
+
+  <!-- 배경음악 재생/중지 버튼 (고정 위치) -->
+  <button type="button" id="bgmToggle" class="bgm-fab" aria-label="배경음악 켜기" title="배경음악">♪</button>
+
+  <!-- 복사 안내 토스트 메시지 -->
+  <div id="toastMessage" class="toast-message"></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       [11] LIGHTBOX MODAL - 갤러리 이미지 확대 보기
+       갤러리 이미지 클릭 시 모달로 전체 화면 표시
+       좌우 네비게이션으로 이미지 전환
+  ═══════════════════════════════════════════════════════ -->
+  <div id="lightboxModal" class="lightbox-modal" onclick="closeLightboxOnBackdropClick(event)">
+    <div class="lightbox-content">
+
+      <button 
+        class="lightbox-close" 
+        data-lightbox-interactive
+        onclick="event.stopPropagation(); closeLightbox();"
+        aria-label="사진 닫기"
+      >
+        &times;
+      </button>
+
+      <button 
+        class="lightbox-nav lightbox-prev" 
+        data-lightbox-interactive
+        onclick="event.stopPropagation(); changeImage(-1);"
+        aria-label="이전 사진"
+      >
+        &lsaquo;
+      </button>
+
+      <div 
+        class="lightbox-viewport" 
+        id="lightboxViewport"
+        data-lightbox-interactive
+      >
+        <div class="lightbox-track" id="lightboxTrack">
+          <div class="lightbox-slide">
+            <img id="lightboxPrevImage" src="" alt="이전 사진" class="lightbox-image">
+          </div>
+
+          <div class="lightbox-slide is-current">
+            <img id="lightboxImage" src="" alt="확대 이미지" class="lightbox-image">
+          </div>
+
+          <div class="lightbox-slide">
+            <img id="lightboxNextImage" src="" alt="다음 사진" class="lightbox-image">
+          </div>
+        </div>
+      </div>
+
+      <button 
+        class="lightbox-nav lightbox-next" 
+        data-lightbox-interactive
+        onclick="event.stopPropagation(); changeImage(1);"
+        aria-label="다음 사진"
+      >
+        &rsaquo;
+      </button>
+
+      <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
+    </div>
+  </div>
+
+  <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* ════════════════════════════════════════════════════════════════
+       자바스크립트 애플리케이션 로직
+
+       구조:
+       1. 애니메이션 (GSAP)
+       2. 갤러리 (미리보기 + 라이트박스)
+       3. 유틸리티 함수
+       4. 특수 효과 (인사말, 달력)
+       5. 이벤트 및 초기화
+       6. Firebase 연동
+       ════════════════════════════════════════════════════════════════ */
+
+    // ════════════════════════════════════
+    // [1] GSAP ANIMATIONS - 스크롤 기반 애니메이션
+    // 섹션이 화면에 진입할 때 Fade-in + Slide-up 효과
+    // ════════════════════════════════════
+    /**
+     * 모든 섹션에 스크롤 애니메이션 적용
+     * - 모바일에서는 비활성화 (성능 최적화)
+     * - 동작 감소 설정 적용 시 비활성화 (접근성)
+     */
+    function initAnimations() {
+      const sections = gsap.utils.toArray('section').filter(
+        (section) => !section.classList.contains('hero-section')
+      );
+
+      const isMobile = window.innerWidth <= 480;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (prefersReduced) {
+        gsap.set(sections, { opacity: 1, y: 0 });
+        return;
+      }
+
+      // 모바일 청첩장은 IntersectionObserver 기반 reveal을 우선 사용합니다.
+      // 여기서 opacity를 강제로 세팅하면 CSS reveal이 무력화될 수 있습니다.
+      if (isMobile) return;
+
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+      sections.forEach((section, index) => {
+        gsap.fromTo(
+          section,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: 'power2.out',
+            delay: index * 0.05,
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 88%',
+              once: true
+            }
+          }
+        );
+      });
+    }
+
+    // ════════════════════════════════════
+    // [2] GALLERY & LIGHTBOX - 갤러리 및 이미지 확대 보기
+    // 3×3 미리보기 그리드 + 클릭 시 라이트박스로 전체 화면 표시
+    // ════════════════════════════════════
+    let currentImageIndex = 0;
+    const GALLERY_PREVIEW_COUNT = 9;  // 미리보기: 3×3 = 9개 이미지
+    const GALLERY_IMAGES = [];
+
+    // 갤러리 이미지 배열 초기화 (img0.jpg ~ img22.jpg)
+    // for (let i = 0; i <= 22; i++) GALLERY_IMAGES.push(`images/gallery/img${i}.jpg`);
+    // 📝 새 사진 추가 시: GALLERY_IMAGES.push('images/gallery/img23.jpg');
+    for (let i = 0; i <= 22; i++) {
+      GALLERY_IMAGES.push({
+        thumb: `images/gallery/thumb/img${i}.webp`,
+        full: `images/gallery/full/img${i}.webp`
+      });
+    }
+
+    /**
+     * 라이트박스 하단의 이미지 카운터 업데이트
+     * 예: "5 / 23"
+     */
+    function updateLightboxCounter() {
+      const counter = document.getElementById('lightboxCounter');
+      if (counter) {
+        counter.textContent = `${currentImageIndex + 1} / ${GALLERY_IMAGES.length}`;
+      }
+    }
+
+    function setGalleryExpanded(expanded) {
+      document.querySelectorAll('#gallery .gallery-item').forEach((item, index) => {
+        if (index >= GALLERY_PREVIEW_COUNT) {
+          if (expanded) {
+            // 더보기: 아이템 표시 + 애니메이션
+            item.classList.remove('is-collapsed');
+            item.classList.remove('is-visible');
+            // 리플로우 강제로 애니메이션 재시작
+            void item.offsetWidth;
+            // CSS 변수로 딜레이 설정 (각 아이템마다 120ms 간격)
+            item.style.setProperty('--delay', `${(index - GALLERY_PREVIEW_COUNT) * 0.12}s`);
+            item.classList.add('is-visible');
+          } else {
+            // 접기: 아이템 숨김
+            item.classList.add('is-collapsed');
+            item.classList.remove('is-visible');
+            item.style.setProperty('--delay', '0s');
+          }
+        }
+      });
+      updateGalleryToggleBtn(expanded);
+    }
+
+    function updateGalleryToggleBtn(expanded) {
+      const btn = document.getElementById('galleryExpandBtn');
+      if (!btn) return;
+      const hiddenCount = GALLERY_IMAGES.length - GALLERY_PREVIEW_COUNT;
+      if (hiddenCount <= 0) {
+        btn.hidden = true;
+        return;
+      }
+      btn.hidden = false;
+      btn.textContent = expanded ? '사진 접기' : `더 보기`;
+      btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+    }
+
+    function loadGallery() {
+      const gallery = document.getElementById('gallery');
+      gallery.innerHTML = '';
+
+      GALLERY_IMAGES.forEach((image, index) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item' + (index >= GALLERY_PREVIEW_COUNT ? ' is-collapsed' : '');
+        item.onclick = () => openLightbox(index);
+
+        item.innerHTML = `
+          <img 
+            src="${image.thumb}" 
+            alt="사진 ${index + 1}" 
+            loading="lazy" 
+            decoding="async"
+            draggable="false"
+          >
+        `;
+
+        gallery.appendChild(item);
+      });
+
+      updateGalleryToggleBtn(false);
+    }
+    function toggleGallery() {
+      const btn = document.getElementById('galleryExpandBtn');
+      const isExpanded = btn?.getAttribute('aria-expanded') === 'true';
+      setGalleryExpanded(!isExpanded);
+    }
+
+    let lightboxZoom = 1;
+    let lightboxTranslate = { x: 0, y: 0 };
+    let touchStartDistance = 0;
+    let dragStart = { x: 0, y: 0 };
+    let lightboxSwipeStart = { x: 0, y: 0 };
+    let lightboxSwipeDeltaX = 0;
+    let lightboxIsAnimating = false;
+    let lightboxSwipeReady = false;
+
+    function normalizeGalleryIndex(index) {
+      return (index + GALLERY_IMAGES.length) % GALLERY_IMAGES.length;
+    }
+
+    function getGalleryImageSrc(index) {
+      const image = GALLERY_IMAGES[normalizeGalleryIndex(index)];
+
+      // 기존 JPG 배열 방식도 지원하고,
+      // WebP thumb/full 객체 방식도 지원
+      if (typeof image === 'string') return image;
+      return image.full;
+    }
+
+    function getLightboxBaseX() {
+      const viewport = document.getElementById('lightboxViewport');
+      const track = document.getElementById('lightboxTrack');
+      const currentSlide = document.querySelector('.lightbox-slide.is-current');
+
+      if (!viewport || !track || !currentSlide) return 0;
+
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      const slideWidth = currentSlide.getBoundingClientRect().width;
+
+      return (viewport.clientWidth - slideWidth) / 2 - (slideWidth + gap);
+    }
+
+    function setLightboxTrackX(x, animate = false) {
+      const track = document.getElementById('lightboxTrack');
+      if (!track) return;
+
+      gsap.killTweensOf(track);
+
+      if (animate) {
+        gsap.to(track, {
+          x,
+          duration: 0.28,
+          ease: 'power3.out'
+        });
+      } else {
+        gsap.set(track, { x });
+      }
+    }
+
+    function renderLightboxSlides() {
+      const prevImg = document.getElementById('lightboxPrevImage');
+      const currentImg = document.getElementById('lightboxImage');
+      const nextImg = document.getElementById('lightboxNextImage');
+
+      prevImg.src = getGalleryImageSrc(currentImageIndex - 1);
+      currentImg.src = getGalleryImageSrc(currentImageIndex);
+      nextImg.src = getGalleryImageSrc(currentImageIndex + 1);
+
+      updateLightboxCounter();
+      resetLightboxZoom();
+
+      requestAnimationFrame(() => {
+        setLightboxTrackX(getLightboxBaseX(), false);
+      });
+    }
+
+    function resetLightboxZoom() {
+      lightboxZoom = 1;
+      lightboxTranslate = { x: 0, y: 0 };
+      const img = document.getElementById('lightboxImage');
+      if (img) img.style.transform = 'scale(1) translate(0, 0)';
+    }
+
+    function updateLightboxTransform() {
+      const img = document.getElementById('lightboxImage');
+      if (img) {
+        img.style.transform = `scale(${lightboxZoom}) translate(${lightboxTranslate.x}px, ${lightboxTranslate.y}px)`;
+      }
+    }
+
+    function handleLightboxTouch(e) {
+      const img = document.getElementById('lightboxImage');
+      if (!img) return;
+
+      if (e.touches.length === 2) {
+        const touch1 = e.touches[0];
+        const touch2 = e.touches[1];
+        const distance = Math.hypot(
+          touch1.clientX - touch2.clientX,
+          touch1.clientY - touch2.clientY
+        );
+
+        if (touchStartDistance > 0) {
+          const scale = distance / touchStartDistance;
+          lightboxZoom = Math.max(1, Math.min(3, lightboxZoom * scale));
+          updateLightboxTransform();
+        }
+        touchStartDistance = distance;
+      } else if (e.touches.length === 1 && lightboxZoom > 1) {
+        const touch = e.touches[0];
+        if (dragStart.x === 0 && dragStart.y === 0) {
+          dragStart = { x: touch.clientX, y: touch.clientY };
+        } else {
+          const deltaX = (touch.clientX - dragStart.x) / lightboxZoom;
+          const deltaY = (touch.clientY - dragStart.y) / lightboxZoom;
+          lightboxTranslate.x += deltaX;
+          lightboxTranslate.y += deltaY;
+          dragStart = { x: touch.clientX, y: touch.clientY };
+          updateLightboxTransform();
+        }
+      }
+      e.preventDefault();
+    }
+
+    function openLightbox(index) {
+      currentImageIndex = index;
+
+      const modal = document.getElementById('lightboxModal');
+
+      renderLightboxSlides();
+
+      modal.style.display = 'flex';
+      gsap.fromTo(
+        modal,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.25, ease: 'power2.out' }
+      );
+
+      document.body.style.overflow = 'hidden';
+
+      initLightboxSwipe();
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightboxModal');
+      const img = document.getElementById('lightboxImage');
+      img.removeEventListener('touchstart', null);
+      img.removeEventListener('touchmove', handleLightboxTouch);
+      resetLightboxZoom();
+      gsap.to(modal, {
+        opacity: 0,
+        duration: 0.3,
+        onComplete: () => {
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      });
+    }
+
+    function closeLightboxOnBackdropClick(event) {
+      const interactiveArea = event.target.closest('[data-lightbox-interactive]');
+
+      if (interactiveArea) return;
+
+      closeLightbox();
+    }
+
+    function changeImage(step) {
+      if (lightboxIsAnimating) return;
+
+      const track = document.getElementById('lightboxTrack');
+      const currentSlide = document.querySelector('.lightbox-slide.is-current');
+      if (!track || !currentSlide) return;
+
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      const slideWidth = currentSlide.getBoundingClientRect().width;
+      const moveAmount = slideWidth + gap;
+      const baseX = getLightboxBaseX();
+
+      lightboxIsAnimating = true;
+
+      gsap.to(track, {
+        x: baseX + (step > 0 ? -moveAmount : moveAmount),
+        duration: 0.32,
+        ease: 'power3.out',
+        onComplete: () => {
+          currentImageIndex = normalizeGalleryIndex(currentImageIndex + step);
+          renderLightboxSlides();
+          lightboxIsAnimating = false;
+        }
+      });
+    }
+
+    function initLightboxSwipe() {
+      if (lightboxSwipeReady) return;
+
+      const viewport = document.getElementById('lightboxViewport');
+      if (!viewport) return;
+
+      viewport.addEventListener('touchstart', handleLightboxSwipeStart, { passive: true });
+      viewport.addEventListener('touchmove', handleLightboxSwipeMove, { passive: false });
+      viewport.addEventListener('touchend', handleLightboxSwipeEnd, { passive: true });
+
+      window.addEventListener('resize', () => {
+        const modal = document.getElementById('lightboxModal');
+        if (modal && modal.style.display === 'flex') {
+          setLightboxTrackX(getLightboxBaseX(), false);
+        }
+      });
+
+      lightboxSwipeReady = true;
+    }
+
+    function handleLightboxSwipeStart(e) {
+      if (e.touches.length !== 1 || lightboxIsAnimating || lightboxZoom > 1) return;
+
+      lightboxSwipeStart = {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY
+      };
+
+      lightboxSwipeDeltaX = 0;
+    }
+
+    function handleLightboxSwipeMove(e) {
+      if (!lightboxSwipeStart.x || e.touches.length !== 1 || lightboxIsAnimating || lightboxZoom > 1) return;
+
+      const touch = e.touches[0];
+      const deltaX = touch.clientX - lightboxSwipeStart.x;
+      const deltaY = touch.clientY - lightboxSwipeStart.y;
+
+      if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 12) return;
+
+      e.preventDefault();
+
+      lightboxSwipeDeltaX = deltaX;
+
+      const baseX = getLightboxBaseX();
+
+      // 손가락을 따라오되 살짝 부드럽게
+      setLightboxTrackX(baseX + deltaX * 0.92, false);
+    }
+
+    function handleLightboxSwipeEnd() {
+      if (!lightboxSwipeStart.x || lightboxIsAnimating || lightboxZoom > 1) return;
+
+      const threshold = 58;
+
+      if (lightboxSwipeDeltaX < -threshold) {
+        changeImage(1);
+      } else if (lightboxSwipeDeltaX > threshold) {
+        changeImage(-1);
+      } else {
+        setLightboxTrackX(getLightboxBaseX(), true);
+      }
+
+      lightboxSwipeStart = { x: 0, y: 0 };
+      lightboxSwipeDeltaX = 0;
+    }
+
+    // ════════════════════════════════════
+    // [3] UTILITY FUNCTIONS - 유틸리티 함수 모음
+    // 모달 관리, 정보 토글, 클립보드 복사 등
+    // ════════════════════════════════════
+
+    /**
+     * 정보 섹션을 열고/닫기 (아코디언 효과)
+     * @param {HTMLElement} element - .info-item 요소
+     */
+    function toggleInfo(element) {
+      const isOpen = element.classList.toggle('active');
+      const button = element.querySelector('.info-header');
+
+      if (button) {
+        button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+    }
+
+    /**
+     * 연락처 모달 열기
+     * @param {string} side - 'groom' 또는 'bride'
+     */
+    function openContactModal(side) {
+      const modal = document.getElementById('contactModal');
+      const title = document.getElementById('contactModalTitle');
+      const groomPanel = document.getElementById('contactModalGroom');
+      const bridePanel = document.getElementById('contactModalBride');
+      if (!modal || !title || !groomPanel || !bridePanel) return;
+
+      const isBride = side === 'bride';
+      title.textContent = isBride ? '신부측 연락처' : '신랑측 연락처';
+      groomPanel.hidden = isBride;
+      bridePanel.hidden = !isBride;
+
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+
+      requestAnimationFrame(() => {
+        gsap.to(modal, {
+          opacity: 1,
+          duration: 0.25,
+          ease: 'power2.out'
+        });
+      });
+    }
+
+    function closeContactModal() {
+      const modal = document.getElementById('contactModal');
+      if (!modal || !modal.classList.contains('is-open')) return;
+
+      gsap.to(modal, {
+        opacity: 0,
+        duration: 0.2,
+        ease: 'power2.in',
+        onComplete: () => {
+          modal.classList.remove('is-open');
+          document.body.style.overflow = 'auto';
+        }
+      });
+    }
+
+    function closeContactModalByBackdrop(event) {
+      if (event.target.id === 'contactModal') {
+        closeContactModal();
+      }
+    }
+
+    function openGiftAccountModal(side) {
+      const modal = document.getElementById('giftAccountModal');
+      const title = document.getElementById('giftAccountModalTitle');
+      const groomPanel = document.getElementById('giftModalGroom');
+      const bridePanel = document.getElementById('giftModalBride');
+      if (!modal || !title || !groomPanel || !bridePanel) return;
+
+      const isBride = side === 'bride';
+      title.textContent = isBride ? '신부측' : '신랑측';
+      groomPanel.hidden = isBride;
+      bridePanel.hidden = !isBride;
+
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+
+      requestAnimationFrame(() => {
+        gsap.to(modal, {
+          opacity: 1,
+          duration: 0.25,
+          ease: 'power2.out'
+        });
+      });
+    }
+
+    function closeGiftAccountModal() {
+      const modal = document.getElementById('giftAccountModal');
+      if (!modal || !modal.classList.contains('is-open')) return;
+
+      gsap.to(modal, {
+        opacity: 0,
+        duration: 0.2,
+        ease: 'power2.in',
+        onComplete: () => {
+          modal.classList.remove('is-open');
+          document.body.style.overflow = 'auto';
+        }
+      });
+    }
+
+    function closeGiftAccountModalByBackdrop(event) {
+      if (event.target.id === 'giftAccountModal') {
+        closeGiftAccountModal();
+      }
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeContactModal();
+        closeGiftAccountModal();
+      }
+    });
+
+    document.addEventListener('gesturestart', function (e) {
+      const modal = document.getElementById('lightboxModal');
+      if (modal && modal.style.display === 'flex') {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    document.addEventListener('gesturechange', function (e) {
+      const modal = document.getElementById('lightboxModal');
+      if (modal && modal.style.display === 'flex') {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    // ════════════════════════════════════
+    // ════════════════════════════════════
+    // [3] UTILITY FUNCTIONS - 복사, 알림 등 유틸리티 함수들
+    // 클립보드 복사, 토스트 메시지, 계좌 복사 등
+    // ════════════════════════════════════
+    /**
+     * 텍스트를 클립보드에 복사
+     * Modern Clipboard API (HTTPS) 또는 레거시 방식 (execCommand) 사용
+     * @param {string} text - 복사할 텍스트
+     * @returns {Promise} 복사 성공/실패 Promise
+     */
+    function copyToClipboard(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text);
+      }
+
+      return new Promise((resolve, reject) => {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.top = '-9999px';
+        textarea.style.left = '-9999px';
+
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        try {
+          const successful = document.execCommand('copy');
+          document.body.removeChild(textarea);
+
+          if (successful) {
+            resolve();
+          } else {
+            reject();
+          }
+        } catch (error) {
+          document.body.removeChild(textarea);
+          reject(error);
+        }
+      });
+    }
+
+    /**
+     * 토스트 메시지 표시 (1.8초 후 자동 사라짐)
+     * 계좌 복사 성공/실패 메시지 표시에 사용
+     * @param {string} message - 표시할 메시지
+     */
+    function showToast(message) {
+      const toast = document.getElementById('toastMessage');
+      if (!toast) return;
+
+      toast.textContent = message;
+      toast.classList.add('is-visible');
+
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => {
+        toast.classList.remove('is-visible');
+      }, 2400);
+    }
+
+    /**
+     * 선물 계좌번호 복사 및 UI 피드백
+     * 복사 성공 시: 해당 인물 박스 하이라이트 + 토스트 메시지
+     * 복사 실패 시: 토스트 메시지로 오류 알림
+     * @param {HTMLElement} button - 클릭된 복사 버튼
+     * @param {string} bank - 은행명
+     * @param {string} number - 계좌번호 (숫자만)
+     */
+    function copyGiftAccount(button, bank, number) {
+      const copyText = `${bank} ${number}`;
+
+      copyToClipboard(copyText).then(() => {
+        // 복사 성공: 해당 인물 박스 하이라이트
+        const item = button.closest('.gift-modal-item');
+
+        if (item) {
+          item.classList.add('is-copied');
+
+          // 1초 후 하이라이트 제거
+          setTimeout(() => {
+            item.classList.remove('is-copied');
+          }, 1000);
+        }
+
+        // 토스트 메시지로 성공 알림
+        showToast(`계좌번호가 복사되었습니다.\n${bank} ${number}`);
+
+      }).catch(() => {
+        // 복사 실패 시 오류 메시지
+        showToast(`복사에 실패했습니다.\n${bank} ${number}`);
+      });
+    }
+
+    function copyAddress() {
+      const addr = WEDDING_VENUE.address;
+      navigator.clipboard.writeText(addr).then(() => {
+        alert('주소가 복사되었습니다!');
+      }).catch(() => {
+        alert('복사에 실패했습니다.');
+      });
+    }
+
+    /**
+     * 카카오톡으로 초대장 공유
+     * createDefaultButton을 사용하여 버튼 생성
+     */
+    function shareKakao() {
+      if (!window.Kakao || !window.Kakao.isInitialized()) {
+        alert('카카오톡 공유를 준비 중입니다. 다시 시도해주세요.');
+        return;
+      }
+
+      try {
+        // 현재 페이지 기준 이미지 URL 생성
+        const baseUrl = window.location.origin + window.location.pathname;
+        const imageUrl = new URL('images/main.jpg', baseUrl).href;
+
+        Kakao.Share.sendDefault({
+          objectType: 'feed',
+          content: {
+            title: '김주성 · 조다빈 결혼합니다(제주 피로연)',
+            description: '2026년 8월 10일 (토) 오전 11시 ~ 오후 4시\n제주 파라다이스회관',
+            imageUrl: imageUrl,  // 썸네일: main.jpg
+            link: {
+              mobileWebUrl: baseUrl,
+              webUrl: baseUrl
+            }
+          },
+          buttons: [
+            {
+              title: '초대장 보기',
+              link: {
+                mobileWebUrl: baseUrl,
+                webUrl: baseUrl
+              }
+            }
+          ]
+        });
+      } catch (error) {
+        console.error('공유 실패:', error);
+        alert('카카오톡 공유에 실패했습니다. 다시 시도해주세요.');
+      }
+    }
+
+    /**
+     * 초대장 URL 복사
+     */
+    function copyInvitationUrl() {
+      const url = window.location.href;
+
+      copyToClipboard(url).then(() => {
+        alert('청첩장 링크가 복사되었습니다.');
+      }).catch(() => {
+        alert('링크 복사에 실패했습니다.');
+      });
+    }
+
+    const WEDDING_VENUE = {
+      name: '제주 파라다이스회관',
+      searchKeyword: '파라다이스회관',
+      address: '제주특별자치도 제주시 삼성로 9 1층',
+      kakaoPlaceId: '1126984414',
+      kakaoLink: 'https://kko.to/FtprK7r-26',
+      naverLink: 'https://naver.me/5Q3CbcYf',
+      tmapLink: 'https://tmap.life/FtprK7r-26',
+      fallbackLat: 33.2536,
+      fallbackLng: 126.5645
+    };
+
+    function getMapInfoContent(title, address) {
+      return (
+        '<div style="box-sizing:border-box;width:168px;padding:10px 8px;font-size:12px;line-height:1.45;text-align:center;word-break:keep-all;overflow-wrap:break-word;white-space:normal;">' +
+        `<strong style="display:block;margin-bottom:4px;font-size:12px;font-weight:600;">${title}</strong>` +
+        `<span style="color:#555;font-size:11px;">${address}</span></div>`
+      );
+    }
+
+    function openNavi(type) {
+      if (type === 'naver') {
+        window.open(WEDDING_VENUE.naverLink, '_blank');
+      } else if (type === 'kakao') {
+        window.open(WEDDING_VENUE.kakaoLink, '_blank');
+      } else if (type === 'tmap') {
+        window.open(WEDDING_VENUE.tmapLink, '_blank');
+      }
+    }
+    function copyVenueAddress() {
+      copyToClipboard(WEDDING_VENUE.address).then(() => {
+        showToast('주소가 복사되었습니다.');
+      }).catch(() => {
+        alert('주소 복사에 실패했습니다.');
+      });
+    }
+
+    function showKakaoMapFallback() {
+      const mapContainer = document.getElementById('kakaoMap');
+      if (!mapContainer || mapContainer.dataset.fallbackShown) return;
+      mapContainer.dataset.fallbackShown = 'true';
+      mapContainer.innerHTML =
+        '<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#f4f6f8;color:#7f8c8d;font-size:14px;text-align:center;padding:16px;line-height:1.6;">지도를 불러올 수 없습니다.<br>아래 <strong>카카오맵</strong> 버튼으로 확인해 주세요.</div>';
+    }
+
+    function renderKakaoMap(lat, lng, title) {
+      const mapContainer = document.getElementById('kakaoMap');
+      if (!mapContainer) return;
+
+      const position = new kakao.maps.LatLng(lat, lng);
+      const map = new kakao.maps.Map(mapContainer, {
+        center: position,
+        level: 3
+      });
+      const marker = new kakao.maps.Marker({ position });
+      marker.setMap(map);
+      const infowindow = new kakao.maps.InfoWindow({
+        content: getMapInfoContent(title, WEDDING_VENUE.address),
+        removable: false
+      });
+      infowindow.open(map, marker);
+      mapContainer.dataset.loaded = 'true';
+
+      const relayout = () => map.relayout();
+      setTimeout(relayout, 100);
+      setTimeout(relayout, 500);
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.create({
+          trigger: '.map-section',
+          start: 'top 90%',
+          once: true,
+          onEnter: relayout
+        });
+      }
+    }
+
+    function initKakaoMap() {
+      const fallback = () => renderKakaoMap(
+        WEDDING_VENUE.fallbackLat,
+        WEDDING_VENUE.fallbackLng,
+        WEDDING_VENUE.name
+      );
+
+      if (!kakao.maps.services) {
+        fallback();
+        return;
+      }
+
+      const places = new kakao.maps.services.Places();
+      places.keywordSearch(WEDDING_VENUE.searchKeyword || WEDDING_VENUE.name, (data, status) => {
+        if (status === kakao.maps.services.Status.OK && data.length) {
+          const place = data.find((p) => p.id === WEDDING_VENUE.kakaoPlaceId) || data[0];
+          renderKakaoMap(place.y, place.x, WEDDING_VENUE.name);
+          return;
+        }
+
+        const geocoder = new kakao.maps.services.Geocoder();
+        geocoder.addressSearch(WEDDING_VENUE.address, (result, geoStatus) => {
+          if (geoStatus === kakao.maps.services.Status.OK && result.length) {
+            renderKakaoMap(result[0].y, result[0].x, WEDDING_VENUE.name);
+          } else {
+            fallback();
+          }
+        });
+      });
+    }
+
+    function bootKakaoMap() {
+      if (typeof kakao === 'undefined' || !kakao.maps || typeof kakao.maps.load !== 'function') {
+        showKakaoMapFallback();
+        return;
+      }
+      kakao.maps.load(() => {
+        try {
+          initKakaoMap();
+        } catch (err) {
+          console.error('Kakao map init failed:', err);
+          showKakaoMapFallback();
+        }
+      });
+    }
+
+    // ════════════════════════════════════
+    // GREETING MESSAGE ANIMATION
+    // ════════════════════════════════════
+    function animateGreetingLines() {
+      const greetingMsg = document.querySelector('.greeting-message');
+      if (!greetingMsg) return;
+
+      const originalHTML = greetingMsg.innerHTML;
+      const lines = originalHTML.split('<br>');
+
+      greetingMsg.innerHTML = '';
+
+      lines.forEach((line, index) => {
+        const span = document.createElement('span');
+        span.innerHTML = line;
+        span.style.display = 'block';
+        span.style.opacity = '0';
+        greetingMsg.appendChild(span);
+
+        gsap.to(span, {
+          opacity: 1,
+          duration: 0.8,
+          delay: index * 0.12,
+          ease: 'power2.out'
+        });
+      });
+    }
+
+
+
+    // ════════════════════════════════════
+    // CALENDAR GENERATION
+    // ════════════════════════════════════
+    function generateCalendar(year, month) {
+      const calendarDays = document.getElementById('calendarDays');
+      if (!calendarDays) return;
+
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const prevLastDay = new Date(year, month, 0);
+
+      const firstDayOfWeek = firstDay.getDay();
+      const lastDayDate = lastDay.getDate();
+      const prevLastDayDate = prevLastDay.getDate();
+
+      const receptionDay = 8;  // 제주 피로연
+      const weddingDay = 22;   // 본식
+      const holidays = [15, 17];
+
+      let html = '';
+
+      // 이전 달 날짜
+      for (let i = firstDayOfWeek - 1; i >= 0; i--) {
+        const day = prevLastDayDate - i;
+
+        html += `
+          <div class="calendar-day other-month">
+            <span class="calendar-day-number">${day}</span>
+          </div>
+        `;
+      }
+
+      // 현재 달 날짜
+      for (let day = 1; day <= lastDayDate; day++) {
+        const date = new Date(year, month, day);
+
+        const isReception = day === receptionDay;
+        const isWedding = day === weddingDay;
+        const isSunday = date.getDay() === 0;
+        const isSaturday = date.getDay() === 6;
+        const isHoliday = holidays.includes(day);
+
+        let classes = 'calendar-day';
+        let label = '';
+
+        if (isReception) {
+          classes += ' reception';
+          label = '제주 피로연';
+        } else if (isWedding) {
+          classes += ' wedding';
+          label = '본식';
+        } else if (isHoliday || isSunday) {
+          classes += ' holiday';
+        } else if (isSaturday) {
+          classes += ' saturday';
+        }
+
+        html += `
+          <div class="${classes}">
+            <span class="calendar-day-number">${day}</span>
+            ${label ? `<span class="calendar-day-label">${label}</span>` : ''}
+          </div>
+        `;
+      }
+
+      // 다음 달 날짜
+      const remainingDays = 42 - (firstDayOfWeek + lastDayDate);
+
+      for (let day = 1; day <= remainingDays; day++) {
+        html += `
+          <div class="calendar-day other-month">
+            <span class="calendar-day-number">${day}</span>
+          </div>
+        `;
+      }
+
+      calendarDays.innerHTML = html;
+    }
+
+    // ════════════════════════════════════
+    // [7] INITIALIZATION - 페이지 초기화
+    // 글꼴 로드 → 콘텐츠 렌더링 → 이벤트 리스너 등록
+    // ════════════════════════════════════
+
+    /**
+     * 커스텀 글꼴 로드 완료 대기
+     * 글꼴이 로드되면 hero 섹션을 표시
+     */
+    function revealHeroNamesWhenReady() {
+      const root = document.documentElement;
+      if (!document.fonts || !document.fonts.load) {
+        root.classList.add('fonts-ready');
+        return;
+      }
+      Promise.all([
+        document.fonts.load('300 1em "MaruBuri"'),
+        document.fonts.load('400 1em "Noto Serif KR"')
+      ])
+        .catch(() => {})
+        .finally(() => root.classList.add('fonts-ready'));
+    }
+
+    // 페이지 로드 완료 시 초기화 작업 실행
+    // Kakao SDK 초기화 (즉시 실행)
+    if (window.Kakao && !window.Kakao.isInitialized()) {
+      try {
+        Kakao.init('73429cabef01380bd88bd6a154ea3368');
+        console.log('✓ Kakao SDK 초기화 완료');
+      } catch (error) {
+        console.error('Kakao 초기화 실패:', error);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+      revealHeroNamesWhenReady();
+      generateCalendar(2026, 7);
+      loadGallery();
+      initAnimations();
+      animateGreetingLines();
+
+      const bgmBtn = document.getElementById('bgmToggle');
+
+      if (bgmBtn) bgmBtn.addEventListener('click', toggleBgm);
+
+      // ════════════════════════════════════
+      // 맨 위로 이동 버튼 (Scroll-to-Top FAB)
+      // 스크롤 400px 이상일 때 표시, 클릭 시 부드럽게 맨 위로 이동
+      // ════════════════════════════════════
+      const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+      if (scrollTopBtn) {
+        // 버튼 클릭 시: 부드러운 스크롤로 맨 위로 이동
+        scrollTopBtn.addEventListener('click', () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+
+        // 스크롤 위치에 따라 버튼 표시/숨김
+        // 400px 이상 스크롤 시 보임, 미만 시 숨김
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 400) {
+            scrollTopBtn.classList.add('is-visible');
+          } else {
+            scrollTopBtn.classList.remove('is-visible');
+          }
+        });
+      }
+
+      const heroImage = document.getElementById('heroImage');
+      if (heroImage) {
+        // pointerdown/touchstart: 스크롤하려고 터치해도 click보다 먼저 잡힘
+        heroImage.addEventListener('pointerdown', startBgmFromHero);
+        heroImage.addEventListener('touchstart', startBgmFromHero, { passive: true });
+      }
+
+      // Initialize scroll reveal animations
+      const observerOptions = {
+        threshold: 0.16,
+        rootMargin: '0px 0px -72px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal, .scale-in').forEach(el => {
+        observer.observe(el);
+      });
+    });
+
+    // ════════════════════════════════════
+    // BGM — YouTube IFrame API
+    // ════════════════════════════════════
+    // const BGM_VIDEO_ID = 'YBzJ0jmHv-4';
+    // const BGM_VIDEO_ID = 'DLjfRkIxUQ8';
+    // const BGM_VIDEO_ID = 'aCcbTcQQNSw';
+    const BGM_VIDEO_ID = 'UuHGsjraq34';  // 현재 사용 중인 BGM
+    let ytPlayer = null;
+    let bgmReady = false;
+    let bgmPlaying = false;
+    let bgmRequested = false;
+    let ytApiLoading = false;
+
+    function loadYouTubeApi() {
+      if (ytApiLoading || window.YT) return;
+      ytApiLoading = true;
+      window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      tag.async = true;
+      document.head.appendChild(tag);
+    }
+
+    function setBgmUi(playing) {
+      bgmPlaying = playing;
+      const btn = document.getElementById('bgmToggle');
+      if (!btn) return;
+      btn.classList.toggle('is-playing', playing);
+      btn.setAttribute('aria-label', playing ? '배경음악 끄기' : '배경음악 켜기');
+      btn.textContent = playing ? '♫' : '♪';
+    }
+
+    function toggleBgm() {
+      console.log('[BGM] toggleBgm - bgmReady:', bgmReady, 'ytPlayer:', !!ytPlayer);
+      loadYouTubeApi();
+
+      // API가 아직 로드 중이면 기다렸다가 재시도
+      if (!bgmReady || !ytPlayer) {
+        console.log('[BGM] 플레이어 준비 중... 0.5초 후 재시도');
+        setTimeout(toggleBgm, 500);
+        return;
+      }
+
+      if (bgmPlaying) {
+        console.log('[BGM] 음악 일시정지');
+        ytPlayer.pauseVideo();
+      } else {
+        console.log('[BGM] 음악 재생 시작');
+        try {
+          if (typeof ytPlayer.unMute === 'function') ytPlayer.unMute();
+          ytPlayer.setVolume(30);  // 볼륨 30%로 설정
+          ytPlayer.playVideo();
+        } catch (e) {
+          console.error('[BGM] 재생 실패:', e);
+        }
+      }
+    }
+
+    function startBgm() {
+      console.log('[BGM] startBgm - bgmReady:', bgmReady, 'ytPlayer:', !!ytPlayer);
+      if (!bgmReady || !ytPlayer) {
+        console.log('[BGM] 플레이어 준비 중... 0.5초 후 재시도');
+        setTimeout(startBgm, 500);
+        return false;
+      }
+
+      try {
+        if (typeof ytPlayer.unMute === 'function') ytPlayer.unMute();
+        ytPlayer.setVolume(30);
+        ytPlayer.playVideo();
+        console.log('[BGM] 음악 재생 시작 성공');
+        return true;
+      } catch (e) {
+        console.error('[BGM] 재생 실패:', e);
+        return false;
+      }
+    }
+
+    function startBgmFromHero() {
+      if (bgmPlaying) return;
+      bgmRequested = true;
+      loadYouTubeApi();
+      startBgm();
+    }
+
+    function onYouTubeIframeAPIReady() {
+      ytPlayer = new YT.Player('ytPlayer', {
+        height: '1',
+        width: '1',
+        videoId: BGM_VIDEO_ID,
+        playerVars: {
+          autoplay: 1,
+          mute: 1,
+          controls: 0,
+          disablekb: 1,
+          fs: 0,
+          iv_load_policy: 3,
+          modestbranding: 1,
+          playsinline: 1,
+          rel: 0,
+          loop: 1,
+          playlist: BGM_VIDEO_ID
+        },
+        events: {
+          onReady: () => {
+            bgmReady = true;
+            if (bgmRequested) startBgm();
+          },
+          onStateChange: (event) => {
+            if (event.data === YT.PlayerState.PLAYING) {
+              setBgmUi(true);
+            } else if (
+              event.data === YT.PlayerState.PAUSED ||
+              event.data === YT.PlayerState.ENDED
+            ) {
+              setBgmUi(false);
+            }
+          }
+        }
+      });
+    }
+  </script>
+
+  <script type="module">
+    import { initializeApp } from
+      'https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js';
+
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      deleteDoc,
+      getDoc,
+      doc,
+      query,
+      orderBy,
+      limit,
+      onSnapshot,
+      serverTimestamp
+    } from
+      'https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js';
+
+    // ═══════════════════════════════════════════════════════
+    // [8] FIREBASE INTEGRATION - 축하 메시지 저장소
+    // Firestore를 사용해 방명록 데이터 관리
+    // ═══════════════════════════════════════════════════════
+    const firebaseConfig = {
+      apiKey: "AIzaSyC3cpH1pHx9W-rq0PMCHVxJE42-o4F9S0Q",
+      authDomain: "juda-wedding.firebaseapp.com",
+      projectId: "juda-wedding",
+      storageBucket: "juda-wedding.firebasestorage.app",
+      messagingSenderId: "600205928200",
+      appId: "1:600205928200:web:ec8468ae8bb4bca0202ebd"
+    };
+
+    let db = null;
+    let guestbookRef = null;
+    let GUESTBOOK_DELETE_PASSWORD = '260822';
+
+    const MESSAGES_PER_PAGE = 4;
+    const MAX_VISIBLE_MESSAGE_PAGES = 5;
+
+    let currentMessagePage = 1;
+    let lastGuestbookSnapshot = null;
+
+    try {
+      const app = initializeApp(firebaseConfig);
+      db = getFirestore(app);
+      guestbookRef = collection(db, 'guestbook');
+      console.log('Firebase Firestore 활성화됨');
+    } catch (e) {
+      console.error('Firebase 초기화 실패:', e);
+      console.warn('guestbook는 제한 모드로 동작합니다.');
+    }
+
+    /**
+     * HTML 이스케이프 (XSS 방지)
+     * 사용자 입력 텍스트를 안전한 HTML로 변환
+     * @param {string} value - 이스케이프할 텍스트
+     * @returns {string} HTML 이스케이프된 문자열
+     */
+    function escapeHtml(value) {
+      const div = document.createElement('div');
+      div.textContent = String(value ?? '');
+      return div.innerHTML;
+    }
+
+    /**
+     * Firebase Timestamp를 한국 날짜 형식으로 변환
+     * @param {any} timestamp - Firestore Timestamp 또는 null
+     * @returns {string} 'YYYY.M.D' 형식의 날짜 문자열
+     */
+    function formatDate(timestamp) {
+      if (!timestamp || typeof timestamp.toDate !== 'function') {
+        return new Date().toLocaleDateString('ko-KR');
+      }
+
+      return timestamp.toDate().toLocaleDateString('ko-KR');
+    }
+
+    function renderMessagePagination(totalPages) {
+      if (totalPages <= 1) return '';
+
+      const currentPageGroup = Math.floor(
+        (currentMessagePage - 1) / MAX_VISIBLE_MESSAGE_PAGES
+      );
+
+      const startPage =
+        currentPageGroup * MAX_VISIBLE_MESSAGE_PAGES + 1;
+
+      const endPage = Math.min(
+        startPage + MAX_VISIBLE_MESSAGE_PAGES - 1,
+        totalPages
+      );
+
+      let numberButtons = '';
+
+      for (let page = startPage; page <= endPage; page++) {
+        numberButtons += `
+          <button
+            type="button"
+            class="message-page-number ${page === currentMessagePage ? 'is-current' : ''}"
+            data-page="${page}"
+            aria-label="${page}페이지"
+            ${page === currentMessagePage ? 'aria-current="page"' : ''}
+          >
+            ${page}
+          </button>
+        `;
+      }
+
+      return `
+        <div class="message-pagination">
+          <button
+            type="button"
+            class="message-page-nav"
+            data-page-action="prev"
+            ${currentMessagePage === 1 ? 'disabled' : ''}
+            aria-label="이전 메시지 페이지"
+          >
+            ‹ 이전
+          </button>
+
+          <div class="message-page-numbers">
+            ${numberButtons}
+          </div>
+
+          <button
+            type="button"
+            class="message-page-nav"
+            data-page-action="next"
+            ${currentMessagePage === totalPages ? 'disabled' : ''}
+            aria-label="다음 메시지 페이지"
+          >
+            다음 ›
+          </button>
+        </div>
+      `;
+    }
+
+    function renderFirebaseMessages(snapshot) {
+      const container = document.getElementById('messageList');
+      if (!container) return;
+
+      lastGuestbookSnapshot = snapshot;
+
+      if (snapshot.empty) {
+        currentMessagePage = 1;
+
+        container.innerHTML = `
+          <p style="
+            text-align:center;
+            color:var(--text-light);
+            font-size:13px;
+            padding:20px;
+          ">
+            아직 등록된 메시지가 없습니다.
+          </p>
+        `;
+        return;
+      }
+
+      const docs = snapshot.docs;
+      const totalCount = docs.length;
+      const totalPages = Math.ceil(totalCount / MESSAGES_PER_PAGE);
+
+      currentMessagePage = Math.min(
+        Math.max(currentMessagePage, 1),
+        totalPages
+      );
+
+      const startIndex =
+        (currentMessagePage - 1) * MESSAGES_PER_PAGE;
+
+      const pageDocs = docs.slice(
+        startIndex,
+        startIndex + MESSAGES_PER_PAGE
+      );
+
+      const cardsHtml = pageDocs.map((doc, index) => {
+        const data = doc.data();
+        const safeName = escapeHtml(data.name);
+        const safeMessage = escapeHtml(data.message)
+          .replace(/\n/g, '<br>');
+
+        return `
+          <div
+            class="message-card"
+            style="--delay:${index * 0.05}s"
+          >
+            <div class="message-header">
+              <span class="message-author">${safeName}</span>
+
+              <div class="message-meta">
+                <span class="message-date">
+                  ${formatDate(data.createdAt)}
+                </span>
+
+                <button
+                  type="button"
+                  class="message-delete-btn"
+                  data-id="${doc.id}"
+                  aria-label="메시지 삭제"
+                >
+                  삭제
+                </button>
+              </div>
+            </div>
+
+            <div class="message-text">${safeMessage}</div>
+          </div>
+        `;
+      }).join('');
+
+      container.innerHTML = `
+        <div class="message-count">
+          ${totalCount}개의 축하 메시지가 도착했어요
+        </div>
+
+        <div class="message-page-cards">
+          ${cardsHtml}
+        </div>
+
+        ${renderMessagePagination(totalPages)}
+      `;
+    }
+
+    function isDeletePasswordValid(inputPassword, storedPassword) {
+      const entered = String(inputPassword ?? '').trim();
+      if (!entered) return false;
+
+      if (storedPassword && entered === String(storedPassword).trim()) {
+        return true;
+      }
+
+      return entered === GUESTBOOK_DELETE_PASSWORD;
+    }
+
+    async function deleteGuestMessage(docId) {
+      const password = prompt(
+        '비밀번호를 입력해주세요.\n(등록 시 설정한 비밀번호 또는 관리자 비밀번호)'
+      );
+      if (password === null) return;
+
+      try {
+        const docSnap = await getDoc(doc(db, 'guestbook', docId));
+        if (!docSnap.exists()) {
+          alert('메시지를 찾을 수 없습니다.');
+          return;
+        }
+
+        const storedPassword = docSnap.data().deletePassword || '';
+
+        if (!isDeletePasswordValid(password, storedPassword)) {
+          alert('비밀번호가 일치하지 않습니다.');
+          return;
+        }
+
+        if (!confirm('이 메시지를 삭제할까요?')) return;
+
+        await deleteDoc(doc(db, 'guestbook', docId));
+        alert('메시지가 삭제되었습니다.');
+      } catch (error) {
+        console.error('Guestbook delete failed:', error);
+
+        const isPermissionDenied =
+          error?.code === 'permission-denied' ||
+          String(error?.message || '').toLowerCase().includes('permission');
+
+        if (isPermissionDenied) {
+          alert(
+            '삭제 권한이 없습니다.\nFirebase 콘솔 → Firestore → 규칙에서 guestbook 삭제(allow delete)를 허용해 주세요.'
+          );
+          return;
+        }
+
+        alert('메시지를 삭제하지 못했습니다. 잠시 후 다시 시도해주세요.');
+      }
+    }
+
+    const messageListEl = document.getElementById('messageList');
+    if (messageListEl) {
+      messageListEl.addEventListener('click', (event) => {
+        const numberBtn = event.target.closest('.message-page-number');
+
+        if (numberBtn) {
+          currentMessagePage = Number(numberBtn.dataset.page);
+
+          if (lastGuestbookSnapshot) {
+            renderFirebaseMessages(lastGuestbookSnapshot);
+          }
+
+          return;
+        }
+
+        const navBtn = event.target.closest('.message-page-nav');
+
+        if (navBtn) {
+          const totalPages = lastGuestbookSnapshot
+            ? Math.ceil(
+                lastGuestbookSnapshot.docs.length / MESSAGES_PER_PAGE
+              )
+            : 1;
+
+        if (navBtn.dataset.pageAction === 'prev') {
+          currentMessagePage = Math.max(
+            1,
+            currentMessagePage - MAX_VISIBLE_MESSAGE_PAGES
+          );
+        }
+
+        if (navBtn.dataset.pageAction === 'next') {
+          currentMessagePage = Math.min(
+            totalPages,
+            currentMessagePage + MAX_VISIBLE_MESSAGE_PAGES
+          );
+        }
+
+          if (lastGuestbookSnapshot) {
+            renderFirebaseMessages(lastGuestbookSnapshot);
+          }
+
+          return;
+        }
+
+        const deleteBtn = event.target.closest('.message-delete-btn');
+        if (!deleteBtn) return;
+
+        deleteGuestMessage(deleteBtn.dataset.id);
+      });
+    }
+
+    window.addMessage = async function addMessage() {
+      const nameInput = document.getElementById('guestName');
+      const messageInput = document.getElementById('guestMessage');
+      const passwordInput = document.getElementById('guestPassword');
+      const submitButton = document.querySelector('.guestbook-form .submit-btn');
+
+      const name = nameInput.value.trim();
+      const message = messageInput.value.trim();
+      const deletePassword = passwordInput ? passwordInput.value.trim() : '';
+
+      if (!name || !message) {
+        alert('이름과 메시지를 모두 입력해주세요.');
+        return;
+      }
+
+      if (name.length > 20) {
+        alert('이름은 20자 이하로 입력해주세요.');
+        return;
+      }
+
+      if (message.length > 300) {
+        alert('메시지는 300자 이하로 입력해주세요.');
+        return;
+      }
+
+      if (!guestbookRef) {
+        alert('Firebase 연결에 실패했습니다.\n브라우저 콘솔(F12)을 확인하고, Firebase 규칙이 올바른지 확인하세요.');
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = '메시지 남기기';
+        }
+        return;
+      }
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = '등록 중...';
+      }
+
+      try {
+        const payload = {
+          name,
+          message,
+          createdAt: serverTimestamp()
+        };
+
+        if (deletePassword) {
+          payload.deletePassword = deletePassword;
+        }
+
+        await addDoc(guestbookRef, payload);
+
+        nameInput.value = '';
+        messageInput.value = '';
+        if (passwordInput) passwordInput.value = '';
+
+        alert('메시지가 등록되었습니다.');
+      } catch (error) {
+        console.error('Guestbook write failed:', error);
+        alert('메시지를 등록하지 못했습니다. 잠시 후 다시 시도해주세요.');
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = '메시지 남기기';
+        }
+      }
+    };
+
+    if (guestbookRef) {
+      const guestbookQuery = query(
+        guestbookRef,
+        orderBy('createdAt', 'desc'),
+        limit(100)
+      );
+
+      onSnapshot(
+        guestbookQuery,
+        renderFirebaseMessages,
+        (error) => {
+          console.error('Guestbook read failed:', error);
+
+          const container = document.getElementById('messageList');
+          if (!container) return;
+
+          container.innerHTML = `
+            <p style="
+              text-align:center;
+              color:var(--text-light);
+              font-size:13px;
+              padding:20px;
+            ">
+              축하 메시지를 불러오지 못했습니다.
+            </p>
+          `;
+        }
+      );
+    } else {
+      // Firebase 연결 실패 시 fallback UI
+      const container = document.getElementById('messageList');
+      if (container) {
+        container.innerHTML = `
+          <p style="
+            text-align:center;
+            color:var(--text-light);
+            font-size:13px;
+            padding:20px;
+            border:1px dashed var(--border);
+            border-radius:6px;
+          ">
+            Firebase 연결에 실패했습니다.<br>
+            콘솔을 확인하거나 관리자에게 문의하세요.
+          </p>
+        `;
+      }
+    }
+  </script>
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=73429cabef01380bd88bd6a154ea3368&libraries=services"></script>
+  <script>
+    bootKakaoMap();
+  </script>
+</body>
+</html>
