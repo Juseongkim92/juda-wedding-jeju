@@ -14,11 +14,32 @@ export default function ScheduleSection() {
     },
   ]
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, rotateX: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      transition: { duration: 0.8, ease: 'easeOut' },
+    },
+  }
+
   return (
     <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
+      initial="hidden"
+      whileInView="visible"
+      variants={containerVariants}
       viewport={{ once: true, margin: '-100px' }}
       className="py-20 px-4"
     >
@@ -31,11 +52,9 @@ export default function ScheduleSection() {
           {ceremonies.map((ceremony, idx) => (
             <motion.div
               key={idx}
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ delay: idx * 0.2, duration: 0.6 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl border border-blue-200"
+              variants={itemVariants}
+              whileHover={{ scale: 1.02, translateY: -5 }}
+              className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl border border-blue-200 cursor-pointer"
             >
               <h3 className="text-2xl font-bold text-blue-600 mb-4">
                 {ceremony.title}

@@ -4,6 +4,7 @@ import ScheduleSection from './components/ScheduleSection'
 import GallerySection from './components/GallerySection'
 import LocationSection from './components/LocationSection'
 import GuestbookSection from './components/GuestbookSection'
+import GiftSection from './components/GiftSection'
 import GreetingSection from './components/GreetingSection'
 import FamilySection from './components/FamilySection'
 import ShareSection from './components/ShareSection'
@@ -16,6 +17,7 @@ export default function App() {
       <GallerySection />
       <LocationSection />
       <GuestbookSection />
+      <GiftSection />
       <GreetingSection />
       <FamilySection />
       <ShareSection />

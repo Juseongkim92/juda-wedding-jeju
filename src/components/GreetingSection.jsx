@@ -8,11 +8,32 @@ export default function GreetingSection() {
     '더없이 행복하겠습니다.',
   ]
 
+  const lineVariants = {
+    hidden: { opacity: 0, y: 20, rotateX: -30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      transition: { duration: 0.8, ease: 'easeOut' },
+    },
+  }
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1,
+      },
+    },
+  }
+
   return (
     <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
+      initial="hidden"
+      whileInView="visible"
+      variants={containerVariants}
       viewport={{ once: true, margin: '-100px' }}
       className="py-20 px-4"
     >
@@ -21,10 +42,7 @@ export default function GreetingSection() {
           {greetingLines.map((line, idx) => (
             <motion.p
               key={idx}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.1, duration: 0.6 }}
-              viewport={{ once: true }}
+              variants={lineVariants}
               className="text-xl md:text-2xl text-gray-700 font-light"
             >
               {line}
