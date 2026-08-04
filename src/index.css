@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Spoqa Han Sans Neo', sans-serif;
+  background-color: #fff;
+  color: #333;
+}
+
+:root {
+  --primary: #4B8AE6;
+  --accent: #E8A87C;
+  --light: #F8F9FB;
+  --border: #C5D5E3;
+  --text-dark: #1a2332;
+  --text-light: #666;
+}
