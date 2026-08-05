@@ -3242,6 +3242,7 @@
 
       <!-- 신부측 연락처 정보 -->
       <div id="contactModalBride" class="contact-modal-group">
+        <!-- 신부 -->
         <div class="contact-modal-person">
           <div>
             <div class="contact-modal-name">조다빈 <span class="contact-modal-relation">신부</span></div>
@@ -3252,8 +3253,15 @@
             <a href="sms:010-9555-0958" class="contact-action-link" title="문자"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></a>
           </div>
         </div>
+        <div class="gift-modal-item" style="margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border);">
+          <div class="gift-modal-account" style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
+            <span style="font-weight: 600;">국민은행 733702-00-129377</span>
+            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '국민은행', '73370200129377')" style="padding: 4px 8px; font-size: 12px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer;">복사</button>
+          </div>
+        </div>
 
-        <div class="contact-modal-person">
+        <!-- 신부 아버지 -->
+        <div class="contact-modal-person" style="margin-top: 16px;">
           <div>
             <div class="contact-modal-name">조진형 <span class="contact-modal-relation">신부 아버지</span></div>
             <span class="contact-modal-phone">010-6535-0958</span>
@@ -3263,8 +3271,15 @@
             <a href="sms:010-6535-0958" class="contact-action-link" title="문자"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></a>
           </div>
         </div>
+        <div class="gift-modal-item" style="margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border);">
+          <div class="gift-modal-account" style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
+            <span style="font-weight: 600;">하나은행 330-890503-54107</span>
+            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '하나은행', '33089050354107')" style="padding: 4px 8px; font-size: 12px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer;">복사</button>
+          </div>
+        </div>
 
-        <div class="contact-modal-person">
+        <!-- 신부 어머니 -->
+        <div class="contact-modal-person" style="margin-top: 16px;">
           <div>
             <div class="contact-modal-name">주봉은 <span class="contact-modal-relation">신부 어머니</span></div>
             <span class="contact-modal-phone">010-4172-0958</span>
@@ -3274,45 +3289,16 @@
             <a href="sms:010-4172-0958" class="contact-action-link" title="문자"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></a>
           </div>
         </div>
-
-        <!-- 신부측 계좌 정보 -->
-        <div style="border-top: 1px solid var(--border); margin: 16px 0; padding-top: 16px;">
-          <div class="gift-modal-item" style="margin-bottom: 12px;">
-            <div class="gift-modal-person" style="margin-bottom: 8px;">
-              <strong style="font-size: 14px;">조다빈</strong>
-              <span style="font-size: 12px; color: var(--text-light);">신부</span>
-            </div>
-            <div class="gift-modal-account" style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
-              <span style="font-weight: 600;">국민은행 733702-00-129377</span>
-              <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '국민은행', '73370200129377')" style="padding: 4px 8px; font-size: 12px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer;">복사</button>
-            </div>
-          </div>
-
-          <div class="gift-modal-item" style="margin-bottom: 12px;">
-            <div class="gift-modal-person" style="margin-bottom: 8px;">
-              <strong style="font-size: 14px;">조진형</strong>
-              <span style="font-size: 12px; color: var(--text-light);">신부 아버지</span>
-            </div>
-            <div class="gift-modal-account" style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
-              <span style="font-weight: 600;">하나은행 330-890503-54107</span>
-              <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '하나은행', '33089050354107')" style="padding: 4px 8px; font-size: 12px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer;">복사</button>
-            </div>
-          </div>
-
-          <div class="gift-modal-item">
-            <div class="gift-modal-person" style="margin-bottom: 8px;">
-              <strong style="font-size: 14px;">주봉은</strong>
-              <span style="font-size: 12px; color: var(--text-light);">신부 어머니</span>
-            </div>
-            <div class="gift-modal-account" style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
-              <span style="font-weight: 600;">대구은행 211-07-0097218</span>
-              <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '대구은행', '211070097218')" style="padding: 4px 8px; font-size: 12px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer;">복사</button>
-            </div>
+        <div class="gift-modal-item">
+          <div class="gift-modal-account" style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
+            <span style="font-weight: 600;">대구은행 211-07-0097218</span>
+            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '대구은행', '211070097218')" style="padding: 4px 8px; font-size: 12px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer;">복사</button>
           </div>
         </div>
       </div>
 
       <div id="contactModalGroom" class="contact-modal-group" hidden>
+        <!-- 신랑 -->
         <div class="contact-modal-person">
           <div>
             <div class="contact-modal-name">김주성 <span class="contact-modal-relation">신랑</span></div>
@@ -3323,8 +3309,15 @@
             <a href="sms:010-9113-6540" class="contact-action-link" title="문자"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></a>
           </div>
         </div>
+        <div class="gift-modal-item" style="margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border);">
+          <div class="gift-modal-account" style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
+            <span style="font-weight: 600;">카카오뱅크 3333-08-7103596</span>
+            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '카카오뱅크', '3333087103596')" style="padding: 4px 8px; font-size: 12px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer;">복사</button>
+          </div>
+        </div>
 
-        <div class="contact-modal-person">
+        <!-- 신랑 아버지 -->
+        <div class="contact-modal-person" style="margin-top: 16px;">
           <div>
             <div class="contact-modal-name">김한섭 <span class="contact-modal-relation">신랑 아버지</span></div>
             <span class="contact-modal-phone">010-4595-6540</span>
@@ -3334,8 +3327,15 @@
             <a href="sms:010-4595-6540" class="contact-action-link" title="문자"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></a>
           </div>
         </div>
+        <div class="gift-modal-item" style="margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--border);">
+          <div class="gift-modal-account" style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
+            <span style="font-weight: 600;">농협 901055-56-046477</span>
+            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '농협', '90105556046477')" style="padding: 4px 8px; font-size: 12px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer;">복사</button>
+          </div>
+        </div>
 
-        <div class="contact-modal-person">
+        <!-- 신랑 어머니 -->
+        <div class="contact-modal-person" style="margin-top: 16px;">
           <div>
             <div class="contact-modal-name">박희숙 <span class="contact-modal-relation">신랑 어머니</span></div>
             <span class="contact-modal-phone">010-2692-6540</span>
@@ -3345,40 +3345,10 @@
             <a href="sms:010-2692-6540" class="contact-action-link" title="문자"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></a>
           </div>
         </div>
-
-        <!-- 신랑측 계좌 정보 -->
-        <div style="border-top: 1px solid var(--border); margin: 16px 0; padding-top: 16px;">
-          <div class="gift-modal-item" style="margin-bottom: 12px;">
-            <div class="gift-modal-person" style="margin-bottom: 8px;">
-              <strong style="font-size: 14px;">김주성</strong>
-              <span style="font-size: 12px; color: var(--text-light);">신랑</span>
-            </div>
-            <div class="gift-modal-account" style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
-              <span style="font-weight: 600;">카카오뱅크 3333-08-7103596</span>
-              <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '카카오뱅크', '3333087103596')" style="padding: 4px 8px; font-size: 12px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer;">복사</button>
-            </div>
-          </div>
-
-          <div class="gift-modal-item" style="margin-bottom: 12px;">
-            <div class="gift-modal-person" style="margin-bottom: 8px;">
-              <strong style="font-size: 14px;">김한섭</strong>
-              <span style="font-size: 12px; color: var(--text-light);">신랑 아버지</span>
-            </div>
-            <div class="gift-modal-account" style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
-              <span style="font-weight: 600;">농협 901055-56-046477</span>
-              <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '농협', '90105556046477')" style="padding: 4px 8px; font-size: 12px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer;">복사</button>
-            </div>
-          </div>
-
-          <div class="gift-modal-item">
-            <div class="gift-modal-person" style="margin-bottom: 8px;">
-              <strong style="font-size: 14px;">박희숙</strong>
-              <span style="font-size: 12px; color: var(--text-light);">신랑 어머니</span>
-            </div>
-            <div class="gift-modal-account" style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
-              <span style="font-weight: 600;">농협 901055-52-131187</span>
-              <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '농협', '90105552131187')" style="padding: 4px 8px; font-size: 12px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer;">복사</button>
-            </div>
+        <div class="gift-modal-item">
+          <div class="gift-modal-account" style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
+            <span style="font-weight: 600;">농협 901055-52-131187</span>
+            <button type="button" class="gift-modal-copy" onclick="copyGiftAccount(this, '농협', '90105552131187')" style="padding: 4px 8px; font-size: 12px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer;">복사</button>
           </div>
         </div>
       </div>
