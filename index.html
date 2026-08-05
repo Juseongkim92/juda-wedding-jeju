@@ -2922,7 +2922,7 @@
   ═══════════════════════════════════════════════════════ -->
   <section class="section-compact reveal">
     <div class="container">
-      <h2>축하 연락처</h2>
+      <h2>축하 연락하기</h2>
       <!-- 신랑측/신부측 연락처 버튼 -->
       <!-- 클릭 시 contact modal 열림 -->
       <div class="gift-side-actions contact-side-actions">
@@ -2945,42 +2945,6 @@
       </div>
     </div>
   </section>
-
-  <!-- 마음 전하실 곳 섹션 -->
-  <section class="section-compact reveal">
-    <div class="container">
-      <h2>마음 전하실 곳</h2>
-      <p class="section-note" style="text-align: center; margin-bottom: 20px; font-size: 13px; color: var(--text-light);">
-        참석이 어려우신 분들을 위해 계좌번호를 기재하였습니다.<br />
-        너그러운 마음으로 양해 부탁드립니다.
-      </p>
-      <!-- 신랑측/신부측 계좌 버튼 -->
-      <div class="gift-side-actions">
-        <button
-          type="button"
-          class="contact-open-btn gift-side-btn gift-side-btn--groom"
-          onclick="openGiftAccountModal('groom')"
-        >
-          <img src="images/icons/groom.png" alt="신랑" class="contact-btn-icon" />
-          신랑측
-        </button>
-        <button
-          type="button"
-          class="contact-open-btn gift-side-btn gift-side-btn--bride"
-          onclick="openGiftAccountModal('bride')"
-        >
-          신부측
-          <img src="images/icons/bride.png" alt="신부" class="contact-btn-icon" />
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- PLACEHOLDER FOR REMOVED CONTENT -->
-  <section class="section-compact reveal" style="display: none;">
-    <div class="container">
-      <!-- 신랑측 / 신부측 카드 -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
 
   <!-- ═══════════════════════════════════════════════════════
        [4] CALENDAR SECTION - 예식 일정
@@ -3117,6 +3081,34 @@
   </div>
 </section>
 
+  <!-- ═══════════════════════════════════════════════════════
+       [7] GIFT SECTION - 마음 전하실 곳
+       신랑측/신부측 계좌 정보 → 모달로 계좌 상세 정보 표시
+  ═══════════════════════════════════════════════════════ -->
+  <section class="section-compact reveal">
+    <div class="container">
+      <h2>마음 전하실 곳</h2>
+      <!-- 신랑측/신부측 계좌 버튼 -->
+      <div class="gift-side-actions">
+        <button
+          type="button"
+          class="contact-open-btn gift-side-btn gift-side-btn--groom"
+          onclick="openGiftAccountModal('groom')"
+        >
+          <img src="images/icons/groom.png" alt="신랑" class="contact-btn-icon" />
+          신랑측
+        </button>
+        <button
+          type="button"
+          class="contact-open-btn gift-side-btn gift-side-btn--bride"
+          onclick="openGiftAccountModal('bride')"
+        >
+          신부측
+          <img src="images/icons/bride.png" alt="신부" class="contact-btn-icon" />
+        </button>
+      </div>
+    </div>
+  </section>
 
   <!-- ═══════════════════════════════════════════════════════
        [8] GUESTBOOK SECTION - 축하 메시지
